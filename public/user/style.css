@@ -1,0 +1,1719 @@
+:root {
+    --bg-jewelry: #b3a594;
+    --bg-decor: #b3a594;
+    --text-serif: 'Playfair Display', serif;
+    --text-sans: 'Montserrat', sans-serif;
+}
+
+/* --- 1. GLOBAL STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        
+
+        /* ================= OLD ENVA NAVBAR ================= */
+.main-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 5%;
+  background:#fff;
+  position:fixed;
+  top:0;left:0;width:100%;
+  z-index:2000;
+  border-bottom:1px solid #eee;
+  padding: 30px;
+}
+
+
+.logo{font-size:22px;font-weight:700;letter-spacing:2px}
+.nav-links a{
+  margin:0 18px;
+  text-decoration:none;
+  color:#000;
+  font-weight:600;
+}
+.header-actions{display:flex;align-items:center;gap:20px}
+.search-bar{
+  display:flex;align-items:center;
+  border:1px solid #ddd;border-radius:25px;
+  padding:12px 20px;
+}
+.search-bar input{
+  border:none;outline:none;font-size:13px;
+}
+.icon-group a{color:#000;margin-left:12px;font-size:18px}
+
+/* spacing for fixed navbar */
+.page-top-spacing{margin-top:120px}
+
+body { font-family: var(--text-sans); background-color: #fff; overflow-x: hidden; }
+
+
+/* ======================================================
+   USER DROPDOWN
+====================================================== */
+.user-menu {
+  position: relative;
+}
+
+/* user icon */
+.user-icon {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #000;
+}
+
+/* dropdown box */
+.user-dropdown {
+  position: absolute;
+  top: 48px;
+  right: 0;
+  width: 240px;
+  background: #3f3f3f;   /* dark grey */
+  border-radius: 10px;
+  padding: 10px 0;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+  display: none;
+  z-index: 3000;
+}
+
+/* show dropdown */
+.user-dropdown.active {
+  display: block;
+}
+
+/* dropdown links */
+.user-dropdown a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  color: #eaeaea;
+  font-size: 15px;
+  text-decoration: none;
+  transition: background 0.25s ease;
+}
+
+/* icons */
+.user-dropdown a i {
+  width: 18px;
+  font-size: 15px;
+  color: #d0d0d0;
+}
+
+/* hover */
+.user-dropdown a:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+/* logout */
+.user-dropdown .logout {
+  color: #ff9c9c;
+}
+
+.user-dropdown .logout i {
+  color: #ff9c9c;
+}
+
+/* mobile alignment */
+@media (max-width: 768px) {
+  .user-dropdown {
+    right: -10px;
+  }
+}
+
+/* --- CAROUSEL CORE MECHANICS --- */
+
+.carousel-viewport {
+    width: 100%;
+    height: 85vh;
+    overflow: hidden; /* Hides the second slide completely */
+    position: relative;
+}
+
+.carousel-track {
+    display: flex; /* Lines slides up horizontally */
+    width: 300%;   /* Must be 100% * number of slides */
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.hero {
+    flex: 0 0 100vw; /* Each slide is exactly the width of the screen */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5%;
+    width: 100vw;
+}
+.premium-bg {
+    background-color: #b3a594 /* A muted Sage Green that complements your Taupe and Blue */
+}
+
+.jewelry-slide { background-color: var(--bg-jewelry); }
+.decor-slide { background-color: var(--bg-decor); }
+
+.hero-content {
+    display: flex;
+    width: 90%;
+    max-width: 1400px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 100px;
+}
+
+.text-side {
+    margin-left: -125px;
+}
+
+/* Typography */
+.main-title {
+    font-family: var(--text-serif);
+    font-size: 85px;
+    color: white;
+    line-height: 0.9;
+    letter-spacing: 2px;
+}
+
+.sub-title {
+    font-family: var(--text-serif);
+    font-style: italic;
+    font-size: 22px;
+    color: #333;
+    margin-top: 20px;
+}
+.hero-content2 {
+    display: flex;
+    width: 90%;
+    max-width: 1400px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 22px;
+}
+
+.hero-content3 {
+    display: flex;
+    width: 90%;
+    max-width: 1400px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 70px;
+}
+
+
+
+/* Image Grid */
+.image-grid { display: flex; gap: 20px; height: 500px; }
+.image-grid img { width: 100%; height: 100%; object-fit: cover; border-radius: 2px; }
+
+.large-img { width: 350px; }
+.small-grid { display: flex; flex-direction: column; gap: 15px; }
+.top-small { width: 400px; height: 235px; }
+.bottom-small { display: flex; gap: 15px; height: 250px; }
+.bottom-small img { width: 192px; }
+
+/* Navigation */
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 35px;
+    cursor: pointer;
+    color: #333;
+    z-index: 10;
+    padding: 20px;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+
+.nav-arrow:hover { opacity: 1; }
+.left { left: 20px; }
+.right { right: 20px; }
+
+/* Section Container */
+.category-section {
+    padding: 80px 10%;
+    background-color: #FAFAFA;
+    text-align: center;
+}
+
+.category-header h2 {
+    font-family: var(--text-sans);
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.category-header p {
+    color: #737373;
+    font-size: 14px;
+    margin-bottom: 48px;
+}
+
+/* Grid Layout */
+.category-grid {
+    display: flex;
+    gap: 30px;
+    max-width: 1050px;
+    margin: 0 auto;
+    height: 500px; /* Adjust height as needed */
+}
+
+.cat-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.cat-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Specific Sizes to match Figma */
+.main-cat {
+    flex: 2; /* Largest (Men) */
+}
+
+.sub-cat {
+    flex: 1; /* Medium (Women) */
+}
+
+.cat-stack {
+    flex: 1; /* Container for two small squares */
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.mini-cat {
+    height: calc(50% - 15px); /* Half height minus gap */
+}
+
+/* The White Buttons */
+.cat-btn {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background-color: white;
+    color: #252B42;
+    border: none;
+    padding: 12px 30px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+
+.cat-btn:hover {
+    background-color: #f1f1f1;
+}
+
+/* Container and Section Heading */
+.bestseller-products {
+    padding: 80px 0;
+    background-color: #FFFFFF;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+    max-width: 95%;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.featured-text {
+    font-size: 20px;
+    color: #737373;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.section-title h3 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.1px;
+    color: #252B42;
+    margin-bottom: 10px;
+}
+
+.section-title p {
+    font-size: 14px;
+    color: #737373;
+    letter-spacing: 0.2px;
+}
+
+/* Product Grid Layout */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns as seen in Figma */
+    gap: 30px;
+    width: 100%;
+}
+
+/* Product Card Styling */
+.product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-img {
+    width: 100%;
+    height: 420px; /* Tall aspect ratio for Kurti images */
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+.product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Product Info Text */
+.product-info h5 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #252B42;
+    margin-bottom: 10px;
+    letter-spacing: 0.1px;
+}
+
+.dept {
+    font-size: 14px;
+    font-weight: 700;
+    color: #737373;
+    margin-bottom: 10px;
+}
+
+/* Pricing Section */
+.prices {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 5px;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.old-price {
+    color: #BDBDBD;
+    text-decoration: line-through;
+}
+
+.new-price {
+    color: #23856D; /* The specific teal green from the design */
+}
+
+/* Color Swatches (Dots) */
+.color-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.blue { background-color: #23A6F0; }
+.green { background-color: #23856D; }
+.orange { background-color: #E77C40; }
+.black { background-color: #252B42; }
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .product-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+    .product-grid { grid-template-columns: 1fr; }
+}
+
+.banner-section {
+    background-color: #C48F62; /* The exact tan/brown from Figma reference */
+    width: 100%;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    padding-top: 60px; /* Space for the model to "stand" on the bottom edge */
+}
+
+.banner-container {
+    max-width: 1050px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* Text Styling */
+.banner-text {
+    flex: 1;
+    color: white;
+    padding-right: 50px;
+    z-index: 2;
+}
+
+.banner-text h5 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    letter-spacing: 0.1px;
+}
+
+.banner-text h1 {
+    font-size: 58px;
+    font-weight: 700;
+    line-height: 80px;
+    margin-bottom: 30px;
+    letter-spacing: 0.2px;
+}
+
+.banner-text p {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 30px;
+    max-width: 370px;
+}
+
+/* Pricing and Button */
+.banner-action {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.banner-action .price {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.add-btn {
+    background-color: #2DC071; /* The specific bright green from Figma */
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background 0.3s;
+}
+
+.add-btn:hover {
+    background-color: #23a05d;
+}
+
+/* Image Styling */
+.banner-image {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-self: flex-end; /* Keeps the model flush with the bottom */
+}
+
+.banner-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .banner-container {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 20px;
+    }
+    .banner-text {
+        padding-right: 0;
+        margin-bottom: 40px;
+    }
+    .banner-text p {
+        margin: 0 auto 30px;
+    }
+    .banner-action {
+        justify-content: center;
+    }
+}
+
+/* Footer Global */
+.main-footer {
+    background-color: #FFFFFF;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Footer Top Bar */
+.footer-top {
+    background-color: #FAFAFA; /* Light gray background from Figma */
+    padding: 40px 0;
+}
+
+.footer-brand-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-brand-row .logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #252B42;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.social-icons a {
+    color: #23A6F0; /* Primary blue color for icons */
+    font-size: 24px;
+}
+
+/* Footer Middle (Links) */
+.footer-middle {
+    padding: 70px 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columns as seen in design */
+    gap: 30px;
+}
+
+.footer-col h5 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #252B42;
+    margin-bottom: 20px;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    text-decoration: none;
+    color: #737373;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.footer-col ul li a:hover {
+    color: #23A6F0;
+}
+
+/* Newsletter Input */
+.subscribe-form {
+    display: flex;
+    height: 50px;
+}
+
+.subscribe-form input {
+    background: #F9F9F9;
+    border: 1px solid #E6E6E6;
+    border-radius: 5px 0 0 5px;
+    padding: 0 20px;
+    flex: 1;
+    font-size: 14px;
+}
+
+.subscribe-form button {
+    background-color: #23A6F0;
+    color: white;
+    border: none;
+    padding: 0 20px;
+    border-radius: 0 5px 5px 0;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.form-text {
+    font-size: 12px;
+    color: #737373;
+    margin-top: 10px;
+}
+
+/* Footer Bottom Bar */
+.footer-bottom {
+    background-color: #FAFAFA;
+    padding: 25px 0;
+}
+
+.footer-bottom p {
+    font-size: 14px;
+    font-weight: 700;
+    color: #737373;
+    text-align: left;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 992px) {
+    .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    .newsletter { grid-column: span 2; }
+}
+
+@media (max-width: 600px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .newsletter { grid-column: span 1; }
+    .footer-brand-row { flex-direction: column; gap: 20px; text-align: center; }
+}
+
+/* Container for the right side of the navbar */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Space between Login text and the icons */
+}
+
+/* Login/Register Text Style */
+.login-register {
+    color: #23A6F0; /* Primary brand blue */
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px; /* Matches Figma h6/link style */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    
+}
+
+/* Icon Group Styling */
+.icon-group {
+    display: flex;
+    align-items: center;
+    gap: 25px; /* Spacing between search, cart, and heart icons */
+}
+
+.icon-group a {
+    color: #000000; /* All icons are the same blue in Figma */
+    text-decoration: none;
+    font-size: 16px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Notification Badge (for 1 on cart/heart) */
+.count {
+    font-size: 12px;
+    font-weight: 400;
+    color: #23A6F0;
+}
+
+/* =================================
+   SAFE RESPONSIVE PATCH
+   (Desktop untouched)
+================================= */
+
+/* -------- TABLET & MOBILE -------- */
+@media (max-width: 768px) {
+
+  /* ---------- HEADER ---------- */
+  header.container {
+    flex-wrap: wrap;
+    height: auto;        /* allow menu to drop */
+    padding: 10px 15px;
+  }
+
+  nav#mainNav {
+    display: none;      /* hidden by default */
+    width: 100%;
+    flex-direction: column;
+    background: #fff;
+    text-align: center;
+    padding: 12px 0;
+    border-top: 1px solid #eee;
+  }
+
+  nav#mainNav a {
+    padding: 10px 0;
+    display: block;
+    font-size: 14px;
+  }
+
+  nav#mainNav.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+    font-size: 22px;
+    cursor: pointer;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero-content,
+  .hero-content2,
+  .hero-content3 {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .text-side {
+    margin-left: 0;   /* remove negative margin ONLY on mobile */
+  }
+
+  .main-title {
+    font-size: 34px;
+  }
+
+  .sub-title {
+    font-size: 14px;
+  }
+
+  /* ---------- IMAGE GRID ---------- */
+  .image-grid {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .large-img,
+  .top-small,
+  .bottom-small img {
+    width: 100%;
+  }
+
+  .bottom-small {
+    flex-direction: column;
+    height: auto;
+  }
+
+  /* ---------- CATEGORY ---------- */
+  .category-grid {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .cat-stack {
+    flex-direction: row;
+  }
+
+  .mini-cat {
+    height: 180px;
+  }
+
+  /* ---------- PRODUCTS ---------- */
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* ---------- BANNER ---------- */
+  .banner-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .banner-text h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-brand-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+}
+/* ================================
+   MOBILE ONLY NAVBAR + CAROUSEL
+================================ */
+
+/* Hide on desktop */
+.mobile-header,
+.mobile-carousel {
+  display: none;
+}
+
+/* ---------- MOBILE VIEW ---------- */
+@media (max-width: 768px) {
+
+  /* hide your existing desktop header + carousel */
+  header.container,
+  .carousel-viewport {
+    display: none;
+  }
+
+  /* show mobile ones */
+  .mobile-header,
+  .mobile-carousel {
+    display: block;
+  }
+
+  /* ----- NAVBAR ----- */
+  .mobile-header {
+    background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+
+  .top-bar {
+    background: #000;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    padding: 6px 0;
+  }
+
+  .nav-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 15px;
+  }
+
+  .menu-toggle {
+    font-size: 22px;
+    cursor: pointer;
+  }
+
+  .mobile-logo {
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  .nav-icons {
+    display: flex;
+    gap: 15px;
+    font-size: 18px;
+  }
+
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    background: #fff;
+    border-top: 1px solid #eee;
+  }
+
+  .mobile-nav a {
+    padding: 12px;
+    text-align: center;
+    font-weight: 600;
+    text-decoration: none;
+    color: #000;
+  }
+
+
+  .mobile-nav.active {
+    display: flex;
+  }
+
+  /* ----- CAROUSEL ----- */
+  .mobile-carousel {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+  }
+
+  .slides {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s ease;
+  }
+
+  .slide {
+    min-width: 100%;
+    position: relative;
+  }
+
+  .slide img {
+    width: 100%;
+    height: 60%;
+    object-fit: cover;
+    margin-top: 55px;
+  }
+
+  .caption {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    background: rgb(255, 255, 255);
+    color: #fff;
+    padding: 12px;
+    border-radius: 4px;
+  }
+
+  .caption h2 { font-size: 18px; margin-bottom: 5px; }
+  .caption p  { font-size: 12px; margin-bottom: 6px; }
+
+  .caption button {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.4);
+    color: #fff;
+    border: none;
+    font-size: 22px;
+    padding: 6px 10px;
+    cursor: pointer;
+  }
+
+  .left  { left: 5px; }
+  .right { right: 5px; }
+}
+
+/* =====================================
+   MOBILE FIX FOR EXISTING CAROUSEL
+   (keeps same design, only resizes)
+===================================== */
+
+@media (max-width: 768px) {
+
+  /* make carousel shorter */
+  .carousel-viewport {
+    height: 55vh;          /* was 85vh on desktop */
+  }
+
+  .hero {
+    padding: 0 15px;
+  }
+
+  /* stack content neatly */
+  .hero-content,
+  .hero-content2,
+  .hero-content3 {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+
+  /* remove negative margin only on mobile */
+  .text-side {
+    margin-left: 0;
+  }
+
+  /* resize titles */
+  .main-title {
+    font-size: 32px;
+    line-height: 1;
+  }
+
+  .sub-title {
+    font-size: 14px;
+  }
+
+  /* image grid becomes vertical */
+  .image-grid {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .large-img,
+  .top-small {
+    width: 100%;
+    height: auto;
+  }
+
+  .bottom-small {
+    flex-direction: row;
+    height: auto;
+  }
+
+  .bottom-small img {
+    width: 100%;
+  }
+
+  /* arrows smaller & centered */
+  .nav-arrow {
+    font-size: 24px;
+    padding: 10px;
+  }
+
+  .left  { left: 5px; }
+  .right { right: 5px; }
+}
+
+/* =====================================
+   FIX WHITE SPACE IN MOBILE CAROUSEL
+===================================== */
+
+@media (max-width: 768px) {
+
+    .category-section {
+    padding: 80px 10%;
+    background-color: #FAFAFA;
+    text-align: center;
+    margin-top: -80px;
+}
+
+  /* force carousel to fill */
+  .carousel-viewport {
+    height: 55vh;
+    background: #b3a594;   /* fallback so no white shows */
+  }
+
+  .carousel-track {
+    height: 100%;
+  }
+
+  .hero {
+    height: 100%;
+  }
+
+  /* make sure each slide fills area */
+  .jewelry-slide,
+  .decor-slide,
+  .premium-bg {
+    height: 100%;
+  }
+}
+
+/* =========================================
+   SHOW FULL IMAGE IN CAROUSEL (MOBILE ONLY)
+========================================= */
+
+@media (max-width: 768px) {
+
+  /* Make carousel shorter */
+  .carousel-viewport {
+    height: 45vh;
+  }
+
+  /* Ensure all slide containers fill */
+  .carousel-track,
+  .hero,
+  .jewelry-slide,
+  .decor-slide,
+  .premium-bg {
+    height: 100%;
+  }
+
+  /* Image grid fix */
+  .image-grid {
+    height: 100%;
+    align-items: center;
+  }
+
+  /* 🔥 KEY FIX: show full image */
+  .image-grid img {
+    object-fit: contain !important;
+    background-color: #b3a594; /* fallback so no white */
+  }
+
+  /* Reduce image box sizes so image fits */
+  .large-img {
+    height: 220px;
+  }
+
+  .top-small {
+    height: 150px;
+  }
+
+  .bottom-small {
+    height: 120px;
+  }
+
+  /* Make text smaller */
+  .main-title {
+    font-size: 28px;
+    line-height: 1;
+  }
+
+  .sub-title {
+    font-size: 14px;
+  }
+}
+/* ======================================
+   MOBILE CATEGORY SIZE FIX
+   (Accessories same height as Women)
+====================================== */
+
+@media (max-width: 768px) {
+
+  /* stack categories */
+  .category-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* MEN + WOMEN + ACCESSORIES = big cards */
+  .category-grid .cat-item {
+    height: 260px;
+  }
+
+  /* specifically make accessories same as women */
+  .category-grid .cat-item:nth-child(3) {
+    height: 260px;   /* ACCESSORIES */
+  }
+
+  /* kids slightly smaller */
+  .category-grid .cat-item:nth-child(4) {
+    height: 200px;   /* KIDS */
+  }
+
+  /* make images fill properly */
+  .category-grid .cat-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+/* Footer Global */
+.main-footer {
+    background-color: #FFFFFF;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Footer Top Bar */
+.footer-top {
+    background-color: #FAFAFA; /* Light gray background from Figma */
+    padding: 40px 0;
+}
+
+.footer-brand-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-brand-row .logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #252B42;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.social-icons a {
+    color: #23A6F0; /* Primary blue color for icons */
+    font-size: 24px;
+}
+
+/* Footer Middle (Links) */
+.footer-middle {
+    padding: 70px 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columns as seen in design */
+    gap: 30px;
+}
+
+.footer-col h5 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #252B42;
+    margin-bottom: 20px;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    text-decoration: none;
+    color: #737373;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.footer-col ul li a:hover {
+    color: #23A6F0;
+}
+
+/* Newsletter Input */
+.subscribe-form {
+    display: flex;
+    height: 50px;
+}
+
+.subscribe-form input {
+    background: #F9F9F9;
+    border: 1px solid #E6E6E6;
+    border-radius: 5px 0 0 5px;
+    padding: 0 20px;
+    flex: 1;
+    font-size: 14px;
+}
+
+.subscribe-form button {
+    background-color: #23A6F0;
+    color: white;
+    border: none;
+    padding: 0 20px;
+    border-radius: 0 5px 5px 0;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.form-text {
+    font-size: 12px;
+    color: #737373;
+    margin-top: 10px;
+}
+
+/* Footer Bottom Bar */
+.footer-bottom {
+    background-color: #FAFAFA;
+    padding: 25px 0;
+}
+
+.footer-bottom p {
+    font-size: 14px;
+    font-weight: 700;
+    color: #737373;
+    text-align: left;
+}
+
+/* hide mobile icons by default (desktop) */
+.menu-toggle,
+.search-icon{
+  display:none;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 992px) {
+    .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    .newsletter { grid-column: span 2; }
+}
+
+@media (max-width: 600px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .newsletter { grid-column: span 1; }
+    .footer-brand-row { flex-direction: column; gap: 20px; text-align: center; }
+}
+@media (max-width: 768px) {
+
+  /* ---------- NAVBAR ---------- */
+  .main-header{
+    flex-wrap: wrap;
+    padding: 12px 16px;
+  }
+
+  .logo{
+    font-size: 18px;
+  }
+
+  .nav-links{
+    display: none;   /* hide big menu on mobile */
+  }
+
+  .header-actions{
+    gap: 10px;
+  }
+
+  .search-bar{
+    display: none;   /* hide search on very small screens */
+  }
+
+  .icon-group a{
+    font-size: 16px;
+    margin-left: 8px;
+  }
+
+  /* spacing under fixed navbar */
+  .page-top-spacing{
+    margin-top: 90px;
+  }
+}
+
+/* hide mobile-only icons on desktop */
+.menu-toggle,
+.search-icon{
+  display:none;
+}
+
+/* ---------- MOBILE ONLY ---------- */
+@media (max-width:768px){
+
+  /* hide desktop menu + big search */
+  .nav-links{ display:none; }
+  .search-bar{ display:none; }
+
+  /* show toggle + mobile search */
+  .menu-toggle,
+  .search-icon{
+    display:inline-block;
+    font-size:18px;
+    color:#000;
+    cursor:pointer;
+  }
+
+  /* navbar layout */
+  .main-header{
+    display:grid;
+    grid-template-columns: 40px 1fr auto;
+    align-items:center;
+    padding:12px 16px;
+  }
+
+  /* center logo */
+  .logo{
+    text-align:center;
+    font-size:18px;
+  }
+
+  /* right side icons */
+  .header-actions{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+
+  .icon-group a{
+    font-size:16px;
+    margin-left:6px;
+  }
+
+  /* spacing under fixed navbar */
+  .page-top-spacing{
+    margin-top:100px;
+  }
+}
+/* ================= HEADER ACTION SPACING ================= */
+
+/* Desktop spacing */
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:18px;   /* space between blocks */
+}
+
+/* Space between icons inside icon-group */
+.icon-group{
+  display:flex;
+  align-items:center;
+  gap:14px;   /* space between icons */
+}
+
+/* Mobile spacing */
+@media (max-width:768px){
+
+  .header-actions{
+    gap:14px;   /* space between toggle, search, icons */
+  }
+
+  .icon-group{
+    gap:12px;   /* tighter but clean */
+  }
+
+  .menu-toggle,
+  .search-icon{
+    margin-right:4px; /* little breathing space */
+  }
+}
+/* hide mobile icons by default (desktop) */
+.menu-toggle,
+.search-icon{
+  display:none;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 992px) {
+    .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    .newsletter { grid-column: span 2; }
+}
+
+@media (max-width: 600px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .newsletter { grid-column: span 1; }
+    .footer-brand-row { flex-direction: column; gap: 20px; text-align: center; }
+}
+@media (max-width: 768px) {
+
+  /* ---------- NAVBAR ---------- */
+  .main-header{
+    flex-wrap: wrap;
+    padding: 12px 16px;
+  }
+
+  .logo{
+    font-size: 18px;
+  }
+
+  .nav-links{
+    display: none;   /* hide big menu on mobile */
+  }
+
+  .header-actions{
+    gap: 10px;
+  }
+
+  .search-bar{
+    display: none;   /* hide search on very small screens */
+  }
+
+  .icon-group a{
+    font-size: 16px;
+    margin-left: 8px;
+  }
+
+  /* spacing under fixed navbar */
+  .page-top-spacing{
+    margin-top: 90px;
+  }
+}
+
+/* hide mobile-only icons on desktop */
+.menu-toggle,
+.search-icon{
+  display:none;
+}
+
+/* ---------- MOBILE ONLY ---------- */
+@media (max-width:768px){
+
+  /* hide desktop menu + big search */
+  .nav-links{ display:none; }
+  .search-bar{ display:none; }
+
+  /* show toggle + mobile search */
+  .menu-toggle,
+  .search-icon{
+    display:inline-block;
+    font-size:18px;
+    color:#000;
+    cursor:pointer;
+  }
+
+  /* navbar layout */
+  .main-header{
+    display:grid;
+    grid-template-columns: 40px 1fr auto;
+    align-items:center;
+    padding:12px 16px;
+  }
+
+  /* center logo */
+  .logo{
+    text-align:center;
+    font-size:18px;
+  }
+
+  /* right side icons */
+  .header-actions{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+
+  .icon-group a{
+    font-size:16px;
+    margin-left:6px;
+  }
+
+  /* spacing under fixed navbar */
+  .page-top-spacing{
+    margin-top:100px;
+  }
+}
+/* ================= HEADER ACTION SPACING ================= */
+
+/* Desktop spacing */
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:18px;   /* space between blocks */
+}
+
+/* Space between icons inside icon-group */
+.icon-group{
+  display:flex;
+  align-items:center;
+  gap:14px;   /* space between icons */
+}
+
+/* Mobile spacing */
+@media (max-width:768px){
+
+  .header-actions{
+    gap:14px;   /* space between toggle, search, icons */
+  }
+
+  .icon-group{
+    gap:12px;   /* tighter but clean */
+  }
+
+  .menu-toggle,
+  .search-icon{
+    margin-right:4px; /* little breathing space */
+  }
+}
+/* MOBILE MENU (ANIMATED) */
+.mobile-nav{
+  position:fixed;
+  top:70px;
+  left:0;
+  width:100%;
+  background:#fff;
+  border-top:1px solid #eee;
+  box-shadow:0 10px 20px rgba(0,0,0,.08);
+  z-index:1500;
+
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 0.35s ease;
+}
+
+.mobile-nav a{
+  display:block;
+  padding:15px 20px;
+  text-decoration:none;
+  color:#000;
+  font-weight:600;
+  border-bottom:1px solid #f1f1f1;
+}
+
+/* when menu is open */
+.mobile-nav.active{
+  max-height:300px; /* enough for 4 links */
+}
+
+/* ================= MOBILE SEARCH ANIMATION ================= */
+
+.mobile-search{
+  position:fixed;
+  top:70px;              /* below navbar */
+  left:0;
+  width:100%;
+  background:#fff;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  z-index:1600;
+
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .35s ease;
+}
+
+/* when open */
+.mobile-search.active{
+  max-height:90px;
+}
+
+.mobile-search-box{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:15px 20px;
+}
+
+.mobile-search-box input{
+  flex:1;
+  padding:12px 14px;
+  border:1px solid #ddd;
+  border-radius:25px;
+  outline:none;
+  font-size:14px;
+}
+
+.close-search{
+  font-size:20px;
+  color:#000;
+  cursor:pointer;
+}
+
+/* hide on desktop */
+@media(min-width:769px){
+  .mobile-search{ display:none; }
+}
+/* MOBILE MENU */
+.mobile-nav{
+  position: fixed;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-top: 1px solid #eee;
+  box-shadow: 0 10px 20px rgba(0,0,0,.08);
+  z-index: 1500;
+
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+
+  text-align: left;          /* 🔴 important */
+}
+
+/* links */
+.mobile-nav a{
+  display: block;
+  padding: 15px 24px;       /* space from left */
+  text-decoration: none;
+  color: #000;
+  font-weight: 600;
+  border-bottom: 1px solid #f1f1f1;
+
+  text-align: left;        /* 🔴 force left */
+}
+
+/* when open */
+.mobile-nav.active{
+  max-height: 300px;
+}
+
+.product-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.product-link:hover {
+  transform: translateY(-5px);
+  transition: 0.3s ease;
+}

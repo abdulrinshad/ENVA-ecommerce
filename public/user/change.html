@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Change Password - ENVA</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <!-- COMMON HEADER + FOOTER -->
+  <link rel="stylesheet" href="signup.css">
+
+  <!-- CHANGE PAGE ONLY -->
+  <link rel="stylesheet" href="change.css">
+</head>
+
+<body class="change-page">
+
+<!-- ================= HEADER ================= -->
+<header class="main-header container">
+
+  <span class="menu-toggle" id="menuToggle">
+    <i class="fas fa-bars"></i>
+  </span>
+
+  <div class="logo">ENVA</div>
+
+  <nav class="nav-links">
+    <a href="index.html">HOME</a>
+    <a href="shop.html">SHOP</a>
+    <a href="about.html">ABOUT</a>
+    <a href="contact.html">CONTACT</a>
+  </nav>
+
+  <div class="header-actions">
+    <div class="search-bar">
+      <input type="text" placeholder="What are you looking for?">
+      <i class="fas fa-search"></i>
+    </div>
+
+    <span class="search-icon">
+      <i class="fas fa-search"></i>
+    </span>
+
+    <div class="icon-group">
+      <a href="wishlist.html"><i class="far fa-heart"></i></a>
+      <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+      <a href="myaccount.html"><i class="far fa-user"></i></a>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">HOME</a>
+  <a href="shop.html">SHOP</a>
+  <a href="about.html">ABOUT</a>
+  <a href="contact.html">CONTACT</a>
+</nav>
+
+<!-- ================= CHANGE PASSWORD ================= -->
+<main class="auth-wrapper container">
+
+  <div class="auth-visual">
+    <div class="image-box">
+      <img src="images/ENVA.png" alt="ENVA">
+    </div>
+  </div>
+
+  <div class="auth-content">
+    <div class="auth-form-box">
+
+      <h1 class="auth-title">Change Password</h1>
+      <p class="auth-subtitle">
+        Enter your new password below
+      </p>
+
+      <!-- FORM (handled by JS) -->
+      <form id="resetPasswordForm">
+
+        <div class="input-underline-group">
+          <input
+            type="password"
+            id="newPassword"
+            placeholder="New Password"
+            required
+          >
+        </div>
+
+        <div class="input-underline-group">
+          <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Confirm Password"
+            required
+          >
+        </div>
+
+        <button type="submit" class="btn-primary-blue">
+          Submit
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="main-footer">
+
+  <div class="footer-top">
+    <div class="container">
+      <div class="footer-brand-row">
+        <h3 class="logo">ENVA</h3>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-middle">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h5>Company Info</h5>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Career</a></li>
+            <li><a href="#">We are hiring</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms</a></li>
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Features</h5>
+          <ul>
+            <li><a href="#">Business Marketing</a></li>
+            <li><a href="#">User Analytics</a></li>
+            <li><a href="#">Live Chat</a></li>
+            <li><a href="#">Unlimited Support</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <ul>
+            <li><a href="#">iOS & Android</a></li>
+            <li><a href="#">Watch a Demo</a></li>
+            <li><a href="#">Customers</a></li>
+            <li><a href="#">API</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container">
+      <p>Made With Love By Finland All Right Reserved</p>
+    </div>
+  </div>
+
+</footer>
+
+<!-- ================= JS ================= -->
+<script>
+/* ===== MOBILE MENU ===== */
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.getElementById("menuToggle");
+  const mobileNav = document.getElementById("mobileNav");
+  const icon = toggleBtn.querySelector("i");
+
+  toggleBtn.addEventListener("click", () => {
+    mobileNav.classList.toggle("active");
+    icon.classList.toggle("fa-bars");
+    icon.classList.toggle("fa-times");
+  });
+});
+
+/* ===== RESET PASSWORD (FIXED) ===== */
+document.getElementById("resetPasswordForm").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const newPassword = document.getElementById("newPassword").value.trim();
+  const confirmPassword = document.getElementById("confirmPassword").value.trim();
+  const email = localStorage.getItem("resetEmail");
+
+  if (!newPassword || !confirmPassword) {
+    showPopup("error", "Missing Fields", "Please fill all fields");
+    return;
+  }
+
+  if (newPassword !== confirmPassword) {
+    showPopup("error", "Password Mismatch", "Passwords do not match");
+    return;
+  }
+
+  if (!email) {
+    showPopup("error", "Session Expired", "Please restart password reset");
+    window.location.href = "forget.html";
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:5000/api/auth/reset-password", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        newPassword,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      showPopup(
+        "error",
+        "Reset Failed",
+        data.message || "Failed to reset password"
+      );
+      return;
+    }
+
+    // ✅ CLEANUP (IMPORTANT)
+    localStorage.removeItem("resetEmail");
+
+    showPopup(
+      "success",
+      "Password Changed",
+      "Your password has been updated successfully"
+    );
+
+    setTimeout(() => {
+      window.location.href = "login.html";
+    }, 1500);
+
+  } catch (error) {
+    showPopup(
+      "error",
+      "Server Error",
+      "Please try again later"
+    );
+  }
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/popup.js"></script>
+</body>
+</html>

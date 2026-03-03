@@ -1,0 +1,667 @@
+/* =========================================
+   GLOBAL RESET
+========================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #ffffff;
+  color: #252B42;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1170px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 0;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.nav-links a {
+  margin: 0 18px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: #737373;
+  text-transform: uppercase;
+}
+
+.nav-links a:hover {
+  color: #000;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.header-actions i {
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* =========================================
+   ACCOUNT WRAPPER
+========================================= */
+.account-wrapper {
+  padding: 60px 0 100px;
+}
+
+.breadcrumb {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 25px;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: #888;
+}
+
+.breadcrumb a:hover {
+  color: #000;
+}
+
+.welcome-section h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+/* =========================================
+   GRID LAYOUT
+========================================= */
+.account-grid {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 70px;
+  align-items: start;
+}
+
+/* =========================================
+   SIDEBAR
+========================================= */
+.sidebar {
+  border-right: 1px solid #eee;
+  padding-right: 30px;
+}
+
+.sidebar-category {
+  margin-bottom: 35px;
+}
+
+.sidebar-category h4 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #b5b5b5;
+  margin-bottom: 20px;
+}
+
+.sidebar-category ul {
+  list-style: none;
+}
+
+.sidebar-category ul li {
+  margin-bottom: 14px;
+}
+
+.sidebar-category ul li a,
+.standalone-link {
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+  transition: 0.3s;
+}
+
+.sidebar-category ul li a:hover,
+.standalone-link:hover {
+  color: #000;
+}
+
+.sidebar-category ul li a.active {
+  color: #23A6F0;
+  font-weight: 700;
+}
+
+.standalone-link {
+  display: block;
+  margin-bottom: 20px;
+}
+
+/* Logout Button */
+.logout-btn {
+  background: #fff5f5;
+  color: #ff4d4d;
+  border: 1px solid #ffebeb;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.logout-btn:hover {
+  background: #ffeaea;
+}
+
+/* =========================================
+   CONTENT CARD
+========================================= */
+.form-container,
+.address-book-container,
+.my-orders-section,
+.wallet-container {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+}
+
+/* =========================================
+   FORM DESIGN
+========================================= */
+.form-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 25px;
+}
+
+.input-field label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.input-field input {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.input-field input:focus {
+  border-color: #23A6F0;
+  outline: none;
+}
+
+/* Buttons */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.save-changes-btn {
+  background: #23A6F0;
+  color: white;
+  border: none;
+  padding: 14px 40px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.save-changes-btn:hover {
+  opacity: 0.9;
+}
+
+/* =========================================
+   WALLET
+========================================= */
+.wallet-balance-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9f9f9;
+  padding: 30px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.balance-text h2 {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.balance-text p {
+  color: #777;
+  font-size: 14px;
+}
+
+.btn-add-funds {
+  background: #23A6F0;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* =========================================
+   ORDER CARDS
+========================================= */
+.order-card {
+  background: #f8f9fa;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-id {
+  font-weight: 700;
+}
+
+.status-badge {
+  background: #2d6a4f;
+  color: white;
+  padding: 6px 15px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+
+/* =========================================
+   WALLET SECTION – PREMIUM CLEAN DESIGN
+========================================= */
+
+.wallet-container {
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 12px;
+  padding: 40px;
+}
+
+/* Wallet Header */
+.wallet-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+/* Balance Card */
+.wallet-balance-card {
+  background: #f8f9fb;
+  border-radius: 14px;
+  padding: 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.balance-text h2 {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.balance-text p {
+  font-size: 14px;
+  color: #777;
+}
+
+.wallet-icon-box i {
+  font-size: 38px;
+  color: #d0d0d0;
+}
+
+/* =========================================
+   ADD MONEY SECTION
+========================================= */
+
+.add-money-container {
+  margin-bottom: 45px;
+}
+
+.add-money-container h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.add-money-flex {
+  display: flex;
+  max-width: 450px;
+}
+
+.amount-input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px 0 0 8px;
+  padding: 0 15px;
+  background: #fff;
+  flex: 1;
+}
+
+.amount-input-wrapper span {
+  margin-right: 6px;
+  font-weight: 600;
+  color: #555;
+}
+
+.amount-input-wrapper input {
+  border: none;
+  padding: 14px 10px;
+  width: 100%;
+  font-size: 14px;
+  outline: none;
+}
+
+.btn-add-funds {
+  background: #23A6F0;
+  color: white;
+  border: none;
+  padding: 0 28px;
+  border-radius: 0 8px 8px 0;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-add-funds:hover {
+  opacity: 0.9;
+}
+
+/* =========================================
+   TRANSACTION HISTORY TABLE
+========================================= */
+
+.history-container h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.history-table thead th {
+  text-align: left;
+  font-size: 13px;
+  color: #888;
+  font-weight: 600;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.history-table tbody td {
+  padding: 18px 0;
+  font-size: 14px;
+  border-bottom: 1px solid #f7f7f7;
+}
+
+.history-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.amount-col {
+  text-align: right;
+  font-weight: 700;
+}
+
+.pos {
+  color: #28a745;
+}
+
+.neg {
+  color: #dc3545;
+}
+
+.icon-refund {
+  color: #28a745;
+  margin-right: 8px;
+  font-size: 12px;
+}
+
+.icon-purchase {
+  color: #dc3545;
+  margin-right: 8px;
+  font-size: 12px;
+}
+
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+
+  .wallet-container {
+    padding: 25px;
+  }
+
+  .wallet-balance-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .add-money-flex {
+    flex-direction: column;
+  }
+
+  .amount-input-wrapper {
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+
+  .btn-add-funds {
+    border-radius: 8px;
+    height: 45px;
+  }
+
+  .history-table thead {
+    display: none;
+  }
+
+  .history-table tbody tr {
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .history-table tbody td {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border: none;
+  }
+
+  .amount-col {
+    justify-content: flex-end;
+  }
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+.sidebar {
+  border-right: 1px solid #eee;
+  padding-right: 35px;
+}
+
+.sidebar-section {
+  margin-bottom: 45px;
+}
+
+.sidebar-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #aaa;
+  margin-bottom: 20px;
+}
+
+.sidebar-menu {
+  list-style: none;
+}
+
+.sidebar-menu li {
+  margin-bottom: 18px;
+}
+
+.sidebar-menu li a {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: #111;
+  padding-left: 16px;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+.sidebar-menu li a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 0;
+  background: #000;
+  transition: height 0.25s ease;
+}
+
+.sidebar-menu li a:hover::before {
+  height: 16px;
+}
+
+.sidebar-menu li a.active {
+  font-weight: 700;
+}
+
+.sidebar-menu li a.active::before {
+  height: 22px;
+}
+
+.standalone-link {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: #111;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.logout-btn {
+  margin-top: 40px;
+  background: none;
+  border: none;
+  color: #c00000;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.logout-btn:hover {
+  color: #000;
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+.main-footer {
+  margin-top: 80px;
+  padding: 60px 0 30px;
+  border-top: 1px solid #eee;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 30px;
+}
+
+.footer-col h5 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #777;
+}
+
+.footer-col ul li:hover {
+  color: #000;
+  cursor: pointer;
+}
+
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
+@media (max-width: 992px) {
+  .account-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .sidebar {
+    border-right: none;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address Book - ENVA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="address.css">
+    <link rel="stylesheet" href="userSigned.css">
+    
+</head>
+<body>
+    <header class="main-header">
+
+  <!-- Mobile Menu Icon -->
+  <span class="menu-toggle" id="menuToggle">
+    <i class="fas fa-bars"></i>
+  </span>
+
+  <!-- Logo -->
+  <div class="logo">ENVA</div>
+
+  <!-- Desktop Nav -->
+  <nav class="nav-links">
+    <a href="usersigned.html">HOME</a>
+    <a href="shopuser.html">SHOP</a>
+    <a href="about.html">ABOUT</a>
+    <a href="contact.html">CONTACT</a>
+  </nav>
+
+  <!-- Header Actions -->
+  <div class="header-actions">
+
+    <!-- Search -->
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <i class="fas fa-search"></i>
+    </div>
+
+    <!-- Icons -->
+    <div class="icon-group">
+
+      <a href="#"><i class="far fa-heart"></i></a>
+      <a href="#"><i class="fas fa-shopping-cart"></i></a>
+
+      <!-- USER MENU -->
+      <div class="user-menu">
+        <a href="#" id="userToggle" class="user-icon">
+          <i class="far fa-user"></i>
+        </a>
+
+        <div class="user-dropdown" id="userDropdown">
+          <a href="myaccount.html">
+            <i class="far fa-user"></i> Manage My Account
+          </a>
+          <a href="orders.html">
+            <i class="fas fa-box"></i> My Orders
+          </a>
+          <a href="logout.html" class="logout">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</header>
+
+  <!-- MOBILE MENU -->
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">HOME</a>
+  <a href="shop.html">SHOP</a>
+  <a href="about.html">ABOUT</a>
+  <a href="contact.html">CONTACT</a>
+</nav>
+
+
+  <div class="header-actions">
+
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <i class="fas fa-search"></i>
+    </div>
+    <!-- MOBILE SEARCH BAR -->
+<div class="mobile-search" id="mobileSearch">
+  <div class="mobile-search-box">
+    <input type="text" placeholder="Search products...">
+    <span class="close-search" id="closeSearch">
+      <i class="fas fa-times"></i>
+    </span>
+  </div>
+</div>
+
+    <span class="search-icon">
+    <i class="fas fa-search"></i>
+  </span>
+
+    <div class="icon-group">
+      <a href="#"><i class="far fa-heart"></i></a>
+      <a href="#"><i class="fas fa-shopping-cart"></i></a>
+      <a href="#"><i class="far fa-user"></i></a>
+    </div>
+  </div>
+</header>
+    
+   <main class="account-wrapper container">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <a href="usersigned.html">Home</a> /
+        <span class="active-page">My Account</span>
+    </nav>
+
+    <!-- Dynamic Welcome -->
+    <div class="welcome-section">
+        <h2 id="welcomeName">HELLO RINSHAD</h2>
+    </div>
+
+    <div class="account-grid">
+
+       <!-- SIDEBAR -->
+<aside class="sidebar">
+
+    <!-- ACCOUNT SECTION -->
+    <div class="sidebar-section">
+        <p class="sidebar-title">Manage My Account</p>
+        <ul class="sidebar-menu">
+            <li><a href="myaccount.html" class="active">My Profile</a></li>
+            <li><a href="address.html">Address Book</a></li>
+            <li><a href="payment-options.html">My Payment Options</a></li>
+        </ul>
+    </div>
+
+    <!-- ORDERS SECTION -->
+    <div class="sidebar-section">
+        <p class="sidebar-title">My Orders</p>
+        <ul class="sidebar-menu">
+            <li><a href="orders.html">Orders</a></li>
+            <li><a href="returns.html">Returns</a></li>
+            <li><a href="cancel.html">Cancellations</a></li>
+        </ul>
+    </div>
+
+    <!-- WISHLIST -->
+    <div class="sidebar-section">
+        <a href="wishlist.html" class="standalone-link">My Wishlist</a>
+    </div>
+
+    <!-- LOGOUT -->
+    <button type="button" id="logoutBtn" class="logout-btn">
+        Logout
+    </button>
+
+</aside>
+
+    <!-- ADDRESS BOOK -->
+    <section class="address-book-container">
+
+      <!-- ✅ DYNAMIC ADDRESSES LOAD HERE -->
+      <div class="address-grid" id="addressGrid"></div>
+
+      <div class="address-footer">
+        <button
+          class="add-address-btn"
+          id="addAddressBtn">
+          + Add New Address
+        </button>
+      </div>
+
+    </section>
+
+  </div>
+</main>
+
+    <footer class="main-footer">
+        <div class="footer-top">
+            <div class="container footer-brand-row">
+                <h3 class="logo">ENVA</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-middle">
+            <div class="container footer-grid">
+                <div class="footer-col">
+                    <h5>Company Info</h5>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Carrier</a></li>
+                        <li><a href="#">We are hiring</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Carrier</a></li>
+                        <li><a href="#">We are hiring</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Features</h5>
+                    <ul>
+                        <li><a href="#">Business Marketing</a></li>
+                        <li><a href="#">User Analytic</a></li>
+                        <li><a href="#">Live Chat</a></li>
+                        <li><a href="#">Unlimited Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Resources</h5>
+                    <ul>
+                        <li><a href="#">IOS & Android</a></li>
+                        <li><a href="#">Watch a Demo</a></li>
+                        <li><a href="#">Customers</a></li>
+                        <li><a href="#">API</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col newsletter">
+                    <h5>Get In Touch</h5>
+                    <form class="subscribe-form">
+                        <input type="email" placeholder="Your Email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <p class="form-text">Lore imp sum dolor Amit</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p>Made With Love By Finland All Right Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  loadAddresses();
+
+  const addBtn   = document.getElementById("addAddressBtn");
+  const modal    = document.getElementById("addressModal");
+  const closeBtn = document.getElementById("closeModal");
+  const saveBtn  = document.getElementById("saveAddress");
+
+  const firstName = document.getElementById("firstName");
+  const lastName  = document.getElementById("lastName");
+  const phone     = document.getElementById("phone");
+  const pincode   = document.getElementById("pincode");
+  const street    = document.getElementById("street");
+  const city      = document.getElementById("city");
+  const state     = document.getElementById("state");
+
+  /* OPEN MODAL */
+  addBtn?.addEventListener("click", () => {
+    modal.classList.remove("hidden");
+  });
+
+  /* CLOSE MODAL */
+  closeBtn?.addEventListener("click", () => {
+    modal.classList.add("hidden");
+  });
+
+  /* SAVE ADDRESS */
+  saveBtn?.addEventListener("click", async () => {
+    const token = localStorage.getItem("userToken");
+    if (!token) {
+      Swal.fire("Error", "User not logged in", "error");
+      return;
+    }
+
+    const data = {
+      firstName: firstName.value.trim(),
+      lastName:  lastName.value.trim(),
+      phone:     phone.value.trim(),
+      pincode:   pincode.value.trim(),
+      street:    street.value.trim(),
+      city:      city.value.trim(),
+      state:     state.value.trim()
+    };
+
+    const res = await fetch("/api/address", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token
+      },
+      body: JSON.stringify(data)
+    });
+
+    if (!res.ok) {
+      Swal.fire("Error", "Failed to save address", "error");
+      return;
+    }
+
+    modal.classList.add("hidden");
+    clearForm();
+    loadAddresses();
+  });
+});
+
+/* LOAD ADDRESSES */
+async function loadAddresses() {
+  try {
+    const token = localStorage.getItem("userToken");
+
+    const res = await fetch("/api/address", {
+      headers: { Authorization: "Bearer " + token }
+    });
+
+    if (!res.ok) throw new Error();
+
+    const addresses = await res.json();
+    const grid = document.getElementById("addressGrid");
+    grid.innerHTML = "";
+
+    if (addresses.length === 0) {
+      grid.innerHTML = "<p>No saved addresses</p>";
+      return;
+    }
+
+    addresses.forEach(addr => {
+      grid.innerHTML += `
+        <div class="address-entry-card">
+          <p><strong>${addr.firstName} ${addr.lastName}</strong></p>
+          <p>${addr.street}, ${addr.city}</p>
+          <p>${addr.state} - ${addr.pincode}</p>
+          <p>Phone: ${addr.phone}</p>
+        </div>
+      `;
+    });
+
+  } catch (err) {
+    Swal.fire("Error", "Failed to load addresses", "error");
+  }
+}
+
+/* CLEAR FORM */
+function clearForm() {
+  ["firstName","lastName","phone","pincode","street","city","state"]
+    .forEach(id => document.getElementById(id).value = "");
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/popup.js"></script>
+
+<!-- ================= ADD ADDRESS MODAL ================= -->
+<div id="addressModal" class="address-modal hidden">
+  <div class="modal-overlay"></div>
+
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>Add New Address</h3>
+      <button id="closeModal">&times;</button>
+    </div>
+
+    <div class="modal-body">
+      <input id="firstName" placeholder="First Name" />
+      <input id="lastName" placeholder="Last Name" />
+      <input id="phone" placeholder="Phone" />
+      <input id="pincode" placeholder="Pincode" />
+      <input id="street" placeholder="Street Address" />
+      <input id="city" placeholder="City" />
+      <input id="state" placeholder="State" />
+    </div>
+
+    <div class="modal-footer">
+      <button id="saveAddress" class="btn-primary">
+        Save Address
+      </button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

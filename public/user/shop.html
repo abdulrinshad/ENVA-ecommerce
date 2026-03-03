@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - ENVA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="shop.css">
+</head>
+<body>
+   
+    <!-- ================= NAVBAR ================= -->
+<header class="main-header">
+
+  <!-- mobile toggle -->
+  <span class="menu-toggle" id="menuToggle">
+    <i class="fas fa-bars"></i>
+  </span>
+
+  <!-- logo -->
+  <div class="logo">ENVA</div>
+
+  <!-- DESKTOP NAV -->
+  <nav class="nav-links">
+    <a href="index.html">HOME</a>
+    <a href="shop.html">SHOP</a>
+    <a href="about.html">ABOUT</a>
+    <a href="contact.html">CONTACT</a>
+  </nav>
+
+  <!-- ACTIONS -->
+  <div class="header-actions">
+
+    <!-- DESKTOP SEARCH -->
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <i class="fas fa-search"></i>
+    </div>
+
+    <!-- MOBILE SEARCH ICON -->
+    <span class="search-icon" id="searchToggle">
+      <i class="fas fa-search"></i>
+    </span>
+
+    <!-- ICONS -->
+    <div class="icon-group">
+      <a href="#"><i class="far fa-heart"></i></a>
+      <a href="#"><i class="fas fa-shopping-cart"></i></a>
+      <a href="#"><i class="far fa-user"></i></a>
+    </div>
+  </div>
+
+</header>
+
+<!-- MOBILE MENU -->
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">HOME</a>
+  <a href="shop.html">SHOP</a>
+  <a href="about.html">ABOUT</a>
+  <a href="contact.html">CONTACT</a>
+</nav>
+
+<!-- MOBILE SEARCH -->
+<div class="mobile-search" id="mobileSearch">
+  <div class="mobile-search-box">
+    <input type="text" placeholder="Search products...">
+    <span class="close-search" id="closeSearch">
+      <i class="fas fa-times"></i>
+    </span>
+  </div>
+</div>
+
+   <header class="container">
+        <a href="index.html" class="logo">ENVA</a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <div class="header-actions">
+            <div class="search-bar">
+                <input type="text" placeholder="What are you looking for?">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="icon-group">
+                <a href="#" class="icon-link"><i class="far fa-heart"></i></a>
+                <a href="#" class="icon-link"><i class="fas fa-shopping-cart"></i></a>
+                <a href="#" class="icon-link"><i class="far fa-user"></i></a>
+            </div>
+            <div class="header-actions">
+            <a href="signup.html" class="login-register">
+                <i class="far fa-user"></i> Login / Register
+            </a>
+        </div>
+    </header>
+
+
+  <section class="shop-categories">
+  <div class="container">
+    <div class="category-row" id="shopCategoryRow">
+
+
+    </div>
+
+
+  </div>
+</section>
+
+
+
+    <div class="container">
+  <div class="filter-bar">
+
+    <div class="filter-left">
+      <p id="resultCount">Showing all 12 results</p>
+    </div>
+
+    <div class="filter-middle">
+      <span>Views:</span>
+      <button class="view-btn active">
+        <i class="fas fa-th-large"></i>
+      </button>
+      <button class="view-btn">
+        <i class="fas fa-list"></i>
+      </button>
+    </div>
+
+    <div class="filter-right">
+      <select class="sort-dropdown" id="sortFilter">
+        <option value="popularity">Popularity</option>
+        <option value="newest">New Launches</option>
+        <option value="priceLowHigh">Price: Low to High</option>
+        <option value="assured">ENVA Assured</option>
+      </select>
+
+      <button class="blue-filter-btn">Filter</button>
+    </div>
+
+  </div>
+</div>
+
+
+
+<section class="shop-grid-section">
+    <div class="container">
+        <div class="shop-product-grid" id="productGrid">
+  <!-- Products will be injected here -->
+</div>
+
+
+<footer class="main-footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="footer-brand-row">
+                <h3 class="logo">ENVA</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-middle">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Company Info</h5>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Carrier</a></li>
+                        <li><a href="#">We are hiring</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Carrier</a></li>
+                        <li><a href="#">We are hiring</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Features</h5>
+                    <ul>
+                        <li><a href="#">Business Marketing</a></li>
+                        <li><a href="#">User Analytic</a></li>
+                        <li><a href="#">Live Chat</a></li>
+                        <li><a href="#">Unlimited Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Resources</h5>
+                    <ul>
+                        <li><a href="#">IOS & Android</a></li>
+                        <li><a href="#">Watch a Demo</a></li>
+                        <li><a href="#">Customers</a></li>
+                        <li><a href="#">API</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col newsletter">
+                    <h5>Get In Touch</h5>
+                    <form class="subscribe-form">
+                        <input type="email" placeholder="Your Email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <p class="form-text">Lore imp sum dolor Amit</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container">
+            <p>Made With Love By Finland All Right Reserved</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+/* =====================================================
+   GLOBAL STATE
+===================================================== */
+let selectedSize = null;
+
+/* =====================================================
+   DOM READY
+===================================================== */
+document.addEventListener("DOMContentLoaded", () => {
+  loadCategories();
+  loadProducts();
+  initNavbar();
+  initFilter();
+  initCategoryScroll();
+  initAddToCart();
+});
+
+/* =====================================================
+   LOAD SHOP CATEGORIES
+===================================================== */
+async function loadCategories() {
+  const row = document.getElementById("shopCategoryRow");
+  if (!row) return;
+
+  try {
+    const res = await fetch("/api/categories");
+    const categories = await res.json();
+    row.innerHTML = "";
+
+    categories.forEach(cat => {
+      const card = document.createElement("div");
+      card.classList.add("category-card");
+
+      const img =
+        typeof cat.image === "string" && cat.image.startsWith("/uploads")
+          ? cat.image
+          : "/images/category-placeholder.jpg";
+
+      card.innerHTML = `
+        <div class="category-img">
+          <img src="${img}">
+          <div class="category-overlay">
+            <h4>${cat.name}</h4>
+          </div>
+        </div>
+      `;
+
+      card.addEventListener("click", () => {
+        window.location.href = `/user/shop.html?category=${cat._id}`;
+      });
+
+      row.appendChild(card);
+    });
+
+  } catch (err) {
+    row.innerHTML = "<p>Failed to load categories</p>";
+  }
+}
+
+/* =====================================================
+   LOAD PRODUCTS
+===================================================== */
+async function loadProducts() {
+  const params = new URLSearchParams(window.location.search);
+  const category = params.get("category");
+
+  let url = "/api/offers/shop-products";
+  if (category) url += `?category=${category}`;
+
+  try {
+    const res = await fetch(url);
+    const products = await res.json();
+
+    const grid = document.getElementById("productGrid");
+    const count = document.getElementById("resultCount");
+
+    grid.innerHTML = "";
+
+    products.forEach(p => {
+      const img = p.image || "/images/no-image.png";
+      const hasOffer = p.discountPercent !== null;
+
+      const hasStock = p.sizes
+        ? Object.values(p.sizes).some(qty => qty > 0)
+        : (p.stock && p.stock > 0);
+
+      grid.insertAdjacentHTML("beforeend", `
+        <div class="shop-product-card">
+
+          <div class="product-img-box">
+
+            ${hasOffer ? `<span class="offer-badge">${p.discountPercent}% OFF</span>` : ""}
+
+            <a href="product_single.html?id=${p._id}">
+              <img src="${img}" alt="${p.name}">
+            </a>
+
+            <div class="hover-cart-bar">
+              ${
+                hasStock
+                  ? `<button onclick="openSizeModal('${p._id}', '${p.name}')">
+                       <i class="fas fa-shopping-cart"></i> Add To Cart
+                     </button>`
+                  : `<button class="out-stock-btn" disabled>Out Of Stock</button>`
+              }
+            </div>
+
+          </div>
+
+          <div class="shop-product-info">
+            <h5>${p.name}</h5>
+            <p>${p.category || "Uncategorized"}</p>
+
+            ${
+              hasOffer
+                ? `
+                  <div class="price-box">
+                    <span class="original-price">₹${p.price}</span>
+                    <span class="final-price">₹${p.finalPrice}</span>
+                  </div>
+                `
+                : `<span class="new">₹${p.price}</span>`
+            }
+          </div>
+
+        </div>
+      `);
+    });
+
+    count.innerText = `Showing ${products.length} results`;
+
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+/* =====================================================
+   OPEN SIZE MODAL (LOAD REAL SIZES)
+===================================================== */
+async function openSizeModal(productId, productName) {
+  const modal = document.getElementById("cartModal");
+  const sizeContainer = modal.querySelector(".size-options");
+
+  modal.style.display = "flex";
+  modal.dataset.productId = productId;
+  document.getElementById("cartProductName").innerText = productName;
+
+  selectedSize = null;
+  sizeContainer.innerHTML = "Loading...";
+
+  try {
+    const res = await fetch(`/api/offers/product/${productId}`);
+    const product = await res.json();
+
+    sizeContainer.innerHTML = "";
+
+    if (!product.sizes) {
+      sizeContainer.innerHTML = "<p>No sizes available</p>";
+      return;
+    }
+
+    Object.entries(product.sizes).forEach(([size, qty]) => {
+      const btn = document.createElement("button");
+      btn.classList.add("size-btn");
+      btn.innerText = size;
+
+      if (qty <= 0) {
+        btn.disabled = true;
+        btn.classList.add("disabled-size");
+      }
+
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".size-btn")
+          .forEach(b => b.classList.remove("active"));
+
+        btn.classList.add("active");
+        selectedSize = size;
+      });
+
+      sizeContainer.appendChild(btn);
+    });
+
+  } catch {
+    sizeContainer.innerHTML = "<p>Error loading sizes</p>";
+  }
+}
+
+/* =====================================================
+   ADD TO CART
+===================================================== */
+function initAddToCart() {
+  document.getElementById("confirmAddToCart")
+    .addEventListener("click", async () => {
+
+      const modal = document.getElementById("cartModal");
+      const productId = modal.dataset.productId;
+
+      if (!selectedSize) {
+        Swal.fire("Select Size", "Please choose a size", "warning");
+        return;
+      }
+
+      const token = localStorage.getItem("userToken");
+      if (!token) {
+        Swal.fire("Login Required", "Please login first", "info");
+        return;
+      }
+
+      try {
+        const res = await fetch("/api/cart/add", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token
+          },
+          body: JSON.stringify({
+            productId,
+            size: selectedSize,
+            qty: 1
+          })
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          Swal.fire("Added!", "Product added to cart", "success");
+          closeCartModal();
+        } else {
+          Swal.fire("Error", data.message || "Failed", "error");
+        }
+
+      } catch {
+        Swal.fire("Error", "Something went wrong", "error");
+      }
+  });
+}
+
+/* =====================================================
+   CLOSE MODAL
+===================================================== */
+function closeCartModal() {
+  document.getElementById("cartModal").style.display = "none";
+  selectedSize = null;
+}
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+function initNavbar() {
+  const btn = document.getElementById("menuToggle");
+  const nav = document.getElementById("mobileNav");
+  if (!btn || !nav) return;
+  btn.addEventListener("click", () => nav.classList.toggle("active"));
+}
+
+/* =====================================================
+   FILTER
+===================================================== */
+function initFilter() {
+  const filter = document.getElementById("sortFilter");
+  if (!filter) return;
+  filter.addEventListener("change", () => {});
+}
+
+/* =====================================================
+   CATEGORY SCROLL
+===================================================== */
+function initCategoryScroll() {
+  const row = document.getElementById("shopCategoryRow");
+  if (!row) return;
+
+  row.addEventListener("wheel", (e) => {
+    if (!row.matches(":hover")) return;
+    e.preventDefault();
+    row.scrollLeft += e.deltaY;
+  }, { passive: false });
+}
+</script>
+
+
+
+<!-- SweetAlert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/popup.js"></script>
+
+<!-- ADD TO CART MODAL -->
+<div id="cartModal" class="cart-modal">
+  <div class="cart-modal-content">
+    <h3 id="cartProductName"></h3>
+
+    <div class="size-options">
+      <button class="size-btn">S</button>
+      <button class="size-btn">M</button>
+      <button class="size-btn">L</button>
+      <button class="size-btn">XL</button>
+      <button class="size-btn">XXL</button>
+    </div>
+
+    <button id="confirmAddToCart" class="confirm-cart-btn">
+      Add to Cart
+    </button>
+
+    <p class="cancel-btn" onclick="closeCartModal()">Cancel</p>
+  </div>
+</div>
+
+</div>
+</section>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signup - ENVA</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="signup.css">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="main-header">
+
+  <!-- MOBILE TOGGLE -->
+  <span class="menu-toggle" id="menuToggle">
+    <i class="fas fa-bars"></i>
+  </span>
+
+  <!-- LOGO -->
+  <div class="logo">ENVA</div>
+
+  <!-- DESKTOP NAV -->
+  <nav class="nav-links">
+    <a href="index.html">HOME</a>
+    <a href="shop.html">SHOP</a>
+    <a href="about.html">ABOUT</a>
+    <a href="contact.html">CONTACT</a>
+  </nav>
+
+  <!-- ACTIONS -->
+  <div class="header-actions">
+
+    <!-- SEARCH (desktop) -->
+    <div class="search-bar">
+      <input type="text" placeholder="What are you looking for?">
+      <i class="fas fa-search"></i>
+    </div>
+
+    <!-- SEARCH ICON (mobile) -->
+    <span class="search-icon">
+      <i class="fas fa-search"></i>
+    </span>
+
+    <!-- ICONS -->
+    <div class="icon-group">
+      <a href="wishlist.html"><i class="far fa-heart"></i></a>
+      <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+      <a href="myaccount.html"><i class="far fa-user"></i></a>
+    </div>
+
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">HOME</a>
+  <a href="shop.html">SHOP</a>
+  <a href="about.html">ABOUT</a>
+  <a href="contact.html">CONTACT</a>
+</nav>
+
+
+
+   <main class="signup-wrapper">
+    <div class="signup-visual">
+        <div class="image-box">
+            <img src="images/ENVA.png" alt="ENVA Visual">
+        </div>
+    </div>
+
+    <div class="signup-content">
+        <div class="signup-form-box">
+            <h1 class="auth-title">Create an account</h1>
+            <p class="auth-subtitle">Enter your details below</p>
+
+            <form id="signupForm">
+  <div class="input-underline-group">
+    <input type="text" id="name" placeholder="Name" required>
+  </div>
+
+  <div class="input-underline-group">
+    <input type="email" id="email" placeholder="Email" required>
+  </div>
+
+  <div class="input-underline-group">
+    <input type="password" id="password" placeholder="Password" required>
+  </div>
+
+  <div class="input-underline-group">
+    <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+  </div>
+
+  <button type="submit" class="btn-primary-blue">Create Account</button>
+
+                
+    <div class="google-auth-wrapper">
+  <div
+    id="g_id_onload"
+    data-client_id="655079248338-vdcc49et2u36us39gh7aoaaf0t8803r8.apps.googleusercontent.com"
+    data-callback="handleGoogleSignup"
+    data-auto_prompt="false">
+  </div>
+
+<div
+    class="g_id_signin"
+    data-type="standard"
+    data-theme="outline"
+    data-size="large"
+    data-shape="rectangular"
+    data-text="signup_with"
+    data-logo_alignment="left"
+    data-callback="handleGoogleSignup">
+  </div>
+</div>
+
+            </form>
+
+            <p class="login-redirect">Already have account? <a href="login.html">Log in</a></p>
+        </div>
+    </div>
+</main>
+
+    <footer class="main-footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="footer-brand-row">
+                <h3 class="logo">ENVA</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-middle">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Company Info</h5>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Carrier</a></li>
+                        <li><a href="#">We are hiring</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Carrier</a></li>
+                        <li><a href="#">We are hiring</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Features</h5>
+                    <ul>
+                        <li><a href="#">Business Marketing</a></li>
+                        <li><a href="#">User Analytic</a></li>
+                        <li><a href="#">Live Chat</a></li>
+                        <li><a href="#">Unlimited Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Resources</h5>
+                    <ul>
+                        <li><a href="#">IOS & Android</a></li>
+                        <li><a href="#">Watch a Demo</a></li>
+                        <li><a href="#">Customers</a></li>
+                        <li><a href="#">API</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col newsletter">
+                    <h5>Get In Touch</h5>
+                    <form class="subscribe-form">
+                        <input type="email" placeholder="Your Email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <p class="form-text">Lore imp sum dolor Amit</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container">
+            <p>Made With Love By Finland All Right Reserved</p>
+        </div>
+    </div>
+</footer>
+<!-- ================= JS ================= -->
+<script>
+/* =========================
+   MOBILE MENU TOGGLE
+========================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.getElementById("menuToggle");
+  const mobileNav = document.getElementById("mobileNav");
+  const icon = toggleBtn.querySelector("i");
+
+  toggleBtn.addEventListener("click", () => {
+    mobileNav.classList.toggle("active");
+    icon.classList.toggle("fa-times");
+    icon.classList.toggle("fa-bars");
+  });
+
+  /* =========================
+     NORMAL SIGNUP (EMAIL)
+  ========================= */
+  const form = document.getElementById("signupForm");
+
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const confirmPassword = document.getElementById("confirmPassword").value.trim();
+
+      if (!name || !email || !password || !confirmPassword) {
+        Swal.fire("Error ❌", "All fields are required", "error");
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        Swal.fire("Error ❌", "Passwords do not match", "error");
+        return;
+      }
+
+      try {
+        const res = await fetch("/api/auth/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name,
+            email,
+            password,
+            confirmPassword
+          })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          Swal.fire("Error ❌", data.message || "Signup failed", "error");
+          return;
+        }
+
+        Swal.fire("Success ✅", "OTP sent to your email", "success");
+
+        // 🔐 Save email for OTP verification
+        localStorage.setItem("signupEmail", email);
+
+        setTimeout(() => {
+          window.location.href = "otp.html";
+        }, 1500);
+
+      } catch (err) {
+        Swal.fire("Error ❌", "Server error", "error");
+      }
+    });
+  }
+});
+
+/* =========================
+   GOOGLE SIGNUP / LOGIN
+========================= */
+/*
+  Make sure this is in <head>:
+  <script src="https://accounts.google.com/gsi/client" async defer>
+*/
+
+async function handleGoogleSignup(response) {
+  try {
+    const res = await fetch("/api/auth/google", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        token: response.credential
+      })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      Swal.fire("Google Error ❌", data.message || "Google signup failed", "error");
+      return;
+    }
+
+    // ✅ Save login data
+    localStorage.setItem("userToken", data.token);
+    localStorage.setItem("userEmail", data.user.email);
+
+    Swal.fire(
+      "Welcome 🎉",
+      "Signed up successfully with Google",
+      "success"
+    );
+
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 1200);
+
+  } catch (err) {
+    Swal.fire("Error ❌", "Google authentication failed", "error");
+  }
+}
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/popup.js"></script>
+    </body>
+</html>

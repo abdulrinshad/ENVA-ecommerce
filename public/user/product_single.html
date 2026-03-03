@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Single - ENVA</title>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" href="product-single.css">
+<link rel="stylesheet" href="userSigned.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    
+}
+
+.icon-group {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-right: 150px;
+}
+
+/* =================================================
+   SWEETALERT – PREMIUM / RARE UI
+   Style: Minimal • Calm • Luxury
+================================================= */
+
+.swal2-container {
+  z-index: 1500 !important;        /* below navbar */
+  padding-top: 120px !important;  /* below navbar */
+  align-items: flex-start !important;
+  backdrop-filter: blur(2px);
+}
+
+/* Popup */
+.mini-swal {
+  width: 340px !important;
+  padding: 22px 24px !important;
+  border-radius: 18px !important;
+  background: #ffffff !important;
+  font-family: "Inter", system-ui, sans-serif;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.12),
+    0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Icon */
+.mini-swal .swal2-icon {
+  transform: scale(0.75);
+  margin: 0 auto 14px;
+}
+
+/* Title */
+.mini-swal .swal2-title {
+  font-size: 17px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em;
+  color: #111827;
+  margin-bottom: 6px;
+}
+
+/* Text */
+.mini-swal .swal2-html-container {
+  font-size: 13.5px !important;
+  color: #6b7280;
+  line-height: 1.55;
+  margin-top: 0;
+}
+
+/* Buttons wrapper */
+.swal2-actions {
+  margin-top: 18px !important;
+  gap: 12px;
+}
+
+/* Confirm button */
+.mini-confirm {
+  background: #111827 !important;     /* luxury black */
+  color: #ffffff !important;
+  border-radius: 10px !important;
+  padding: 7px 18px !important;
+  font-size: 13px !important;
+  font-weight: 500;
+  border: none;
+  transition: all 0.25s ease;
+}
+
+.mini-confirm:hover {
+  background: #000000 !important;
+  transform: translateY(-1px);
+}
+
+/* Cancel button */
+.mini-cancel {
+  background: transparent !important;
+  color: #6b7280 !important;
+  border-radius: 10px !important;
+  padding: 7px 16px !important;
+  font-size: 13px !important;
+  font-weight: 500;
+  border: 1px solid #e5e7eb !important;
+}
+
+.mini-cancel:hover {
+  background: #f9fafb !important;
+}
+
+/* Button spacing */
+.swal2-styled + .swal2-styled {
+  margin-left: 10px !important;
+}
+
+/* Backdrop (very subtle) */
+.swal2-backdrop-show {
+  background: rgba(17, 24, 39, 0.15) !important;
+}
+
+.size-btn.disabled,
+.size-btn:disabled {
+  background: #f3f4f6;
+  color: #9ca3af;
+  border-color: #e5e7eb;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .mini-swal {
+    width: 92% !important;
+  }
+
+  .swal2-container {
+    padding-top: 100px !important;
+  }
+}
+
+.product-single {
+  display: grid;
+  grid-template-columns: 90px 1fr 420px;
+  gap: 40px;
+  align-items: start;
+}
+
+.product-thumbs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 30px 5%;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  z-index: 2000;
+}
+
+
+.product-thumbs img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #f5f5f5;
+}
+
+.product-thumbs img.active {
+  border: 2px solid #000;
+}
+
+/* MAIN IMAGE */
+.product-main-image img {
+  width: 100%;
+  height: 520px;
+  object-fit: contain;
+  background: #f6f6f6;
+  border-radius: 10px;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .product-single {
+    grid-template-columns: 1fr;
+  }
+
+  .product-thumbs {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+    .main-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 5%;
+    background: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2000;
+    border-bottom: 1px solid #eee;
+    padding: 30px;
+    }
+
+   .product-single {
+    display: grid;
+    grid-template-columns: 90px 1fr 520px;
+    gap: 40px;
+    align-items: start;
+    margin-top: 250px;
+}
+/* ================= RESET ================= */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; }
+
+/* ===============================
+   ROOT / RESET
+================================ */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont;
+  color: #111;
+  background: #fff;
+}
+
+/* ===============================
+   CONTAINER
+================================ */
+.product-single-container {
+  max-width: 1280px;
+  margin: 70px auto;
+  padding: 0 24px;
+}
+
+/* ===============================
+   GRID LAYOUT
+================================ */
+.product-single {
+  display: grid;
+  grid-template-columns: 90px minmax(420px, 1fr) minmax(360px, 1fr);
+  gap: 56px;
+  align-items: start;
+}
+
+/* ===============================
+   THUMBNAILS
+================================ */
+.product-thumbs {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.product-thumbs img {
+  width: 78px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid #e5e7eb;
+  transition: all 0.25s ease;
+}
+
+.product-thumbs img:hover {
+  border-color: #2563eb;
+}
+
+.product-thumbs img.active {
+  border: 2px solid #2563eb;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15);
+}
+
+/* ===============================
+   MAIN IMAGE
+================================ */
+.product-main-image {
+  background: #f9fafb;
+  border-radius: 18px;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-main-image img {
+  max-width: 100%;
+  max-height: 520px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.product-main-image img:hover {
+  transform: scale(1.03);
+}
+
+/* ===============================
+   PRODUCT INFO
+================================ */
+.product-info h1 {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.price-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.price {
+  font-size: 26px;
+  font-weight: 700;
+  color: #111;
+}
+
+.stock {
+  font-size: 14px;
+  font-weight: 600;
+  color: #16a34a;
+}
+
+/* ===============================
+   DESCRIPTION
+================================ */
+.product-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #4b5563;
+  margin-bottom: 26px;
+  max-width: 520px;
+}
+
+/* ===============================
+   SIZE
+================================ */
+.size-title {
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.sizes {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+
+.size-btn {
+  min-width: 48px;
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.size-btn:hover {
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.size-btn.active {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+
+/* ===============================
+   QUANTITY
+================================ */
+.qty-box {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 26px;
+}
+
+.qty-box button {
+  width: 42px;
+  height: 42px;
+  border: none;
+  background: #f9fafb;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.qty-box button:hover {
+  background: #e5e7eb;
+}
+
+.qty-box input {
+  width: 52px;
+  text-align: center;
+  border: none;
+  font-weight: 600;
+}
+
+/* ===============================
+   ACTION BUTTONS
+================================ */
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  padding: 14px 28px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.25);
+  transition: all 0.25s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(37, 99, 235, 0.35);
+}
+
+.btn-outline {
+  border: 1.5px solid #2563eb;
+  background: transparent;
+  color: #2563eb;
+  border-radius: 14px;
+  padding: 14px 28px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background: #eff6ff;
+}
+
+/* ===============================
+   WISHLIST
+================================ */
+.wishlist-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.wishlist-btn:hover {
+  background: #fee2e2;
+  border-color: #fca5a5;
+}
+
+.wishlist-btn.active i {
+  color: #ef4444;
+}
+
+/* ===============================
+   DELIVERY INFO
+================================ */
+.delivery-box {
+  margin-top: 28px;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fafafa;
+}
+
+.delivery-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  font-size: 14px;
+  color: #374151;
+}
+
+.delivery-item i {
+  font-size: 18px;
+  color: #2563eb;
+}
+
+.delivery-item + .delivery-item {
+  border-top: 1px solid #e5e7eb;
+}
+
+/* ===============================
+   MOBILE RESPONSIVE
+================================ */
+@media (max-width: 900px) {
+  .product-single {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .product-thumbs {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .product-main-image {
+    padding: 24px;
+  }
+
+  .product-info h1 {
+    font-size: 26px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ==================================================
+     🔴 NAVBAR (UNTOUCHED - EXACTLY YOUR CODE)
+================================================== -->
+<header class="main-header">
+
+  <!-- Mobile Menu Icon -->
+  <span class="menu-toggle" id="menuToggle">
+    <i class="fas fa-bars"></i>
+  </span>
+
+  <!-- Logo -->
+  <div class="logo">ENVA</div>
+
+  <!-- Desktop Nav -->
+  <nav class="nav-links">
+    <a href="usersigned.html">HOME</a>
+    <a href="shopuser.html">SHOP</a>
+    <a href="about.html">ABOUT</a>
+    <a href="contact.html">CONTACT</a>
+  </nav>
+
+  <!-- Header Actions -->
+  <div class="header-actions">
+
+    <!-- Search -->
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <i class="fas fa-search"></i>
+    </div>
+
+    <!-- Icons -->
+    <div class="icon-group">
+
+      <a href="#"><i class="far fa-heart"></i></a>
+      <a href="#"><i class="fas fa-shopping-cart"></i></a>
+
+      <!-- USER MENU -->
+      <div class="user-menu">
+        <a href="#" id="userToggle" class="user-icon">
+          <i class="far fa-user"></i>
+        </a>
+
+        <div class="user-dropdown" id="userDropdown">
+          <a href="myaccount.html">
+            <i class="far fa-user"></i> Manage My Account
+          </a>
+          <a href="orders.html">
+            <i class="fas fa-box"></i> My Orders
+          </a>
+          <a href="logout.html" class="logout">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</header>
+
+<!-- ==================================================
+     PRODUCT SINGLE
+================================================== -->
+<main class="product-single-container">
+
+  <section class="product-single">
+
+    <!-- Thumbnails -->
+    <div class="product-thumbs" id="thumbContainer"></div>
+
+    <!-- Main Image -->
+    <div class="product-main-image">
+      <img id="mainProductImg" src="" alt="Product">
+    </div>
+
+    <!-- Info -->
+    <div class="product-info">
+      <h1 id="productName"></h1>
+
+      <div class="price-row">
+      <span class="stock-pill" id="stockStatus"></span>  <span class="price" id="productPrice"></span>
+        
+      </div>
+
+      <p class="product-desc" id="productDesc"></p>
+
+      <p class="size-title">Size</p>
+      <div class="sizes">
+        <button class="size-btn">S</button>
+        <button class="size-btn">M</button>
+        <button class="size-btn">L</button>
+        <button class="size-btn">XL</button>
+        <button class="size-btn">XXL</button>
+      </div>
+
+      <div class="qty-box">
+  <button id="qtyMinus">−</button>
+  <input type="text" id="qtyInput" value="1" readonly>
+  <button id="qtyPlus">+</button>
+</div>
+
+
+      <div class="action-buttons">
+        <button id="addToCartBtn" class="btn-primary">Add To Cart</button>
+        <button id="buyNowBtn" class="btn-outline">Buy Now</button>
+        <button class="wishlist-btn" id="wishlistBtn">
+  <i class="far fa-heart"></i>
+</button>
+
+<div class="delivery-box">
+  <div class="delivery-item">
+    <i class="fas fa-truck"></i>
+    <span><strong>Fast Delivery</strong> within 3–5 days</span>
+  </div>
+
+  <div class="delivery-item">
+    <i class="fas fa-undo"></i>
+    <span><strong>Easy Returns</strong> within 7 days</span>
+  </div>
+</div>
+
+
+      </div>
+    </div>
+
+  </section>
+</main>
+ <footer class="main-footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="footer-brand-row">
+                <h3 class="logo">ENVA</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-middle">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Company Info</h5>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Carrier</a></li>
+                        <li><a href="#">We are hiring</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Carrier</a></li>
+                        <li><a href="#">We are hiring</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Features</h5>
+                    <ul>
+                        <li><a href="#">Business Marketing</a></li>
+                        <li><a href="#">User Analytic</a></li>
+                        <li><a href="#">Live Chat</a></li>
+                        <li><a href="#">Unlimited Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Resources</h5>
+                    <ul>
+                        <li><a href="#">IOS & Android</a></li>
+                        <li><a href="#">Watch a Demo</a></li>
+                        <li><a href="#">Customers</a></li>
+                        <li><a href="#">API</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col newsletter">
+                    <h5>Get In Touch</h5>
+                    <form class="subscribe-form">
+                        <input type="email" placeholder="Your Email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <p class="form-text">Lore imp sum dolor Amit</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container">
+            <p>Made With Love By Finland All Right Reserved</p>
+        </div>
+    </div>
+</footer>
+<script>
+/* =====================================================
+   ENVA – PRODUCT SINGLE (FINAL PRODUCTION VERSION)
+===================================================== */
+
+/* ===============================
+   LOGIN CHECK
+================================ */
+function isLoggedIn() {
+  return !!localStorage.getItem("userToken");
+}
+
+/* ===============================
+   SWEETALERT HELPERS
+================================ */
+function miniAlert({
+  title = "",
+  text = "",
+  icon = "info",
+  confirmText = "OK",
+  onConfirm = null
+}) {
+  Swal.fire({
+    icon,
+    title,
+    text,
+    width: 320,
+    padding: "1rem",
+    confirmButtonText: confirmText,
+    buttonsStyling: false,
+    customClass: {
+      popup: "mini-swal",
+      confirmButton: "mini-confirm"
+    }
+  }).then(result => {
+    if (result.isConfirmed && typeof onConfirm === "function") {
+      onConfirm();
+    }
+  });
+}
+
+function loginAlert() {
+  Swal.fire({
+    icon: "info",
+    title: "Login Required",
+    text: "Please login to continue",
+    showCancelButton: true,
+    confirmButtonText: "Login",
+    cancelButtonText: "Cancel",
+    buttonsStyling: false,
+    customClass: {
+      popup: "mini-swal",
+      confirmButton: "mini-confirm",
+      cancelButton: "mini-cancel"
+    }
+  }).then(result => {
+    if (result.isConfirmed) {
+      window.location.href = "signup.html";
+    }
+  });
+}
+
+/* ===============================
+   GLOBAL STATE
+================================ */
+let productData = null;
+let selectedSize = null;
+let quantity = 1;
+
+const wishlistBtn = document.getElementById("wishlistBtn");
+const addBtn = document.getElementById("addToCartBtn");
+const buyBtn = document.getElementById("buyNowBtn");
+
+/* =====================================================
+   DOM READY
+===================================================== */
+document.addEventListener("DOMContentLoaded", async () => {
+
+  const productId = new URLSearchParams(window.location.search).get("id");
+
+  if (!productId) {
+    miniAlert({ title: "Error", text: "Product ID missing", icon: "error" });
+    return;
+  }
+
+  try {
+    const res = await fetch(`/api/products/${productId}`);
+    productData = await res.json();
+
+    renderProduct(productData);
+    initQuantityControls();
+    checkWishlistStatus();
+
+  } catch (err) {
+    console.error(err);
+    miniAlert({ title: "Error", text: "Failed to load product", icon: "error" });
+  }
+});
+
+/* =====================================================
+   RENDER PRODUCT
+===================================================== */
+function renderProduct(product) {
+
+  const nameEl = document.getElementById("productName");
+  if (nameEl) nameEl.innerText = product.name || "Product";
+
+  const priceEl = document.getElementById("productPrice");
+
+  if (priceEl) {
+    if (product.discountPercent && product.discountPercent > 0) {
+      priceEl.innerHTML = `
+        <span style="text-decoration: line-through; color:#888; font-size:16px;">
+          ₹${product.price}
+        </span>
+        <span style="font-weight:600; font-size:22px; margin-left:8px;">
+          ₹${product.finalPrice}
+        </span>
+        <span style="color:green; font-size:14px; margin-left:6px;">
+          (${product.discountPercent}% OFF)
+        </span>
+      `;
+    } else {
+      priceEl.innerHTML = `₹${product.price}`;
+    }
+  }
+
+  /* SAFE DESCRIPTION */
+  const descEl = document.getElementById("productDesc");
+  if (descEl) {
+    descEl.innerText = product.description || "No description available";
+  }
+
+  /* SAFE STOCK */
+  const stockEl = document.querySelector(".stock");
+  if (stockEl) {
+    if (product.totalStock === 0) {
+      stockEl.innerText = "Out of Stock";
+      stockEl.style.color = "#dc2626";
+    } else if (product.totalStock <= 5) {
+      stockEl.innerText = "Low Stock";
+      stockEl.style.color = "#f59e0b";
+    } else {
+      stockEl.innerText = "In Stock";
+      stockEl.style.color = "#16a34a";
+    }
+  }
+
+  /* IMAGES */
+  const mainImg = document.getElementById("mainProductImg");
+  const thumbs = document.getElementById("thumbContainer");
+
+  if (!mainImg || !thumbs) return;
+
+  thumbs.innerHTML = "";
+
+  if (!product.images || product.images.length === 0) {
+    mainImg.src = "/images/no-image.png";
+    return;
+  }
+
+  mainImg.src = product.images[0];
+
+  product.images.forEach((img, i) => {
+    const thumb = document.createElement("img");
+    thumb.src = img;
+    if (i === 0) thumb.classList.add("active");
+
+    thumb.onclick = () => {
+      document.querySelectorAll(".product-thumbs img")
+        .forEach(el => el.classList.remove("active"));
+      thumb.classList.add("active");
+      mainImg.src = img;
+    };
+
+    thumbs.appendChild(thumb);
+  });
+
+  /* ================= SIZES ================= */
+
+/* ================= SIZES (FINAL PRO VERSION) ================= */
+
+const sizeContainer = document.querySelector(".sizes");
+sizeContainer.innerHTML = "";
+selectedSize = null;
+
+// Ensure sizes is an object
+let sizesData = product.sizes;
+
+if (typeof sizesData === "string") {
+  try {
+    sizesData = JSON.parse(sizesData);
+  } catch {
+    sizesData = {};
+  }
+}
+
+if (sizesData && Object.keys(sizesData).length > 0) {
+
+  Object.entries(sizesData).forEach(([size, stockValue]) => {
+
+    const stock = Number(stockValue); // 🔥 Important fix
+
+    const btn = document.createElement("button");
+    btn.classList.add("size-btn");
+    btn.innerText = size;
+
+    // If stock is zero → disable
+    if (stock <= 0) {
+      btn.classList.add("disabled");
+      btn.disabled = true;
+    }
+
+    btn.addEventListener("click", () => {
+
+      if (stock <= 0) return;
+
+      document.querySelectorAll(".size-btn")
+        .forEach(b => b.classList.remove("active"));
+
+      btn.classList.add("active");
+      selectedSize = size;
+
+      quantity = 1;
+      document.getElementById("qtyInput").value = 1;
+    });
+
+    sizeContainer.appendChild(btn);
+  });
+
+}
+else {
+
+  // fallback default sizes
+  const defaultSizes = ["S", "M", "L", "XL", "XXL"];
+
+  defaultSizes.forEach(size => {
+
+    const btn = document.createElement("button");
+    btn.classList.add("size-btn");
+    btn.innerText = size;
+
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".size-btn")
+        .forEach(b => b.classList.remove("active"));
+
+      btn.classList.add("active");
+      selectedSize = size;
+
+      quantity = 1;
+      document.getElementById("qtyInput").value = 1;
+    });
+
+    sizeContainer.appendChild(btn);
+  });
+}
+}
+/* =====================================================
+   QUANTITY CONTROL
+===================================================== */
+function initQuantityControls() {
+
+  const qtyInput = document.getElementById("qtyInput");
+
+  document.getElementById("qtyPlus").onclick = () => {
+
+    if (!selectedSize) {
+      miniAlert({
+        title: "Select Size",
+        text: "Please select size first",
+        icon: "warning"
+      });
+      return;
+    }
+
+    const sizeStock = productData.sizes[selectedSize];
+
+    if (quantity < sizeStock) {
+      quantity++;
+      qtyInput.value = quantity;
+    } else {
+      miniAlert({
+        title: "Limited Stock",
+        text: `Only ${sizeStock} items available`,
+        icon: "warning"
+      });
+    }
+  };
+
+  document.getElementById("qtyMinus").onclick = () => {
+    if (quantity > 1) {
+      quantity--;
+      qtyInput.value = quantity;
+    }
+  };
+}
+
+/* =====================================================
+   ADD TO CART – FINAL STOCK SAFE VERSION
+===================================================== */
+addBtn.onclick = async (e) => {
+  e.preventDefault();
+
+  if (!isLoggedIn()) return loginAlert();
+
+  if (!selectedSize) {
+    return miniAlert({
+      title: "Select Size",
+      text: "Please choose a size",
+      icon: "warning"
+    });
+  }
+
+  try {
+    const res = await fetch("/api/cart/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("userToken")
+      },
+      body: JSON.stringify({
+        productId: productData._id,
+        qty: quantity,
+        size: selectedSize
+      })
+    });
+
+    const data = await res.json();
+
+    /* =========================
+       BACKEND VALIDATION CHECK
+    ========================== */
+
+    if (!res.ok || data.success === false) {
+      return miniAlert({
+        title: "Stock Limit Reached",
+        text: data.message || "Cannot add more items",
+        icon: "warning"
+      });
+    }
+
+    /* =========================
+       SUCCESS
+    ========================== */
+
+    miniAlert({
+      title: "Added to Cart",
+      text: "Item added successfully",
+      icon: "success",
+      confirmText: "View Cart",
+      onConfirm: () => {
+        window.location.href = "cart.html";
+      }
+    });
+
+  } catch (err) {
+    console.error(err);
+    miniAlert({
+      title: "Error",
+      text: "Something went wrong",
+      icon: "error"
+    });
+  }
+};
+/* =====================================================
+   BUY NOW
+===================================================== */
+buyBtn.onclick = async (e) => {
+  e.preventDefault();
+
+  if (!isLoggedIn()) return loginAlert();
+  if (!selectedSize)
+    return miniAlert({ title: "Select Size", text: "Please choose a size", icon: "warning" });
+
+  const sizeStock = productData.sizes[selectedSize];
+
+  if (quantity > sizeStock)
+    return miniAlert({ title: "Limited Stock", text: `Only ${sizeStock} available`, icon: "warning" });
+
+  try {
+
+    await fetch("/api/cart/clear", {
+      method: "DELETE",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("userToken")
+      }
+    });
+
+    await fetch("/api/cart/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("userToken")
+      },
+      body: JSON.stringify({
+        productId: productData._id,
+        qty: quantity,
+        size: selectedSize
+      })
+    });
+
+    window.location.href = "checkout.html";
+
+  } catch (err) {
+    console.error(err);
+    miniAlert({ title: "Error", text: "Failed to proceed", icon: "error" });
+  }
+};
+
+/* =====================================================
+   WISHLIST
+===================================================== */
+async function checkWishlistStatus() {
+  if (!isLoggedIn()) return;
+
+  try {
+    const res = await fetch("/api/wishlist", {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("userToken")
+      }
+    });
+
+    const data = await res.json();
+    if (!data.success) return;
+
+    const exists = data.wishlist.find(
+      item => item._id === productData._id
+    );
+
+    if (exists) {
+      wishlistBtn.classList.add("active");
+      wishlistBtn.innerHTML = '<i class="fas fa-heart"></i>';
+    }
+
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+wishlistBtn.onclick = async () => {
+
+  if (!isLoggedIn()) return loginAlert();
+
+  try {
+
+    const isActive = wishlistBtn.classList.contains("active");
+
+    if (isActive) {
+      await fetch(`/api/wishlist/${productData._id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("userToken")
+        }
+      });
+
+      wishlistBtn.classList.remove("active");
+      wishlistBtn.innerHTML = '<i class="far fa-heart"></i>';
+
+    } else {
+      await fetch("/api/wishlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("userToken")
+        },
+        body: JSON.stringify({ productId: productData._id })
+      });
+
+      wishlistBtn.classList.add("active");
+      wishlistBtn.innerHTML = '<i class="fas fa-heart"></i>';
+    }
+
+  } catch (err) {
+    console.error(err);
+    miniAlert({ title: "Error", text: "Wishlist action failed", icon: "error" });
+  }
+};
+</script>
+
+</body>
+</html>

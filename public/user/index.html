@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ENVA Jewelry</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- ============ MOBILE NAVBAR ============ -->
+<!-- ================= OLD ENVA NAVBAR ================= -->
+<!-- ================= NAVBAR ================= -->
+<header class="main-header">
+
+  <!-- mobile toggle -->
+  <span class="menu-toggle" id="menuToggle">
+    <i class="fas fa-bars"></i>
+  </span>
+
+  <!-- logo -->
+  <div class="logo">ENVA</div>
+
+  <!-- desktop nav -->
+  <nav class="nav-links">
+    <a href="index.html">HOME</a>
+    <a href="shop.html">SHOP</a>
+    <a href="about.html">ABOUT</a>
+    <a href="contact.html">CONTACT</a>
+  </nav>
+
+  <!-- actions -->
+  <div class="header-actions">
+
+    <!-- desktop search -->
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <i class="fas fa-search"></i>
+    </div>
+
+    <!-- mobile search icon -->
+    <span class="search-icon" id="searchToggle">
+      <i class="fas fa-search"></i>
+    </span>
+
+    <!-- icons -->
+    <div class="icon-group">
+      <a href="#" id="wishlistBtn"><i class="far fa-heart"></i></a>
+      <a href="#" id="cartBtn"><i class="fas fa-shopping-cart"></i></a>
+     <div class="user-menu" id="userMenu">
+  <a href="#" id="profileBtn">
+    <i class="far fa-user"></i>
+  </a>
+
+  <!-- DROPDOWN (hidden by default) -->
+  <div class="user-dropdown" id="userDropdown">
+    <a href="myaccount.html">Manage My Account</a>
+    <a href="orders.html">My Orders</a>
+    <a href="#" id="logoutBtn" class="logout">Logout</a>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+
+<!-- ================= MOBILE MENU ================= -->
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">HOME</a>
+  <a href="shop.html">SHOP</a>
+  <a href="about.html">ABOUT</a>
+  <a href="contact.html">CONTACT</a>
+</nav>
+
+<!-- ================= MOBILE SEARCH ================= -->
+<div class="mobile-search" id="mobileSearch">
+  <div class="mobile-search-box">
+    <input type="text" placeholder="Search products...">
+    <span class="close-search" id="closeSearch">
+      <i class="fas fa-times"></i>
+    </span>
+  </div>
+</div>
+
+
+    <span class="search-icon">
+    <i class="fas fa-search"></i>
+  </span>
+
+    <div class="icon-group">
+      <a href="#"><i class="far fa-heart"></i></a>
+      <a href="#"><i class="fas fa-shopping-cart"></i></a>
+      <a href="#"><i class="far fa-user"></i></a>
+    </div>
+  </div>
+</header>
+
+
+<!-- ============ MOBILE CAROUSEL ============ -->
+<section class="mobile-carousel">
+  <div class="slides" id="mobileSlides">
+
+    <div class="slide">
+      <img src="images/banner1.jpg">
+      <div class="caption">
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="images/banner2.jpg">
+      <div class="caption">
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="images/banner3.png">
+      <div class="caption">
+      </div>
+    </div>
+
+  </div>
+
+  <button class="arrow left" onclick="mobilePrev()">‹</button>
+  <button class="arrow right" onclick="mobileNext()">›</button>
+</section>
+
+<!-- ================= HEADER ================= -->
+<header class="container">
+  <a href="index.html" class="logo">ENVA</a>
+
+  <!-- NAV -->
+  <nav id="mainNav">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <!-- MOBILE TOGGLER -->
+
+  <div class="header-actions">
+    <div class="search-bar">
+      <input type="text" placeholder="What are you looking for?">
+      <i class="fas fa-search"></i>
+    </div>
+
+    <div class="icon-group">
+      <a href="signup.html"><i class="far fa-heart"></i></a>
+      <a href="signup.html"><i class="fas fa-shopping-cart"></i></a>
+      <a href="signup.html"><i class="far fa-user"></i></a>
+    </div>
+
+    <a href="signup.html" class="login-register">
+      <i class="far fa-user"></i> Login / Register
+    </a>
+  </div>
+</header>
+
+<!-- ================= CAROUSEL ================= -->
+<div class="carousel-viewport">
+  <div class="carousel-track" id="main-track">
+
+    <!-- SLIDE 1 -->
+    <section class="hero jewelry-slide">
+      <div class="hero-content">
+        <div class="text-side">
+          <h1 class="main-title">NEW <br> ARRIVALS</h1>
+          <p class="sub-title">Modern & Aesthetic jewelries</p>
+        </div>
+        <div class="image-grid">
+          <div class="large-img"><img src="images/necklace.jpg"></div>
+          <div class="small-grid">
+            <div class="top-small"><img src="images/earring1.jpg"></div>
+            <div class="bottom-small">
+              <img src="images/earring2.jpg">
+              <img src="images/earring3.jpg">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2 -->
+    <section class="hero decor-slide">
+      <div class="hero-content3">
+        <div class="text-side">
+          <h1 class="main-title">PAKISTANI<br> COUTURE</h1>
+          <p class="sub-title">Modern & Interior Design</p>
+        </div>
+        <div class="image-grid">
+          <div class="large-img"><img src="images/vase.jpg"></div>
+          <div class="small-grid">
+            <div class="top-small"><img src="images/frame.jpg"></div>
+            <div class="bottom-small">
+              <img src="images/candle1.jpg">
+              <img src="images/candle2.jpg">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3 -->
+    <section class="hero premium-bg">
+      <div class="hero-content2">
+        <div class="text-side">
+          <h1 class="main-title">CLASSIC <br>MENSWEAR</h1>
+          <p class="sub-title">Modern & Classy</p>
+        </div>
+        <div class="image-grid">
+          <div class="large-img"><img src="images/men.jpg"></div>
+          <div class="small-grid">
+            <div class="top-small"><img src="images/detail1.jpg"></div>
+            <div class="bottom-small">
+              <img src="images/detail2.jpg">
+              <img src="images/detail3.jpg">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <button class="nav-arrow left" onclick="moveSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+  <button class="nav-arrow right" onclick="moveSlide(1)"><i class="fas fa-chevron-right"></i></button>
+</div>
+
+<!-- ================= CATEGORY ================= -->
+<section class="category-section">
+  <div class="category-header">
+    <h2>EDITOR'S PICK</h2>
+    <p>Problems trying to resolve the conflict between</p>
+  </div>
+
+  <div class="category-grid">
+    <div class="cat-item main-cat">
+      <img src="images/men.jpg">
+      <button class="cat-btn">MEN</button>
+    </div>
+
+    <div class="cat-item sub-cat">
+      <img src="images/women-fashion.jpg">
+      <button class="cat-btn">WOMEN</button>
+    </div>
+
+    <div class="cat-stack">
+      <div class="cat-item mini-cat">
+        <img src="images/accessories.jpg">
+        <button class="cat-btn">ACCESSORIES</button>
+      </div>
+      <div class="cat-item mini-cat">
+        <img src="images/kids.jpg">
+        <button class="cat-btn">KIDS</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRODUCTS (8 IMAGES) ================= -->
+<section class="bestseller-products">
+  <div class="container">
+    <div class="section-title">
+      <h4 class="featured-text">Featured Products</h4>
+      <h3>BESTSELLER PRODUCTS</h3>
+      <p>Problems trying to resolve the conflict between</p>
+    </div>
+
+   <div class="product-grid" id="trendingProducts">
+   <!-- Trending products will load here dynamically -->
+</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BANNER ================= -->
+<!-- ================= BANNER ================= -->
+<section class="banner-section" id="oldMoneyBanner" style="cursor:pointer;">
+  <div class="banner-container">
+    <div class="banner-text">
+      <h5>SUMMER 2020</h5>
+      <h1>OLD MONEY OUTFIT</h1>
+      <p>We know how large objects will act, We know how objects will act, We know</p>
+      <div class="banner-action">
+        <span class="price">$16.48</span>
+        <button class="add-btn">ADD TO CART</button>
+      </div>
+    </div>
+    <div class="banner-image">
+      <img src="images/model-old-money.png">
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+ <footer class="main-footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="footer-brand-row">
+                <h3 class="logo">ENVA</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-middle">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Company Info</h5>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Carrier</a></li>
+                        <li><a href="#">We are hiring</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Carrier</a></li>
+                        <li><a href="#">We are hiring</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Features</h5>
+                    <ul>
+                        <li><a href="#">Business Marketing</a></li>
+                        <li><a href="#">User Analytic</a></li>
+                        <li><a href="#">Live Chat</a></li>
+                        <li><a href="#">Unlimited Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Resources</h5>
+                    <ul>
+                        <li><a href="#">IOS & Android</a></li>
+                        <li><a href="#">Watch a Demo</a></li>
+                        <li><a href="#">Customers</a></li>
+                        <li><a href="#">API</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col newsletter">
+                    <h5>Get In Touch</h5>
+                    <form class="subscribe-form">
+                        <input type="email" placeholder="Your Email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <p class="form-text">Lore imp sum dolor Amit</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container">
+            <p>Made With Love By Finland All Right Reserved</p>
+        </div>
+    </div>
+</footer>
+
+
+
+<!-- ================= SWEETALERT ================= -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- ================= MAIN PAGE SCRIPT ================= -->
+<script>
+
+/* =====================================================
+   ENVA – INDEX PAGE PROFESSIONAL SCRIPT
+===================================================== */
+
+/* ===============================
+   AUTH HELPER
+================================ */
+function getToken() {
+  return localStorage.getItem("userToken"); // USE SAME KEY EVERYWHERE
+}
+
+/* =====================================================
+   DOM READY
+===================================================== */
+document.addEventListener("DOMContentLoaded", function () {
+
+  loadTrendingProducts();
+  linkOldMoneyBanner();
+  initCartWishlistProtection();
+
+});
+
+
+/* =====================================================
+   LOAD TRENDING PRODUCTS
+===================================================== */
+async function loadTrendingProducts() {
+  try {
+    const response = await fetch("/api/products/trending");
+    const products = await response.json();
+
+    const container = document.getElementById("trendingProducts");
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    if (!products || products.length === 0) {
+      container.innerHTML = "<p>No trending products available.</p>";
+      return;
+    }
+
+    products.forEach(product => {
+      container.innerHTML += `
+        <a href="/user/product_single.html?id=${product._id}" class="product-link">
+          <div class="product-card">
+            <div class="product-img">
+              <img 
+                src="${product.images?.[0] || '/images/no-image.png'}" 
+                alt="${product.name}">
+            </div>
+            <div class="product-info">
+              <h5>${product.name}</h5>
+              <div class="prices">
+                <span>₹${product.price}</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      `;
+    });
+
+  } catch (error) {
+    console.error("Trending Load Error:", error);
+  }
+}
+
+
+/* =====================================================
+   LINK OLD MONEY BANNER
+===================================================== */
+async function linkOldMoneyBanner() {
+  try {
+    const res = await fetch("/api/products");
+    const products = await res.json();
+
+    const oldMoneyProduct = products.find(p =>
+      p.name.toLowerCase().includes("old money")
+    );
+
+    if (!oldMoneyProduct) return;
+
+    const banner = document.getElementById("oldMoneyBanner");
+    if (!banner) return;
+
+    banner.addEventListener("click", function () {
+      window.location.href =
+        `/user/product_single.html?id=${oldMoneyProduct._id}`;
+    });
+
+  } catch (err) {
+    console.error("Banner Link Error:", err);
+  }
+}
+
+
+/* =====================================================
+   CART + WISHLIST PROTECTION
+===================================================== */
+function initCartWishlistProtection() {
+
+  const cartBtn = document.getElementById("cartBtn");
+  const wishlistBtn = document.getElementById("wishlistBtn");
+
+  /* -------- CART -------- */
+  if (cartBtn) {
+    cartBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      if (!getToken()) {
+        showLoginAlert("Please login to view your cart");
+      } else {
+        window.location.href = "/user/cart.html";
+      }
+    });
+  }
+
+  /* -------- WISHLIST -------- */
+  if (wishlistBtn) {
+    wishlistBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      if (!getToken()) {
+        showLoginAlert("Please login to view your wishlist");
+      } else {
+        window.location.href = "/user/wishlist.html";
+      }
+    });
+  }
+}
+
+
+/* =====================================================
+   LOGIN ALERT
+===================================================== */
+function showLoginAlert(message) {
+  Swal.fire({
+    icon: "warning",
+    title: "Login Required",
+    text: message,
+    showCancelButton: true,
+    confirmButtonText: "Login",
+    cancelButtonText: "Cancel",
+    confirmButtonColor: "#6c63ff"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.href = "/user/login.html";
+    }
+  });
+}
+
+</script>
+
+<!-- ================= OTHER SCRIPTS ================= -->
+<script src="script.js"></script>
+<script src="/js/popup.js"></script>
+</body>
+</html>

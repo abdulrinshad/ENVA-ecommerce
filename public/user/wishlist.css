@@ -1,0 +1,510 @@
+/* --- Core Layout --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Montserrat', sans-serif; background-color: #fff; color: #252B42; }
+.container { max-width: 95%; margin: 0 auto; padding: 0 15px; }
+
+/* --- Header & Dropdown --- */
+.main-header { display: flex; justify-content: space-between; align-items: center; padding: 25px 0; border-bottom: 1px solid #f0f0f0; }
+.logo { font-size: 24px; font-weight: 700; letter-spacing: 2px; text-decoration: none; color: #000; }
+.nav-links a { margin: 0 15px; text-decoration: none; color: #737373; font-weight: 600; font-size: 14px; }
+
+.header-actions { display: flex; align-items: center; gap: 25px; }
+.user-menu-container { position: relative; }
+.user-profile i { font-size: 28px; cursor: pointer; color: #252B42; }
+
+.account-dropdown {
+    position: absolute; right: 0; top: 50px; width: 220px;
+    background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+    backdrop-filter: blur(10px); border-radius: 8px;
+    padding: 15px 0; display: none; z-index: 1000;
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.3);
+}
+.account-dropdown.show { display: block; }
+.dropdown-item { display: flex; align-items: center; gap: 12px; padding: 12px 20px; color: #fff; text-decoration: none; font-size: 14px; }
+.dropdown-item:hover { background: rgba(255, 255, 255, 0.1); color: #23A6F0; }
+
+/* --- Wishlist Grid --- */
+.wishlist-page-wrapper { padding: 60px 0 100px; }
+.wishlist-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+.wishlist-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+.wishlist-img-box {
+  position: relative;
+  overflow: hidden;
+  background: #f8f9fa;
+}
+
+.wishlist-img-box img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.wishlist-card:hover img {
+  transform: scale(1.05);
+}
+
+
+.wishlist-info {
+  padding: 18px 18px 22px;
+}
+
+/* Product Name */
+.product-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 8px;
+  letter-spacing: -0.2px;
+  line-height: 1.4;
+}
+
+/* Price Row */
+.price-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+/* Current Price */
+.current-price {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111;
+}
+
+/* Old Price */
+.old-price {
+  font-size: 14px;
+  color: #9ca3af;
+  text-decoration: line-through;
+}
+
+/* Optional tagline */
+.product-tagline {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+.add-to-cart-bar {
+    position: absolute; bottom: 0; width: 100%; background: #000;
+    color: #fff; border: none; padding: 12px; font-weight: 600;
+    display: flex; justify-content: center; align-items: center; gap: 10px;
+    transform: translateY(100%); transition: transform 0.3s ease;
+}
+.wishlist-card:hover .add-to-cart-bar { transform: translateY(0); }
+
+.remove-wishlist {
+    position: absolute; top: 15px; right: 15px; background: #fff;
+    border: none; width: 35px; height: 35px; border-radius: 50%;
+    cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* --- Typography & Colors --- */
+.price-new { color: #23856D; font-weight: 700; }
+.price-old { color: #BDBDBD; text-decoration: line-through; margin-left: 10px; font-weight: 700; }
+
+.btn-outline {
+    background: #fff; border: 1px solid #E6E6E6; padding: 12px 30px;
+    border-radius: 4px; font-weight: 600; cursor: pointer; transition: background 0.3s;
+}
+.btn-outline:hover { background: #f5f5f5; }
+
+/* --- Footer --- */
+.footer-top { background-color: #FAFAFA; padding: 40px 0; }
+.footer-brand-row { display: flex; justify-content: space-between; align-items: center; }
+.social-icons a { color: #23A6F0; font-size: 24px; margin-left: 20px; }
+.footer-bottom { background-color: #FAFAFA; padding: 25px 0; text-align: left; }
+/* Footer Global */
+.main-footer {
+    background-color: #FFFFFF;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Footer Top Bar */
+.footer-top {
+    background-color: #FAFAFA; /* Light gray background from Figma */
+    padding: 40px 0;
+}
+
+.footer-brand-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-brand-row .logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #252B42;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.social-icons a {
+    color: #23A6F0; /* Primary blue color for icons */
+    font-size: 24px;
+}
+
+/* Footer Middle (Links) */
+.footer-middle {
+    padding: 70px 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columns as seen in design */
+    gap: 30px;
+}
+
+.footer-col h5 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #252B42;
+    margin-bottom: 20px;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    text-decoration: none;
+    color: #737373;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.footer-col ul li a:hover {
+    color: #23A6F0;
+}
+
+/* Newsletter Input */
+.subscribe-form {
+    display: flex;
+    height: 50px;
+}
+
+.subscribe-form input {
+    background: #F9F9F9;
+    border: 1px solid #E6E6E6;
+    border-radius: 5px 0 0 5px;
+    padding: 0 20px;
+    flex: 1;
+    font-size: 14px;
+}
+
+.subscribe-form button {
+    background-color: #23A6F0;
+    color: white;
+    border: none;
+    padding: 0 20px;
+    border-radius: 0 5px 5px 0;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.form-text {
+    font-size: 12px;
+    color: #737373;
+    margin-top: 10px;
+}
+
+/* Footer Bottom Bar */
+.footer-bottom {
+    background-color: #FAFAFA;
+    padding: 25px 0;
+}
+
+.footer-bottom p {
+    font-size: 14px;
+    font-weight: 700;
+    color: #737373;
+    text-align: left;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 992px) {
+    .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    .newsletter { grid-column: span 2; }
+}
+
+@media (max-width: 600px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .newsletter { grid-column: span 1; }
+    .footer-brand-row { flex-direction: column; gap: 20px; text-align: center; }
+}
+/* Container for the cart and checkout area */
+.cart-page {
+    margin-bottom: 40px; /* Reduced from 100px for a smaller gap */
+}
+
+/* The ENVA Brand Section in Footer */
+.main-footer {
+    border-top: 1px solid #F1F1F1;
+    padding-top: 40px; /* Smaller internal top padding */
+}
+
+/* Spacing between ENVA logo and the 5-column grid */
+.footer-top {
+    margin-bottom: 30px; /* Tightens the area around the ENVA logo */
+}
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        
+
+        /* --- 2. UNIFIED HEADER --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0;
+            background-color: #fff;
+            height: 100px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #000;
+            text-decoration: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #000;
+            margin: 0 15px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: #F5F5F5;
+            padding: 8px 15px;
+            border-radius: 4px;
+        }
+
+        .search-bar input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 180px;
+        }
+
+        .icon-group {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .icon-link {
+            text-decoration: none;
+            color: #000000;
+            position: relative;
+            font-size: 22px;
+        }
+       
+        .icon-link .count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: #DB4444;
+            color: #fff;
+            font-size: 10px;
+            padding: 2px 5px;
+            border-radius: 50%;
+        }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ======================================================
+   USER DROPDOWN
+====================================================== */
+.user-menu {
+  position: relative;
+}
+
+/* user icon */
+.user-icon {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #000;
+}
+
+/* dropdown box */
+.user-dropdown {
+  position: absolute;
+  top: 48px;
+  right: 0;
+  width: 240px;
+  background: #3f3f3f;   /* dark grey */
+  border-radius: 10px;
+  padding: 10px 0;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+  display: none;
+  z-index: 3000;
+}
+
+/* show dropdown */
+.user-dropdown.active {
+  display: block;
+}
+
+/* dropdown links */
+.user-dropdown a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  color: #eaeaea;
+  font-size: 15px;
+  text-decoration: none;
+  transition: background 0.25s ease;
+}
+
+/* icons */
+.user-dropdown a i {
+  width: 18px;
+  font-size: 15px;
+  color: #d0d0d0;
+}
+
+/* hover */
+.user-dropdown a:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+/* logout */
+.user-dropdown .logout {
+  color: #ff9c9c;
+}
+
+.user-dropdown .logout i {
+  color: #ff9c9c;
+}
+
+/* mobile alignment */
+@media (max-width: 768px) {
+  .user-dropdown {
+    right: -10px;
+  }
+}
+
+/* ======================================================
+   MOBILE MENU TOGGLE
+====================================================== */
+.menu-toggle{
+  display:none;
+  font-size:18px;
+  cursor:pointer;
+}
+
+/* ======================================================
+   MOBILE NAV
+====================================================== */
+.mobile-nav{
+  position:fixed;
+  top:70px;
+  left:0;
+  width:100%;
+  background:#fff;
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .35s ease;
+  box-shadow:0 10px 20px rgba(0,0,0,.08);
+  z-index:1500;
+}
+
+.mobile-nav.active{
+  max-height:300px;
+}
+
+.mobile-nav a{
+  display:block;
+  padding:15px 24px;
+  text-decoration:none;
+  color:#000;
+  font-weight:600;
+  border-bottom:1px solid #f1f1f1;
+}
+
+.wishlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.wishlist-card {
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+  position: relative;
+}
+
+.wishlist-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+}
+
+
+/* ================= TABLET ================= */
+@media (max-width: 992px) {
+  .wishlist-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ================= MOBILE (2 PER ROW) ================= */
+@media (max-width: 576px) {
+  .wishlist-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .wishlist-info h5 {
+    font-size: 13px;
+  }
+
+  .price-new {
+    font-size: 14px;
+  }
+
+  .price-old {
+    font-size: 12px;
+  }
+
+  .add-to-cart-bar {
+    font-size: 12px;
+    padding: 8px;
+  }
+}

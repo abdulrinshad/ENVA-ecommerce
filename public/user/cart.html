@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - ENVA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="userSigned.css">
+</head>
+<body>
+   
+    <header class="main-header">
+
+  <!-- Mobile Menu Icon -->
+  <span class="menu-toggle" id="menuToggle">
+    <i class="fas fa-bars"></i>
+  </span>
+
+  <!-- Logo -->
+  <div class="logo">ENVA</div>
+
+  <!-- Desktop Nav -->
+  <nav class="nav-links">
+    <a href="usersigned.html">HOME</a>
+    <a href="shopuser.html">SHOP</a>
+    <a href="about.html">ABOUT</a>
+    <a href="contact.html">CONTACT</a>
+  </nav>
+
+  <!-- Header Actions -->
+  <div class="header-actions">
+
+    <!-- Search -->
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <i class="fas fa-search"></i>
+    </div>
+
+    <!-- Icons -->
+    <div class="icon-group">
+
+      <a href="#"><i class="far fa-heart"></i></a>
+      <a href="#"><i class="fas fa-shopping-cart"></i></a>
+
+      <!-- USER MENU -->
+      <div class="user-menu">
+        <a href="#" id="userToggle" class="user-icon">
+          <i class="far fa-user"></i>
+        </a>
+
+        <div class="user-dropdown" id="userDropdown">
+          <a href="myaccount.html">
+            <i class="far fa-user"></i> Manage My Account
+          </a>
+          <a href="orders.html">
+            <i class="fas fa-box"></i> My Orders
+          </a>
+          <a href="logout.html" class="logout">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</header>
+
+  <!-- MOBILE MENU -->
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">HOME</a>
+  <a href="shop.html">SHOP</a>
+  <a href="about.html">ABOUT</a>
+  <a href="contact.html">CONTACT</a>
+</nav>
+
+
+  <div class="header-actions">
+
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <i class="fas fa-search"></i>
+    </div>
+    <!-- MOBILE SEARCH BAR -->
+<div class="mobile-search" id="mobileSearch">
+  <div class="mobile-search-box">
+    <input type="text" placeholder="Search products...">
+    <span class="close-search" id="closeSearch">
+      <i class="fas fa-times"></i>
+    </span>
+  </div>
+</div>
+
+    <span class="search-icon">
+    <i class="fas fa-search"></i>
+  </span>
+
+    <div class="icon-group">
+      <a href="#"><i class="far fa-heart"></i></a>
+      <a href="#"><i class="fas fa-shopping-cart"></i></a>
+      <a href="#"><i class="far fa-user"></i></a>
+    </div>
+  </div>
+</header>
+
+      <main class="cart-layout">
+
+  <!-- ================= CART ITEMS ================= -->
+  <section class="cart-items" id="cartItems">
+
+    <div class="table-head">
+      <span class="col-product">PRODUCT DETAILS</span>
+      <span class="col-qty">QUANTITY</span>
+      <span class="col-price">PRICE</span>
+      <span class="col-total">TOTAL</span>
+    </div>
+
+    <!-- Cart rows injected by JS -->
+
+    <a href="shop.html" class="continue-link">
+      <i class="fas fa-arrow-left"></i> Continue Shopping
+    </a>
+
+  </section>
+
+  <!-- ================= ORDER SUMMARY ================= -->
+  <aside class="order-summary">
+
+    <h3>Order Summary</h3>
+    <hr>
+
+    <div class="summary-row">
+      <span id="summaryItems">ITEMS 0</span>
+      <span id="summarySubtotal">₹0</span>
+    </div>
+
+    <!-- SHIPPING -->
+    <div class="summary-field">
+      <label for="shippingSelect">SHIPPING</label>
+      <select id="shippingSelect">
+        <option value="5">Standard Delivery - ₹5</option>
+        <option value="0">Free Delivery - ₹0</option>
+      </select>
+    </div>
+
+<!-- AVAILABLE OFFERS -->
+<div class="summary-field">
+  <label>AVAILABLE OFFERS</label>
+  <div id="couponList" class="coupon-list">
+    <small>Loading offers...</small>
+  </div>
+</div>
+
+
+
+    <!-- PROMO CODE -->
+    <div class="summary-field">
+      <label for="couponInput">PROMO CODE</label>
+      <div class="promo-box">
+        <input
+          type="text"
+          id="couponInput"
+          placeholder="Enter Your Code"
+          autocomplete="off"
+        >
+        <button type="button" id="applyCouponBtn">
+          APPLY
+        </button>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- TOTAL -->
+    <div class="summary-row total">
+      <span>TOTAL COST</span>
+      <span id="summaryTotal">₹0</span>
+    </div>
+
+    <!-- CHECKOUT -->
+    <button class="checkout-btn" type="button">
+      CHECKOUT
+    </button>
+
+  </aside>
+
+</main>
+
+
+    <footer class="main-footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="footer-brand-row">
+                <h3 class="logo">ENVA</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-middle">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Company Info</h5>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Carrier</a></li>
+                        <li><a href="#">We are hiring</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Carrier</a></li>
+                        <li><a href="#">We are hiring</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Features</h5>
+                    <ul>
+                        <li><a href="#">Business Marketing</a></li>
+                        <li><a href="#">User Analytic</a></li>
+                        <li><a href="#">Live Chat</a></li>
+                        <li><a href="#">Unlimited Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Resources</h5>
+                    <ul>
+                        <li><a href="#">IOS & Android</a></li>
+                        <li><a href="#">Watch a Demo</a></li>
+                        <li><a href="#">Customers</a></li>
+                        <li><a href="#">API</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col newsletter">
+                    <h5>Get In Touch</h5>
+                    <form class="subscribe-form">
+                        <input type="email" placeholder="Your Email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <p class="form-text">Lore imp sum dolor Amit</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container">
+            <p>Made With Love By Finland All Right Reserved</p>
+        </div>
+    </div>
+</footer>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  initNavbarAndUserMenu();
+  loadCart();
+  initCheckoutButton();
+  initCouponApply();
+});
+
+/* ===============================
+   AUTH CHECK
+================================ */
+function isLoggedIn() {
+  return !!localStorage.getItem("userToken");
+}
+
+/* ===============================
+   STOCK MESSAGE (SIZE BASED)
+================================ */
+function getStockMessage(stock) {
+  if (stock === 0) {
+    return `<p class="stock-msg out">Out of stock</p>`;
+  }
+
+  if (stock <= 5) {
+    return `<p class="stock-msg critical">Only ${stock} left!</p>`;
+  }
+
+  if (stock <= 10) {
+    return `<p class="stock-msg low">Low stock</p>`;
+  }
+
+  return "";
+}
+
+/* ===============================
+   LOAD CART
+================================ */
+async function loadCart() {
+  let items = [];
+
+  if (isLoggedIn()) {
+    try {
+      const res = await fetch("/api/cart", {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("userToken")
+        }
+      });
+
+      if (!res.ok) throw new Error("Failed to fetch cart");
+
+      const data = await res.json();
+      items = data.items || [];
+
+    } catch (err) {
+      console.error("Cart load error:", err);
+    }
+  }
+
+  renderCartUI(items);
+}
+
+/* ===============================
+   RENDER CART UI (FINAL VERSION)
+================================ */
+function renderCartUI(items) {
+  const cartItems = document.getElementById("cartItems");
+  const checkoutBtn = document.querySelector(".checkout-btn");
+
+  cartItems.querySelectorAll(".cart-row, .empty-cart")
+    .forEach(el => el.remove());
+
+  let hasOutOfStock = false;
+
+  if (!items.length) {
+    const empty = document.createElement("p");
+    empty.className = "empty-cart";
+    empty.innerText = "Your cart is empty";
+
+    cartItems.insertBefore(
+      empty,
+      cartItems.querySelector(".continue-link")
+    );
+
+    loadAvailableCoupons(0);
+    updateOrderSummary([]);
+    return;
+  }
+
+  items.forEach(item => {
+    const product = item.product;
+    const image = product.images?.[0] || "/images/no-image.png";
+    const name = product.name;
+
+    // ✅ SIZE BASED STOCK FIX
+    const selectedSize = item.size?.toUpperCase().trim();
+    const stock = Number(product.sizes?.[selectedSize] || 0);
+
+    if (stock <= 0) hasOutOfStock = true;
+
+    const row = document.createElement("div");
+    row.className = "cart-row";
+
+    row.innerHTML = `
+      <div class="product-info col-product">
+        <img src="${image}" alt="${name}">
+        <div class="details">
+          <h5>${name}</h5>
+          <p>Size: ${selectedSize || "-"}</p>
+
+          ${getStockMessage(stock)}
+
+          <button class="remove-btn"
+            onclick="removeItem('${item._id}')">
+            Remove
+          </button>
+        </div>
+      </div>
+
+      <div class="qty-control col-qty">
+        <button 
+          ${item.qty <= 1 ? "disabled" : ""}
+          onclick="changeQty('${item._id}', -1)">
+          -
+        </button>
+
+        <input type="text" value="${item.qty}" readonly>
+
+        <button 
+          ${item.qty >= stock ? "disabled" : ""}
+          onclick="changeQty('${item._id}', 1)">
+          +
+        </button>
+      </div>
+
+      <div class="unit-price col-price">₹${item.price}</div>
+
+      <div class="total-price col-total">
+        ₹${item.price * item.qty}
+      </div>
+    `;
+
+    cartItems.insertBefore(
+      row,
+      cartItems.querySelector(".continue-link")
+    );
+  });
+
+  const subtotal = updateOrderSummary(items);
+  loadAvailableCoupons(subtotal);
+
+  // Disable checkout if any item is out of stock
+  if (checkoutBtn) {
+    checkoutBtn.disabled = hasOutOfStock;
+    checkoutBtn.style.opacity = hasOutOfStock ? "0.6" : "1";
+  }
+}
+
+/* ===============================
+   ORDER SUMMARY
+================================ */
+function updateOrderSummary(items) {
+  let totalQty = 0;
+  let subtotal = 0;
+
+  items.forEach(item => {
+    totalQty += item.qty;
+    subtotal += item.qty * item.price;
+  });
+
+  const shipping =
+    Number(document.getElementById("shippingSelect")?.value) || 5;
+
+  document.getElementById("summaryItems").innerText =
+    `ITEMS ${totalQty}`;
+
+  document.getElementById("summarySubtotal").innerText =
+    `₹${subtotal}`;
+
+  document.getElementById("summaryTotal").innerText =
+    `₹${subtotal + shipping}`;
+
+  return subtotal;
+}
+
+/* ===============================
+   COUPONS
+================================ */
+async function loadAvailableCoupons(subtotal) {
+  const container = document.getElementById("couponList");
+  if (!container) return;
+
+  if (subtotal <= 0) {
+    container.innerHTML =
+      "<small>Add items to see available offers</small>";
+    return;
+  }
+
+  try {
+    const res = await fetch(
+      `/api/coupons/available?total=${subtotal}`,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("userToken")
+        }
+      }
+    );
+
+    const data = await res.json();
+
+    if (!data.success || !data.coupons.length) {
+      container.innerHTML = "<small>No offers available</small>";
+      return;
+    }
+
+    container.innerHTML = "";
+
+    data.coupons.forEach(coupon => {
+      const eligible = subtotal >= coupon.minSpend;
+
+      const div = document.createElement("div");
+      div.className = `coupon-card ${
+        eligible ? "coupon-active" : "coupon-disabled"
+      }`;
+
+      div.innerHTML = `
+        <strong>${coupon.code}</strong>
+        <p>${
+          coupon.type === "percentage"
+            ? `${coupon.value}% OFF`
+            : `₹${coupon.value} OFF`
+        }</p>
+        <small>Min spend ₹${coupon.minSpend}</small>
+      `;
+
+      div.onclick = () => {
+        if (!eligible) {
+          Swal.fire(
+            "Not Eligible",
+            `Add ₹${coupon.minSpend - subtotal} more to use this offer`,
+            "info"
+          );
+          return;
+        }
+
+        document.getElementById("couponInput").value = coupon.code;
+      };
+
+      container.appendChild(div);
+    });
+
+  } catch (err) {
+    console.error("Coupon load failed", err);
+  }
+}
+
+/* ===============================
+   APPLY COUPON
+================================ */
+function initCouponApply() {
+  const btn = document.getElementById("applyCouponBtn");
+  if (!btn) return;
+
+  btn.addEventListener("click", async () => {
+    const code = document.getElementById("couponInput").value.trim();
+
+    if (!code) {
+      Swal.fire("Enter a coupon code");
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/cart/apply-coupon", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("userToken")
+        },
+        body: JSON.stringify({ code })
+      });
+
+      const data = await res.json();
+
+      if (!data.success) {
+        Swal.fire({
+          icon: "error",
+          title: "Coupon Invalid",
+          text: data.message
+        });
+        return;
+      }
+
+      Swal.fire({
+        icon: "success",
+        title: "Coupon Applied 🎉",
+        text: `You saved ₹${data.discount}`
+      });
+
+      loadCart();
+
+    } catch (err) {
+      console.error(err);
+      Swal.fire("Error applying coupon");
+    }
+  });
+}
+
+/* ===============================
+   CART ACTIONS
+================================ */
+async function changeQty(itemId, delta) {
+  const res = await fetch("/api/cart/update", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("userToken")
+    },
+    body: JSON.stringify({ itemId, qtyDelta: delta })
+  });
+
+  if (res.ok) loadCart();
+}
+
+async function removeItem(itemId) {
+  const res = await fetch(`/api/cart/remove/${itemId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("userToken")
+    }
+  });
+
+  if (res.ok) loadCart();
+}
+
+/* ===============================
+   CHECKOUT
+================================ */
+function initCheckoutButton() {
+  const btn = document.querySelector(".checkout-btn");
+  if (!btn) return;
+
+  btn.addEventListener("click", () => {
+    window.location.href = "checkout.html";
+  });
+}
+
+/* ===============================
+   NAVBAR
+================================ */
+function initNavbarAndUserMenu() {
+  const userToggle = document.getElementById("userToggle");
+  const userDropdown = document.getElementById("userDropdown");
+
+  if (!userToggle || !userDropdown) return;
+
+  userToggle.addEventListener("click", e => {
+    e.preventDefault();
+    userDropdown.classList.toggle("active");
+  });
+
+  document.addEventListener("click", e => {
+    if (!e.target.closest(".user-menu")) {
+      userDropdown.classList.remove("active");
+    }
+  });
+}
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/popup.js"></script>
+</body>
+</html>

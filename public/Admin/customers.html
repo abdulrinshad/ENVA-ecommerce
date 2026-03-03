@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wings Admin | Customers</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+            --sidebar-width: 260px;
+            --main-bg: #F8F9FD;
+            --sidebar-bg: #ffffff;
+            --accent-blue: #6C8EEF;
+            --text-dark: #2D3748;
+            --text-gray: #A0AEC0;
+            --card-border: #EDF2F7;
+            --table-header: #F1F6FF;
+            --card-bg: #ffffff;
+        }
+
+        /* DARK MODE SELECTOR */
+        [data-theme="dark"] {
+            --sidebar-bg: #1A202C;
+            --main-bg: #11141D;
+            --card-bg: #1A202C;
+            --text-dark: #E2E8F0;
+            --text-gray: #718096;
+            --card-border: #2D3748;
+            --table-header: #212936;
+        }
+
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: var(--main-bg); 
+            margin: 0; 
+            display: flex; 
+            color: var(--text-dark); 
+            transition: background 0.3s, color 0.3s; 
+        }
+
+       /* --- SIDEBAR (Left Side) --- */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--sidebar-bg);
+            height: 100vh;
+            position: fixed;
+            left: 0; top: 0;
+            border-right: 1px solid var(--card-border);
+            display: flex;
+            flex-direction: column;
+            z-index: 1050;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-scroll {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .sidebar-brand img { height: 45px; margin-bottom: 25px; }
+
+        .menu-label { 
+            font-size: 0.75rem; color: var(--text-gray); 
+            text-transform: capitalize; margin: 20px 0 10px 10px; font-weight: 500;
+        }
+
+        .nav-item {
+            display: flex; align-items: center; padding: 12px 15px;
+            color: var(--text-gray); text-decoration: none; border-radius: 10px;
+            margin-bottom: 5px; font-size: 0.9rem; transition: 0.2s;
+        }
+
+        .nav-item.active { background: var(--accent-blue); color: #fff; }
+        .nav-item i { margin-right: 12px; font-size: 1.1rem; }
+        .nav-item:hover:not(.active) { background: rgba(108, 142, 239, 0.1); color: var(--accent-blue); }
+
+        /* Sidebar Bottom (Admin Section) */
+        .admin-footer {
+            padding: 20px; border-top: 1px solid var(--card-border); background: var(--sidebar-bg);
+        }
+
+        .admin-profile-box { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+        .admin-avatar { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; }
+        .admin-name { font-size: 0.85rem; font-weight: 600; color: var(--text-dark); margin: 0; }
+        .admin-email { font-size: 0.7rem; color: var(--text-gray); margin: 0; }
+
+        /* --- MAIN CONTENT --- */
+        .main-wrapper { margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); padding: 30px; transition: 0.3s; }
+        
+        /* CARD STYLES (Fixed for Dark Mode) */
+        .custom-card { 
+            background: var(--card-bg) !important; 
+            border: 1px solid var(--card-border) !important; 
+            border-radius: 20px; 
+            padding: 25px; 
+            margin-bottom: 30px; 
+            color: var(--text-dark);
+        }
+         /* Sidebar Brand Styling */
+.sidebar-brand {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+/* Brand Text Style matching your existing ENVA logo */
+.sidebar-brand .logo {
+    font-size: 24px;
+    font-weight: 800; /* Extra bold as seen in your main logo */
+    letter-spacing: 1px;
+    color: #000; /* Or use #252B42 to match your header text */
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+
+        /* METRICS */
+        .side-metric { padding: 12px 0; border-bottom: 1px solid var(--card-border); }
+        .side-metric:last-child { border-bottom: none; }
+        .side-metric .label { font-size: 0.75rem; color: var(--text-gray); }
+        .side-metric .value { font-size: 1.3rem; font-weight: 700; color: var(--text-dark); }
+
+        /* TABLE (Fixed for Dark Mode) */
+        .table-container { background: var(--card-bg); border-radius: 20px; border: 1px solid var(--card-border); padding: 20px; }
+        .custom-table { width: 100%; border-collapse: separate; border-spacing: 0; color: var(--text-dark); }
+        .custom-table thead tr { background: var(--table-header); }
+        .custom-table th { padding: 15px; font-size: 0.85rem; border: none; color: var(--text-dark); }
+        .custom-table td { padding: 15px; border-bottom: 1px solid var(--card-border); vertical-align: middle; }
+
+        /* ACTIONS */
+        .action-group { display: flex; gap: 8px; }
+        .action-btn { border: 1px solid var(--card-border); background: var(--card-bg); width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-gray); transition: 0.2s; }
+        .btn-edit:hover { color: var(--accent-blue); border-color: var(--accent-blue); }
+        .btn-block:hover { color: #F6AD55; border-color: #F6AD55; }
+        .btn-delete:hover { color: #F56565; border-color: #F56565; }
+
+        /* THEME TOGGLE */
+        .theme-toggle { cursor: pointer; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-dark); }
+
+        /* --- UPDATED BADGE STYLES --- */
+        .status-pill { 
+            padding: 5px 12px; 
+            border-radius: 8px; 
+            font-size: 0.75rem; 
+            font-weight: 600; 
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .status-pill::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+
+        .active-pill { background: rgba(72, 187, 120, 0.15); color: #48BB78; }
+        .active-pill::before { background: #48BB78; }
+
+        .status-inactive { background: rgba(160, 174, 192, 0.15); color: #A0AEC0; }
+        .status-inactive::before { background: #A0AEC0; }
+
+        .blocked-pill { background: rgba(245, 101, 101, 0.15); color: #F56565; }
+        .blocked-pill::before { background: #F56565; }
+
+        @media (max-width: 992px) {
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.active { transform: translateX(0); }
+            .main-wrapper { margin-left: 0; width: 100%; }
+        }
+
+        .action-cell {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.icon-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.block-btn {
+  color: #f59e0b;
+  background: #fff7ed;
+}
+
+.delete-btn {
+  color: #ef4444;
+  background: #fee2e2;
+}
+
+.icon-btn:hover {
+  transform: scale(1.1);
+}
+
+/* ===============================
+   MODAL OVERLAY
+================================ */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55); /* dark soft overlay */
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+/* SHOW MODAL */
+.modal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ===============================
+   MODAL CONTENT
+================================ */
+.modal-content {
+  width: 420px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px 26px;
+  box-shadow:
+    0 25px 50px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(0, 0, 0, 0.03);
+
+  transform: translateY(20px) scale(0.96);
+  opacity: 0;
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.3s ease;
+}
+
+/* Animate when modal opens */
+.modal.show .modal-content {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+/* ===============================
+   HEADER
+================================ */
+.modal-content h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #0f172a;
+  text-align: center;
+}
+
+/* Close icon */
+.modal-content .close-btn {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  font-size: 18px;
+  cursor: pointer;
+  color: #64748b;
+}
+
+.modal-content .close-btn:hover {
+  color: #0f172a;
+}
+
+/* ===============================
+   AVATAR
+================================ */
+.modal-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #eef2ff;
+  color: #4f46e5;
+  font-size: 28px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 14px auto 6px;
+}
+
+/* ===============================
+   NAME & ID
+================================ */
+.modal-name {
+  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
+  color: #0f172a;
+}
+
+.modal-id {
+  text-align: center;
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 18px;
+}
+
+/* ===============================
+   STATS BOX
+================================ */
+.modal-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.stat-box {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+}
+
+.stat-box strong {
+  display: block;
+  font-size: 18px;
+  color: #2563eb;
+}
+
+.stat-box span {
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* ===============================
+   DETAILS
+================================ */
+.modal-detail {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  padding: 8px 0;
+  border-bottom: 1px dashed #e5e7eb;
+}
+
+.modal-detail:last-child {
+  border-bottom: none;
+}
+
+.modal-detail span:first-child {
+  color: #64748b;
+}
+
+.modal-detail span:last-child {
+  color: #0f172a;
+  font-weight: 500;
+}
+
+/* ===============================
+   STATUS
+================================ */
+.status-active {
+  color: #059669;
+  font-weight: 600;
+}
+
+.status-blocked {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+/* ===============================
+   FOOTER BUTTON
+================================ */
+.modal-footer {
+  margin-top: 22px;
+  text-align: center;
+}
+
+.modal-footer button {
+  padding: 10px 22px;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modal-footer button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+}
+
+
+.customer-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;           /* 👈 THIS fixes the Nnabeel issue */
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.customer-info {
+  line-height: 1.2;
+}
+
+.customer-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #111827;
+  text-transform: capitalize;
+}
+
+.customer-email {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+
+
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-scroll">
+             <div class="sidebar-brand">
+    <span class="logo">ENVA</span>
+</div>
+            <p class="menu-label">Main menu</p>
+            <a href="dashboard.html" class="nav-item "><i class="bi bi-grid"></i> Dashboard</a>
+            <a href="OrderManagement.html" class="nav-item"><i class="bi bi-cart"></i> Order Management</a>
+            <a href="customers.html" class="nav-item active"><i class="bi bi-people"></i> Customers</a>
+            <a href="coupon.html" class="nav-item"><i class="bi bi-ticket-perforated"></i> Coupon Code</a>
+            <a href="Categories.html" class="nav-item"><i class="bi bi-tags"></i> Categories</a>
+            <a href="Transaction.html" class="nav-item"><i class="bi bi-arrow-left-right"></i> Transaction</a>
+            <a href="Offers.html" class="nav-item "><i class="bi bi-megaphone"></i> Offers & Ads</a>
+
+            <p class="menu-label">Product</p>
+            <a href="AddProduct.html" class="nav-item"><i class="bi bi-plus-circle"></i> Add Products</a>
+        
+            <a href="ProductList.html" class="nav-item"><i class="bi bi-list-ul"></i> Product List</a>
+            <a href="ProductReviews.html" class="nav-item"><i class="bi bi-chat-left-text"></i> Product Reviews</a>
+        </div>
+
+        <div class="admin-footer">
+            <p class="menu-label" style="margin-left:0; margin-top:0">Admin</p>
+            <a href="AdminRole.html" class="nav-item p-0 mb-3"><i class="bi bi-person-gear"></i> Admin role</a>
+            <div class="admin-profile-box">
+                <img src="profile-pic.png" class="admin-avatar" alt="Admin">
+                <div class="admin-info">
+                    <p class="admin-name">ENVA</p>
+                    <p class="admin-email">enva@gmail.com</p>
+                </div>
+                <i class="bi bi-box-arrow-right text-gray" style="cursor: pointer;"></i>
+            </div>
+            <a href="#" class="nav-item p-0" style="color: var(--accent-blue); font-weight: 600;">
+                <i class="bi bi-shop"></i> Your Shop <i class="bi bi-box-arrow-up-right ms-auto small"></i>
+            </a>
+        </div>
+    </aside>
+
+
+    <main class="main-wrapper">
+
+  <!-- TOP BAR -->
+  <div class="top-bar d-flex justify-content-between align-items-center mb-4">
+    <h4 class="m-0 fw-semibold">Customer Analytics</h4>
+
+    <div class="d-flex align-items-center gap-3">
+      <div class="theme-toggle" onclick="toggleTheme()">
+        <i class="bi bi-moon-stars-fill" id="tIcon"></i>
+      </div>
+
+      <button class="btn btn-primary rounded-pill px-4"
+              style="background:var(--accent-blue); border:none;">
+        + New Customer
+      </button>
+    </div>
+  </div>
+
+  <!-- ANALYTICS CARD -->
+  <div class="custom-card mb-4">
+    <div class="row align-items-center">
+
+      <!-- CHART -->
+      <div class="col-lg-8 border-end pe-lg-4">
+        <h6 class="fw-bold mb-4">Customer Acquisition</h6>
+        <canvas id="growthChart" style="max-height:250px;"></canvas>
+      </div>
+
+      <!-- STATS -->
+      <div class="col-lg-4 ps-lg-4">
+
+        <div class="side-metric">
+          <p class="label m-0">Total Customers</p>
+          <span class="value" id="totalCustomers">0</span>
+        </div>
+
+        <div class="side-metric">
+          <p class="label m-0">Active Users</p>
+          <span class="value" id="activeCustomers" style="color:#48BB78">0</span>
+        </div>
+
+        <div class="side-metric">
+          <p class="label m-0">Inactive</p>
+          <span class="value" id="inactiveCustomers" style="color:#A0AEC0">0</span>
+        </div>
+
+        <div class="side-metric">
+          <p class="label m-0">Blocked</p>
+          <span class="value" id="blockedCustomers" style="color:#F56565">0</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- CUSTOMER TABLE -->
+  <div class="table-container">
+    <table class="custom-table">
+
+      <thead>
+  <tr>
+    <th>Customer</th>
+    <th>Joined Date</th>
+    <th>Orders</th>
+    <th>Spent</th>
+    <th>Status</th>
+    <th>Actions</th>
+  </tr>
+</thead>
+
+
+      <!-- 🔥 JS WILL RENDER ROWS HERE -->
+      <tbody id="customerTable"></tbody>
+
+    </table>
+  </div>
+
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", loadCustomers);
+
+async function loadCustomers() {
+  try {
+    const token = localStorage.getItem("adminToken");
+    if (!token) return console.error("No admin token");
+
+    const res = await fetch("/api/admin/customers", {
+      headers: { Authorization: "Bearer " + token }
+    });
+
+    const data = await res.json();
+    console.log("ADMIN CUSTOMERS:", data);
+
+    if (!data.success) return;
+
+    // ✅ FIXED
+    renderStats(data.stats);
+    renderTable(data.users);
+
+  } catch (err) {
+    console.error("CUSTOMER LOAD ERROR:", err);
+  }
+}
+
+/* =========================
+   STATS
+========================= */
+function renderStats(stats) {
+  document.getElementById("totalCustomers").innerText = stats.total;
+  document.getElementById("activeCustomers").innerText = stats.active;
+  document.getElementById("blockedCustomers").innerText = stats.blocked;
+  document.getElementById("inactiveCustomers").innerText = 0; // optional
+}
+
+function renderTable(users) {
+  const tbody = document.getElementById("customerTable");
+  tbody.innerHTML = "";
+
+  if (!users.length) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="6" class="text-center py-4">
+          No customers found
+        </td>
+      </tr>`;
+    return;
+  }
+
+  users.forEach(u => {
+    const status = u.isBlocked ? "Blocked" : "Active";
+    const statusClass = u.isBlocked ? "blocked-pill" : "active-pill";
+
+    tbody.innerHTML += `
+      <tr onclick="openCustomerModal('${encodeURIComponent(JSON.stringify(u))}')"
+          style="cursor:pointer">
+
+        <!-- CUSTOMER -->
+        <td>
+  <div class="customer-cell">
+    <div class="avatar">
+      ${u.name.charAt(0).toUpperCase()}
+    </div>
+
+    <div class="customer-info">
+      <div class="customer-name">${u.name}</div>
+      <div class="customer-email">${u.email}</div>
+    </div>
+  </div>
+</td>
+
+
+        <!-- JOINED DATE -->
+        <td>${new Date(u.createdAt).toLocaleDateString()}</td>
+
+        <!-- ORDERS -->
+        <td class="text-center">${u.ordersCount || 0}</td>
+
+        <!-- SPENT -->
+        <td class="text-primary fw-semibold">
+          ₹${(u.totalSpent || 0).toLocaleString()}
+        </td>
+
+        <!-- STATUS -->
+        <td>
+          <span class="status-pill ${statusClass}">
+            ${status}
+          </span>
+        </td>
+
+        <!-- ACTIONS -->
+        <td class="action-cell" onclick="event.stopPropagation()">
+          <button class="icon-btn block-btn"
+                  onclick="toggleBlockCustomer('${u._id}', ${u.isBlocked})">
+            <i class="bi ${u.isBlocked ? 'bi-unlock' : 'bi-lock'}"></i>
+          </button>
+
+          <button class="icon-btn delete-btn"
+                  onclick="deleteCustomer('${u._id}')">
+            <i class="bi bi-trash"></i>
+          </button>
+        </td>
+
+      </tr>
+    `;
+  });
+}
+
+
+
+
+async function toggleBlockCustomer(id, isBlocked) {
+  if (!confirm(`Are you sure you want to ${isBlocked ? "unblock" : "block"} this customer?`)) return;
+
+  const token = localStorage.getItem("adminToken");
+
+  const res = await fetch(`/api/admin/customers/${id}/block`, {
+    method: "PATCH",
+    headers: {
+      Authorization: "Bearer " + token
+    }
+  });
+
+  const data = await res.json();
+  if (data.success) loadCustomers();
+}
+
+async function deleteCustomer(id) {
+  if (!confirm("This will permanently delete the customer. Continue?")) return;
+
+  const token = localStorage.getItem("adminToken");
+
+  const res = await fetch(`/api/admin/customers/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: "Bearer " + token
+    }
+  });
+
+  const data = await res.json();
+  if (data.success) loadCustomers();
+}
+function openCustomerModal(customer) {
+  customer = JSON.parse(decodeURIComponent(customer));
+
+  // ✅ AVATAR FIX (INSIDE FUNCTION)
+  const avatarEl = document.getElementById("modalAvatar");
+  const initial =
+    customer.name && customer.name.trim().length
+      ? customer.name.trim().charAt(0).toUpperCase()
+      : "U";
+  avatarEl.innerText = initial;
+
+  document.getElementById("modalName").innerText = customer.name;
+  document.getElementById("modalEmail").innerText = customer.email;
+  document.getElementById("modalId").innerText = customer._id;
+  document.getElementById("modalOrders").innerText = customer.ordersCount || 0;
+  document.getElementById("modalSpent").innerText =
+    `₹${customer.totalSpent || 0}`;
+  document.getElementById("modalJoined").innerText =
+    new Date(customer.createdAt).toLocaleDateString();
+
+  document.getElementById("modalStatus").innerText =
+    customer.isBlocked ? "Blocked" : "Active";
+
+  document.getElementById("customerModal").classList.add("show");
+}
+
+function closeCustomerModal() {
+  document.getElementById("customerModal").classList.remove("show");
+}
+
+
+</script>
+
+<div id="customerModal" class="modal" onclick="closeCustomerModal()">
+  <div class="modal-content" onclick="event.stopPropagation()">
+
+    <div class="close-btn" onclick="closeCustomerModal()">✕</div>
+
+    <div class="modal-avatar" id="modalAvatar"></div>
+
+
+    <div class="modal-name" id="modalName"></div>
+    <div class="modal-id" id="modalId"></div>
+
+    <div class="modal-stats">
+      <div class="stat-box">
+        <strong id="modalOrders">0</strong>
+        <span>Total Orders</span>
+      </div>
+      <div class="stat-box">
+        <strong id="modalSpent">₹0</strong>
+        <span>Total Spent</span>
+      </div>
+    </div>
+
+    <div class="modal-detail">
+      <span>Email</span>
+      <span id="modalEmail"></span>
+    </div>
+
+    <div class="modal-detail">
+      <span>Joined On</span>
+      <span id="modalJoined"></span>
+    </div>
+
+    <div class="modal-detail">
+      <span>Status</span>
+      <span id="modalStatus" class="status-active"></span>
+    </div>
+
+    <div class="modal-footer">
+      <button onclick="closeCustomerModal()">Close</button>
+    </div>
+
+  </div>
+</div>
+
+
+</body>
+
+</html>

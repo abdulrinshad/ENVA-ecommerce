@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wings Admin | Categories</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --sidebar-width: 260px;
+            --main-bg: #F8F9FD;
+            --sidebar-bg: #ffffff;
+            --accent-blue: #6C8EEF;
+            --text-dark: #2D3748;
+            --text-gray: #A0AEC0;
+            --card-border: #EDF2F7;
+            --table-header: #F1F6FF;
+            --card-bg: #ffffff;
+        }
+
+        [data-theme="dark"] {
+            --sidebar-bg: #1A202C;
+            --main-bg: #11141D;
+            --card-bg: #1A202C;
+            --text-dark: #E2E8F0;
+            --text-gray: #718096;
+            --card-border: #2D3748;
+            --table-header: #212936;
+        }
+
+        body { font-family: 'Poppins', sans-serif; background-color: var(--main-bg); margin: 0; display: flex; color: var(--text-dark); transition: 0.3s; }
+
+        /* --- SIDEBAR --- */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--sidebar-bg);
+            height: 100vh;
+            position: fixed;
+            left: 0; top: 0;
+            border-right: 1px solid var(--card-border);
+            display: flex;
+            flex-direction: column;
+            z-index: 1050;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-scroll {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+           /* Sidebar Brand Styling */
+.sidebar-brand {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+/* Brand Text Style matching your existing ENVA logo */
+.sidebar-brand .logo {
+    font-size: 24px;
+    font-weight: 800; /* Extra bold as seen in your main logo */
+    letter-spacing: 1px;
+    color: #000; /* Or use #252B42 to match your header text */
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+
+        .menu-label { 
+            font-size: 0.75rem; color: var(--text-gray); 
+            text-transform: capitalize; margin: 20px 0 10px 10px; font-weight: 500;
+        }
+
+        .nav-item {
+            display: flex; align-items: center; padding: 12px 15px;
+            color: var(--text-gray); text-decoration: none; border-radius: 10px;
+            margin-bottom: 5px; font-size: 0.9rem; transition: 0.2s;
+        }
+
+        .nav-item.active { background: var(--accent-blue); color: #fff; }
+        .nav-item i { margin-right: 12px; font-size: 1.1rem; }
+        .nav-item:hover:not(.active) { background: rgba(108, 142, 239, 0.1); color: var(--accent-blue); }
+
+        .admin-footer {
+            padding: 20px; border-top: 1px solid var(--card-border); background: var(--sidebar-bg);
+        }
+
+        .admin-profile-box { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+        .admin-avatar { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; }
+        .admin-name { font-size: 0.85rem; font-weight: 600; color: var(--text-dark); margin: 0; }
+        .admin-email { font-size: 0.7rem; color: var(--text-gray); margin: 0; }
+
+
+        /* --- MAIN WRAPPER --- */
+        .main-wrapper { 
+            margin-left: var(--sidebar-width); 
+            width: calc(100% - var(--sidebar-width)); 
+            padding: 30px; 
+            transition: 0.3s; 
+        }
+        
+        /* --- CATEGORY DISCOVER CARDS --- */
+        .discover-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+            gap: 20px; 
+            margin-bottom: 30px; 
+        }
+        .category-mini-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 15px; padding: 15px; display: flex; align-items: center; gap: 15px; transition: 0.2s; cursor: pointer; }
+        .category-mini-card:hover { border-color: var(--accent-blue); transform: translateY(-3px); }
+        .cat-icon-bg { width: 50px; height: 50px; border-radius: 12px; background: var(--main-bg); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .cat-icon-bg img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* --- TABLE CONTAINER --- */
+        .content-card { background: var(--card-bg); border-radius: 20px; border: 1px solid var(--card-border); padding: 25px; }
+        .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        .custom-table { width: 100%; border-collapse: separate; border-spacing: 0; color: var(--text-dark); min-width: 800px; }
+        .custom-table thead tr { background: var(--table-header); }
+        .custom-table th { padding: 15px; font-size: 0.85rem; border: none; }
+        .custom-table td { padding: 15px; border-bottom: 1px solid var(--card-border); vertical-align: middle; font-size: 0.9rem; }
+
+        .product-img { width: 40px; height: 40px; border-radius: 8px; background: var(--main-bg); object-fit: contain; padding: 5px; }
+        .action-btn { border: 1px solid var(--card-border); background: var(--card-bg); width: 34px; height: 34px; border-radius: 10px; color: var(--text-gray); cursor: pointer; transition: 0.2s; }
+        .action-btn:hover { color: var(--accent-blue); border-color: var(--accent-blue); }
+
+        /* Custom Search Bar Styling */
+        .custom-search-group {
+            background: #F4F7FE;
+            border-radius: 12px;
+            border: 1px solid transparent;
+            display: flex;
+            align-items: center;
+            padding: 6px 15px;
+            transition: all 0.2s ease;
+        }
+
+        .custom-search-group:focus-within {
+            border-color: #6C8EEF;
+            background: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .custom-search-group i { color: #A0AEC0; font-size: 0.9rem; }
+        .custom-search-group input { background: transparent; border: none; box-shadow: none; font-size: 0.85rem; color: #2D3748; padding-left: 10px; width: 100%; }
+        .custom-search-group input:focus { outline: none; }
+        .custom-search-group input::placeholder { color: #A0AEC0; }
+
+        /* --- PAGINATION --- */
+        .pagination-container { display: flex; justify-content: space-between; align-items: center; margin-top: 25px; flex-wrap: wrap; gap: 15px; }
+        .page-btn { padding: 8px 16px; border-radius: 10px; border: 1px solid var(--card-border); background: var(--card-bg); color: var(--text-dark); text-decoration: none; font-size: 0.85rem; }
+        .page-num { width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border-radius: 8px; cursor: pointer; font-size: 0.85rem; }
+        .page-num.active { background: #E0E7FF; color: var(--accent-blue); font-weight: 600; }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        .mobile-nav-btn { display: none; font-size: 1.5rem; cursor: pointer; margin-right: 15px; color: var(--text-dark); background: none; border: none; }
+
+        @media (max-width: 992px) {
+            .mobile-nav-btn { display: block; }
+            .sidebar { transform: translateX(-100%); } /* Hide sidebar */
+            .sidebar.active { transform: translateX(0); } /* Show when active class added */
+            .main-wrapper { margin-left: 0; width: 100%; padding: 20px; }
+            
+            /* Responsive Header controls */
+            .top-bar { flex-wrap: wrap; gap: 10px; }
+            .top-bar h4 { order: 1; }
+            .top-bar .d-flex { order: 2; }
+            
+            /* Responsive category grid adjustment */
+            .discover-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 576px) {
+            .discover-grid { grid-template-columns: 1fr; }
+            .custom-search-group { width: 100% !important; order: 3; }
+            .content-card .d-flex.justify-content-between { flex-direction: column; align-items: flex-start !important; }
+            .pagination-container { flex-direction: column; text-align: center; }
+        }
+
+        /* ===============================
+   CATEGORY VIEW MODAL
+================================ */
+
+#viewCategoryModal .modal-dialog {
+  max-width: 420px;
+}
+
+#viewCategoryModal .modal-content {
+  border-radius: 14px;
+  border: none;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+/* Header */
+#viewCategoryModal .modal-header {
+  border-bottom: 1px solid #f1f1f1;
+  padding: 16px 20px;
+}
+
+#viewCategoryModal .modal-title {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+/* Body */
+#viewCategoryModal .modal-body {
+  padding: 20px;
+}
+
+#viewCategoryModal .modal-body p {
+  margin-bottom: 12px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#viewCategoryModal .modal-body strong {
+  color: #666;
+  font-weight: 500;
+}
+
+#viewCategoryModal .modal-body span {
+  color: #222;
+  font-weight: 600;
+}
+
+/* Footer */
+#viewCategoryModal .modal-footer {
+  border-top: 1px solid #f1f1f1;
+  padding: 14px 20px;
+}
+
+/* Buttons */
+#viewCategoryModal .btn-danger {
+  background: #ff4d4f;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+#viewCategoryModal .btn-danger:hover {
+  background: #e6393b;
+}
+
+#viewCategoryModal .btn-secondary {
+  background: #f5f5f5;
+  color: #444;
+  border: none;
+  padding: 8px 16px;
+}
+
+#viewCategoryModal .btn-secondary:hover {
+  background: #eaeaea;
+}
+
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-scroll">
+            <div class="sidebar-brand">
+    <span class="logo">ENVA</span>
+</div>
+            <p class="menu-label">Main menu</p>
+            <a href="dashboard.html" class="nav-item "><i class="bi bi-grid"></i> Dashboard</a>
+            <a href="OrderManagement.html" class="nav-item"><i class="bi bi-cart"></i> Order Management</a>
+            <a href="customers.html" class="nav-item "><i class="bi bi-people"></i> Customers</a>
+            <a href="coupon.html" class="nav-item"><i class="bi bi-ticket-perforated"></i> Coupon Code</a>
+            <a href="categories.html" class="nav-item active"><i class="bi bi-tags"></i> Categories</a>
+            <a href="transaction.html" class="nav-item"><i class="bi bi-arrow-left-right"></i> Transaction</a>
+            <a href="Offers.html" class="nav-item "><i class="bi bi-megaphone"></i> Offers & Ads</a>
+
+            <p class="menu-label">Product</p>
+            <a href="AddProduct.html" class="nav-item"><i class="bi bi-plus-circle"></i> Add Products</a>
+           
+            <a href="ProductList.html" class="nav-item"><i class="bi bi-list-ul"></i> Product List</a>
+            <a href="ProductReviews.html" class="nav-item"><i class="bi bi-chat-left-text"></i> Product Reviews</a>
+        </div>
+
+        <div class="admin-footer">
+            <p class="menu-label" style="margin-left:0; margin-top:0">Admin</p>
+            <a href="AdminRole.html" class="nav-item p-0 mb-3"><i class="bi bi-person-gear"></i> Admin role</a>
+            <div class="admin-profile-box">
+                <img src="profile-pic.png" class="admin-avatar" alt="Admin">
+                <div class="admin-info">
+                    <p class="admin-name">ENVA</p>
+                    <p class="admin-email">enva@gmail.com</p>
+                </div>
+                <i class="bi bi-box-arrow-right text-gray" style="cursor: pointer; margin-left: auto;"></i>
+            </div>
+            <a href="#" class="nav-item p-0" style="color: var(--accent-blue); font-weight: 600;">
+                <i class="bi bi-shop"></i> Your Shop <i class="bi bi-box-arrow-up-right ms-auto small"></i>
+            </a>
+        </div>
+    </aside>
+
+<main class="main-wrapper">
+
+  <!-- ================= TOP BAR ================= -->
+  <div class="top-bar d-flex align-items-center mb-4">
+    <button class="mobile-nav-btn" onclick="toggleSidebar()">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <h4 class="m-0 fw-semibold flex-grow-1">Categories</h4>
+
+    <div class="d-flex gap-3 align-items-center">
+      <div class="theme-toggle" onclick="toggleTheme()" style="cursor:pointer">
+        <i class="bi bi-moon-stars-fill" id="tIcon"></i>
+      </div>
+
+      <button class="btn btn-primary px-4" id="addCategoryBtn">
+        + Add Category
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= DISCOVER ================= -->
+  <h5 class="fw-bold mb-3">Discover</h5>
+  <div class="discover-grid" id="discoverGrid">
+    <!-- Injected via JS -->
+  </div>
+
+  <!-- ================= CATEGORY TABLE ================= -->
+  <div class="content-card">
+
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+      <h6 class="fw-bold m-0">All Categories</h6>
+
+      <div class="custom-search-group" style="width: 250px;">
+        <i class="bi bi-search"></i>
+        <input
+          type="text"
+          id="categorySearch"
+          placeholder="Search category">
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th>Created</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody id="categoryTableBody">
+          <!-- Injected via JS -->
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</main>
+
+
+<script>
+/* ======================================================
+   GLOBALS
+====================================================== */
+const ADMIN_TOKEN = localStorage.getItem("adminToken");
+let addCategoryModal;
+let selectedCategoryId = null;
+
+/* ======================================================
+   UI CONTROLS
+====================================================== */
+function toggleTheme() {
+  const html = document.documentElement;
+  const icon = document.getElementById("tIcon");
+
+  const isDark = html.getAttribute("data-theme") === "dark";
+  html.setAttribute("data-theme", isDark ? "" : "dark");
+
+  icon.classList.toggle("bi-sun-fill", !isDark);
+  icon.classList.toggle("bi-moon-stars-fill", isDark);
+}
+
+function toggleSidebar() {
+  document.getElementById("sidebar")?.classList.toggle("active");
+}
+
+/* ======================================================
+   LOAD CATEGORIES (ADMIN)
+====================================================== */
+async function loadCategories() {
+  try {
+    const res = await fetch("/api/categories/admin", {
+      headers: { Authorization: `Bearer ${ADMIN_TOKEN}` }
+    });
+
+    if (!res.ok) throw new Error("Fetch failed");
+
+    const categories = await res.json();
+
+    renderDiscoverGrid(categories);
+    renderCategoryTable(categories);
+
+  } catch (err) {
+    Swal.fire("Error", "Failed to load categories", "error");
+  }
+}
+
+/* ======================================================
+   DISCOVER GRID (WITH IMAGE)
+====================================================== */
+function renderDiscoverGrid(categories = []) {
+  const grid = document.getElementById("discoverGrid");
+  grid.innerHTML = "";
+
+  if (!categories.length) {
+    grid.innerHTML = `<p class="text-muted">No categories found</p>`;
+    return;
+  }
+
+  categories.forEach(cat => {
+    grid.insertAdjacentHTML("beforeend", `
+      <div class="category-mini-card">
+        <div class="cat-icon-bg">
+          <img src="${cat.image}" alt="${cat.name}">
+        </div>
+        <div>
+          <div class="fw-semibold">${cat.name}</div>
+          <small class="text-muted">
+            ${cat.isPublished ? "Active" : "Inactive"}
+          </small>
+        </div>
+      </div>
+    `);
+  });
+}
+
+/* ======================================================
+   CATEGORY TABLE
+====================================================== */
+function renderCategoryTable(categories = []) {
+  const tbody = document.getElementById("categoryTableBody");
+  tbody.innerHTML = "";
+
+  if (!categories.length) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="5" class="text-center text-muted py-4">
+          No categories available
+        </td>
+      </tr>`;
+    return;
+  }
+
+  categories.forEach((cat, index) => {
+    const encodedCat = encodeURIComponent(JSON.stringify(cat));
+
+    tbody.insertAdjacentHTML("beforeend", `
+      <tr>
+        <td>${index + 1}</td>
+
+        <td style="cursor:pointer"
+            onclick="openCategoryModal('${encodedCat}')">
+          <div class="d-flex align-items-center gap-3">
+            <img src="${cat.image}" class="product-img">
+            <span class="fw-semibold">${cat.name}</span>
+          </div>
+        </td>
+
+        <td>
+          <span class="badge ${cat.isPublished ? "bg-success" : "bg-secondary"}">
+            ${cat.isPublished ? "Active" : "Inactive"}
+          </span>
+        </td>
+
+        <td>${new Date(cat.createdAt).toLocaleDateString()}</td>
+
+        <td>
+          <button class="action-btn"
+            title="Toggle status"
+            onclick="toggleCategoryStatus('${cat._id}', ${cat.isPublished})">
+            <i class="bi ${cat.isPublished ? 'bi-eye-slash' : 'bi-eye'}"></i>
+          </button>
+        </td>
+      </tr>
+    `);
+  });
+}
+
+/* ======================================================
+   TOGGLE CATEGORY STATUS
+====================================================== */
+async function toggleCategoryStatus(id, isPublished) {
+  try {
+    await fetch(`/api/categories/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${ADMIN_TOKEN}`
+      },
+      body: JSON.stringify({ isPublished: !isPublished })
+    });
+
+    loadCategories();
+  } catch {
+    Swal.fire("Error", "Failed to update status", "error");
+  }
+}
+
+/* ======================================================
+   CREATE CATEGORY (WITH IMAGE)
+====================================================== */
+async function createCategory() {
+  const name = document.getElementById("categoryName").value.trim();
+  const slug = document.getElementById("categorySlug").value.trim();
+  const description = document.getElementById("categoryDescription").value.trim();
+  const image = document.getElementById("categoryImage").files[0];
+  const isPublished =
+    document.getElementById("categoryStatus").value === "true";
+
+  if (!name || !slug || !image) {
+    Swal.fire("Error", "Name, slug & image required", "warning");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("name", name);
+  formData.append("slug", slug);
+  formData.append("description", description);
+  formData.append("isPublished", isPublished);
+  formData.append("image", image);
+
+  try {
+    const res = await fetch("/api/categories", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${ADMIN_TOKEN}` },
+      body: formData
+    });
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message);
+
+    Swal.fire("Success", "Category created", "success");
+    addCategoryModal.hide();
+    loadCategories();
+
+  } catch (err) {
+    Swal.fire("Error", err.message, "error");
+  }
+}
+
+/* ======================================================
+   VIEW CATEGORY MODAL
+====================================================== */
+function openCategoryModal(encodedCat) {
+  const cat = JSON.parse(decodeURIComponent(encodedCat));
+  selectedCategoryId = cat._id;
+
+  document.getElementById("viewCatName").innerText = cat.name;
+  document.getElementById("viewCatSlug").innerText = cat.slug;
+  document.getElementById("viewCatStatus").innerText =
+    cat.isPublished ? "Active" : "Inactive";
+
+  document.getElementById("viewCatCreated").innerText =
+    new Date(cat.createdAt).toLocaleDateString();
+
+  document.getElementById("viewCatImage").src = cat.image;
+
+  new bootstrap.Modal(
+    document.getElementById("viewCategoryModal")
+  ).show();
+}
+
+/* ======================================================
+   DELETE CATEGORY
+====================================================== */
+async function deleteCategoryFromModal() {
+  const confirm = await Swal.fire({
+    title: "Delete category?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#d33"
+  });
+
+  if (!confirm.isConfirmed) return;
+
+  try {
+    await fetch(`/api/categories/${selectedCategoryId}`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${ADMIN_TOKEN}` }
+    });
+
+    Swal.fire("Deleted", "Category removed", "success");
+    bootstrap.Modal
+      .getInstance(document.getElementById("viewCategoryModal"))
+      .hide();
+
+    loadCategories();
+
+  } catch {
+    Swal.fire("Error", "Delete failed", "error");
+  }
+}
+
+/* ======================================================
+   INIT
+====================================================== */
+document.addEventListener("DOMContentLoaded", () => {
+  if (!ADMIN_TOKEN) {
+    location.href = "/admin/login.html";
+    return;
+  }
+
+  addCategoryModal = new bootstrap.Modal(
+    document.getElementById("addCategoryModal")
+  );
+
+  document.getElementById("addCategoryBtn")
+    .addEventListener("click", () => addCategoryModal.show());
+
+  document.getElementById("categoryName")
+    ?.addEventListener("input", e => {
+      document.getElementById("categorySlug").value =
+        e.target.value.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+    });
+
+  loadCategories();
+});
+</script>
+
+
+
+
+
+<div class="modal fade" id="addCategoryModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5>Add Category</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+     <div class="modal-body">
+  <input id="categoryName" class="form-control mb-2" placeholder="Name">
+  <input id="categorySlug" class="form-control mb-2" placeholder="Slug">
+
+  <!-- 🔥 IMAGE UPLOAD -->
+  <input
+    type="file"
+    id="categoryImage"
+    class="form-control mb-2"
+    accept="image/*"
+  >
+
+  <textarea
+    id="categoryDescription"
+    class="form-control mb-2"
+    placeholder="Description"></textarea>
+
+  <select id="categoryStatus" class="form-select">
+    <option value="true">Published</option>
+    <option value="false">Hidden</option>
+  </select>
+</div>
+
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary" onclick="createCategory()">Save</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<div class="modal fade" id="viewCategoryModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5>Category Details</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <p><b>Name:</b> <span id="viewCatName"></span></p>
+        <p><b>Slug:</b> <span id="viewCatSlug"></span></p>
+        <p><b>Status:</b> <span id="viewCatStatus"></span></p>
+        <p><b>Created:</b> <span id="viewCatCreated"></span></p>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-danger" onclick="deleteCategoryFromModal()">Delete</button>
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

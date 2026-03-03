@@ -1,0 +1,106 @@
+/* ================= CONFIRM PAGE ================= */
+
+.auth-wrapper{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:85vh;
+  gap:80px;
+  padding:60px 0;
+}
+
+/* LEFT IMAGE */
+.auth-visual{
+  flex:1;
+  display:flex;
+  justify-content:center;
+}
+
+.image-box{
+  background:#ebe6dc;
+  width:100%;
+  max-width:550px;
+  aspect-ratio:1/1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:6px;
+}
+
+.image-box img{
+  width:100%;
+  height:auto;
+  object-fit:contain;
+}
+
+/* RIGHT FORM */
+.auth-content{
+  flex:1;
+  display:flex;
+  justify-content:flex-start;
+}
+
+.auth-form-box{
+  width:100%;
+  max-width:400px;
+}
+
+.auth-title{
+  font-size:36px;
+  font-weight:600;
+  margin-bottom:40px;
+}
+
+/* INPUT */
+.input-underline-group{
+  margin-bottom:30px;
+  border-bottom:1px solid #7d8184;
+}
+
+.input-underline-group input{
+  width:100%;
+  border:none;
+  padding:12px 0;
+  font-size:16px;
+  outline:none;
+  background:transparent;
+}
+
+/* BUTTON */
+.btn-primary-blue{
+  width:100%;
+  background:#4a7fd4;
+  color:#fff;
+  border:none;
+  padding:16px;
+  border-radius:4px;
+  font-size:16px;
+  font-weight:500;
+  cursor:pointer;
+}
+
+/* ================= MOBILE ================= */
+@media(max-width:768px){
+
+  .auth-wrapper{
+    flex-direction:column;
+    gap:40px;
+    padding-top:20px;
+    margin-top: 111px;
+  }
+
+  /* HIDE IMAGE ON MOBILE */
+  .auth-visual{
+    display:none;
+  }
+
+  .auth-content{
+    justify-content:center;
+    width:100%;
+  }
+
+  .auth-form-box{
+    max-width:100%;
+    padding:0 20px;
+  }
+}

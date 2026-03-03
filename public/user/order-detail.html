@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details - ENVA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="order-detail.css">
+    <link rel="stylesheet" href="userSigned.css">
+</head>
+<body>
+
+    <header class="main-header">
+
+  <!-- Mobile Menu Icon -->
+  <span class="menu-toggle" id="menuToggle">
+    <i class="fas fa-bars"></i>
+  </span>
+
+  <!-- Logo -->
+  <div class="logo">ENVA</div>
+
+  <!-- Desktop Nav -->
+  <nav class="nav-links">
+    <a href="usersigned.html">HOME</a>
+    <a href="shopuser.html">SHOP</a>
+    <a href="about.html">ABOUT</a>
+    <a href="contact.html">CONTACT</a>
+  </nav>
+
+  <!-- Header Actions -->
+  <div class="header-actions">
+
+    <!-- Search -->
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <i class="fas fa-search"></i>
+    </div>
+
+    <!-- Icons -->
+    <div class="icon-group">
+
+      <a href="#"><i class="far fa-heart"></i></a>
+      <a href="#"><i class="fas fa-shopping-cart"></i></a>
+
+      <!-- USER MENU -->
+      <div class="user-menu">
+        <a href="#" id="userToggle" class="user-icon">
+          <i class="far fa-user"></i>
+        </a>
+
+        <div class="user-dropdown" id="userDropdown">
+          <a href="myaccount.html">
+            <i class="far fa-user"></i> Manage My Account
+          </a>
+          <a href="orders.html">
+            <i class="fas fa-box"></i> My Orders
+          </a>
+          <a href="logout.html" class="logout">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</header>
+  <!-- MOBILE MENU -->
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">HOME</a>
+  <a href="shop.html">SHOP</a>
+  <a href="about.html">ABOUT</a>
+  <a href="contact.html">CONTACT</a>
+</nav>
+
+
+  <div class="header-actions">
+
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <i class="fas fa-search"></i>
+    </div>
+    <!-- MOBILE SEARCH BAR -->
+<div class="mobile-search" id="mobileSearch">
+  <div class="mobile-search-box">
+    <input type="text" placeholder="Search products...">
+    <span class="close-search" id="closeSearch">
+      <i class="fas fa-times"></i>
+    </span>
+  </div>
+</div>
+
+    <span class="search-icon">
+    <i class="fas fa-search"></i>
+  </span>
+
+    <div class="icon-group">
+      <a href="#"><i class="far fa-heart"></i></a>
+      <a href="#"><i class="fas fa-shopping-cart"></i></a>
+      <a href="#"><i class="far fa-user"></i></a>
+    </div>
+  </div>
+</header>
+
+    <main class="account-wrapper container">
+        <nav class="breadcrumb">
+            <a href="index.html">Home</a> / <a href="account.html">My Account</a> / <span class="active-page">Order Details</span>
+        </nav>
+
+        <div class="welcome-section">
+            <h2>HELLO RINSHAD</h2>
+        </div>
+
+        <div class="account-grid">
+           <aside class="sidebar">
+
+  <!-- ACCOUNT SECTION -->
+  <div class="sidebar-section">
+    <p class="sidebar-title">Manage My Account</p>
+    <ul class="sidebar-menu">
+      <li><a href="myaccount.html">My Profile</a></li>
+      <li><a href="address.html">Address Book</a></li>
+      <li><a href="payment-options.html">My Payment Options</a></li>
+    </ul>
+  </div>
+
+  <!-- ORDERS SECTION -->
+  <div class="sidebar-section">
+    <p class="sidebar-title">My Orders</p>
+    <ul class="sidebar-menu">
+      <li><a href="orders.html" class="active">Orders</a></li>
+      <li><a href="returns.html">Returns</a></li>
+      <li><a href="cancel.html">Cancellations</a></li>
+    </ul>
+  </div>
+
+  <!-- WISHLIST -->
+  <div class="sidebar-section">
+    <ul class="sidebar-menu">
+      <li><a href="wishlist.html">My Wishlist</a></li>
+    </ul>
+  </div>
+
+  <!-- LOGOUT -->
+  <div class="sidebar-section">
+    <button type="button" class="logout-btn">
+      Logout
+    </button>
+  </div>
+
+</aside>
+            <section class="order-detail-container">
+                <h3 class="order-title" id="orderTitle">Order</h3>
+                
+                <div class="detail-box">
+                    <div class="info-section address-box">
+                        <p class="label">adress:</p>
+                        <div class="address-details">
+                            <p>name:rinshad</p>
+                            <p>pin:673015</p>
+                            <p>ph:7034308604</p>
+                        </div>
+                    </div>
+
+                    <div class="info-section payment-box">
+                        <div class="payment-row">
+                            <span class="label">PAYMENT</span>
+                            <span class="status-pill" id="paymentMethod">---</span>
+
+                        </div>
+                        <div class="total-row">
+                            <span class="label">TOTAL</span>
+                            <span class="total-price" id="orderTotal">---</span>
+                        </div>
+                    </div>
+
+              
+                        <div class="items-section">
+  <p class="label">ITEMS</p>
+  <div id="itemsContainer"></div>
+</div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- RETURN TRACKER -->
+<div id="returnTracker" class="return-tracker" style="display:none;">
+  <div class="tracker-step">
+    <span class="dot"></span>
+    <p>Return Requested</p>
+  </div>
+
+  <div class="tracker-line"></div>
+
+  <div class="tracker-step">
+    <span class="dot"></span>
+    <p>Pickup Scheduled</p>
+  </div>
+
+  <div class="tracker-line"></div>
+
+  <div class="tracker-step">
+    <span class="dot"></span>
+    <p>Return Successful</p>
+  </div>
+</div>
+
+
+    <footer class="main-footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="footer-brand-row">
+                <h3 class="logo">ENVA</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-middle">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Company Info</h5>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Carrier</a></li>
+                        <li><a href="#">We are hiring</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Carrier</a></li>
+                        <li><a href="#">We are hiring</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Features</h5>
+                    <ul>
+                        <li><a href="#">Business Marketing</a></li>
+                        <li><a href="#">User Analytic</a></li>
+                        <li><a href="#">Live Chat</a></li>
+                        <li><a href="#">Unlimited Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Resources</h5>
+                    <ul>
+                        <li><a href="#">IOS & Android</a></li>
+                        <li><a href="#">Watch a Demo</a></li>
+                        <li><a href="#">Customers</a></li>
+                        <li><a href="#">API</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col newsletter">
+                    <h5>Get In Touch</h5>
+                    <form class="subscribe-form">
+                        <input type="email" placeholder="Your Email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <p class="form-text">Lore imp sum dolor Amit</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container">
+            <p>Made With Love By Finland All Right Reserved</p>
+        </div>
+    </div>
+
+    
+</footer>
+<script>
+/* ======================================================
+   GLOBAL STATE
+====================================================== */
+let activeReturnOrderId = null;
+let activeReturnItemId = null;
+
+
+/* ======================================================
+   DOM READY
+====================================================== */
+document.addEventListener("DOMContentLoaded", () => {
+  initUserUI();
+  loadOrderDetails();
+});
+
+/* ======================================================
+   USER UI (dropdown + mobile)
+====================================================== */
+function initUserUI() {
+  const userToggle = document.getElementById("userToggle");
+  const userDropdown = document.getElementById("userDropdown");
+
+  if (userToggle && userDropdown) {
+    userToggle.onclick = e => {
+      e.preventDefault();
+      e.stopPropagation();
+      userDropdown.classList.toggle("active");
+    };
+
+    document.addEventListener("click", e => {
+      if (!e.target.closest(".user-menu")) {
+        userDropdown.classList.remove("active");
+      }
+    });
+  }
+
+  const menuToggle = document.getElementById("menuToggle");
+  const mobileNav = document.getElementById("mobileNav");
+
+  if (menuToggle && mobileNav) {
+    menuToggle.onclick = e => {
+      e.stopPropagation();
+      mobileNav.classList.toggle("active");
+    };
+
+    document.addEventListener("click", e => {
+      if (!e.target.closest(".main-header") && !e.target.closest(".mobile-nav")) {
+        mobileNav.classList.remove("active");
+      }
+    });
+  }
+}
+
+/* ======================================================
+   HELPERS
+====================================================== */
+function getOrderId() {
+  return new URLSearchParams(window.location.search).get("id");
+}
+
+function formatReturnStatus(status) {
+  return status
+    .replaceAll("_", " ")
+    .toLowerCase()
+    .replace(/\b\w/g, c => c.toUpperCase());
+}
+
+/* ======================================================
+   FETCH ORDER
+====================================================== */
+async function loadOrderDetails() {
+  const orderId = getOrderId();
+  const token = localStorage.getItem("userToken");
+
+  if (!orderId || !token) {
+    location.href = "orders.html";
+    return;
+  }
+
+  try {
+    const res = await fetch(`/api/orders/${orderId}`, {
+      headers: { Authorization: "Bearer " + token }
+    });
+
+    const data = await res.json();
+    if (!data.success) throw new Error();
+
+    renderOrder(data.order);
+  } catch {
+    Swal.fire("Error", "Failed to load order", "error");
+  }
+}
+
+/* ======================================================
+   RENDER ORDER
+====================================================== */
+function renderOrder(order) {
+  document.getElementById("orderTitle").innerText =
+    "Order #" + order._id.slice(-6);
+
+  document.getElementById("paymentMethod").innerText =
+    order.paymentMethod.toUpperCase();
+
+  document.getElementById("orderTotal").innerText =
+    "₹" + order.total;
+
+  const container = document.getElementById("itemsContainer");
+  container.innerHTML = "";
+order.items.forEach(item => {
+  let img = "https://via.placeholder.com/120x150";
+
+if (item.product?.images?.[0]) {
+  const imagePath = item.product.images[0];
+
+  // If already contains /uploads, use directly
+  if (imagePath.startsWith("/uploads")) {
+    img = imagePath;
+  }
+  // If contains uploads without slash
+  else if (imagePath.startsWith("uploads")) {
+    img = "/" + imagePath;
+  }
+  // If only filename
+  else {
+    img = "/uploads/" + imagePath;
+  }
+}
+
+  container.innerHTML += `
+    <div class="order-item">
+      <div class="order-item-image">
+        <img src="${img}">
+      </div>
+
+      <div class="order-item-details">
+        <h4>${item.name}</h4>
+        <p>Qty: ${item.qty} | Size: ${item.size}</p>
+
+        <span class="delivery-status ${order.status.toLowerCase()}">
+          ${order.status}
+        </span>
+
+        <div class="product-actions">
+          <button class="btn-outline">INVOICE</button>
+
+          <!-- ================= RETURN ================= -->
+          ${
+            order.status === "Delivered" && item.returnStatus === "NONE"
+              ? `
+                <button
+                  type="button"
+                  class="btn-outline"
+                    onclick="openReturnModal(
+                    '${order._id}',
+                      '${item._id}',
+                         ${item.qty},
+                           ${item.returnedQty || 0}
+                            )">
+
+                  RETURN
+                </button>
+              `
+              : item.returnStatus && item.returnStatus !== "NONE"
+                ? `
+                  <span class="return-pill">
+                    ${formatReturnStatus(item.returnStatus)}
+                  </span>
+                `
+                : ""
+          }
+
+          <!-- ================= CANCEL ================= -->
+          ${
+            order.status === "Placed" && item.cancelStatus === "NONE"
+              ? `
+                <button
+                  type="button"
+                  class="btn-outline"
+                  onclick="requestCancel('${order._id}', '${item._id}')">
+                  CANCEL
+                </button>
+              `
+              : item.cancelStatus && item.cancelStatus !== "NONE"
+                ? `
+                  <span class="return-pill">
+                    ${formatReturnStatus(item.cancelStatus)}
+                  </span>
+                `
+                : ""
+          }
+
+          <button class="btn-filled">REVIEW</button>
+        </div>
+
+        <!-- ================= ADMIN MESSAGE ================= -->
+        ${
+          item.adminMessage
+            ? `
+              <div class="admin-message">
+                <strong>Update:</strong> ${item.adminMessage}
+              </div>
+            `
+            : ""
+        }
+
+      </div>
+    </div>
+  `;
+});
+
+
+  /* =========================
+     UPDATE RETURN TRACKER
+  ========================= */
+  if (order.returnRequest?.requested && order.returnRequest?.status) {
+    setTimeout(() => {
+      updateReturnTracker(order.returnRequest.status);
+    }, 100);
+  }
+}
+
+/* ======================================================
+   ACTION BUTTON LOGIC
+====================================================== */
+function renderOrderActions(order) {
+
+ if (order.status === "Placed") {
+  return `
+    <button
+      type="button"
+      class="btn-outline"
+      onclick="cancelOrder('${order._id}')">
+      CANCEL
+    </button>
+  `;
+}
+
+
+  if (order.status === "Delivered" && !order.returnRequest?.requested) {
+  return `
+    <button
+      type="button"
+      class="btn-outline"
+      onclick="openReturnModal('${order._id}')">
+      RETURN
+    </button>
+  `;
+}
+
+
+  if (order.returnRequest?.status) {
+    return `
+      <span class="return-pill ${order.returnRequest.status.toLowerCase()}">
+        ${formatReturnStatus(order.returnRequest.status)}
+      </span>
+    `;
+  }
+
+  return "";
+}
+
+/* ======================================================
+   REQUEST CANCEL (PER ITEM – WITH CONFIRMATION)
+====================================================== */
+function requestCancel(orderId, itemId) {
+  Swal.fire({
+    title: "Cancel this item?",
+    text: "This request will be sent to admin for approval",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Yes, cancel",
+    cancelButtonText: "No"
+  }).then(async (result) => {
+
+    if (!result.isConfirmed) return;
+
+    const token = localStorage.getItem("userToken");
+
+    try {
+      const res = await fetch(
+        `/api/orders/${orderId}/items/${itemId}/cancel`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: "Bearer " + token
+          }
+        }
+      );
+
+      const data = await res.json();
+
+      if (data.success) {
+        Swal.fire(
+          "Requested",
+          "Cancel request sent to admin",
+          "success"
+        ).then(loadOrderDetails);
+      } else {
+        Swal.fire("Error", data.message || "Cancel failed", "error");
+      }
+
+    } catch (err) {
+      console.error(err);
+      Swal.fire("Error", "Something went wrong", "error");
+    }
+
+  });
+}
+
+
+/* ======================================================
+   RETURN MODAL
+====================================================== */
+let activeRemainingQty = 0;
+
+function openReturnModal(orderId, itemId, qty, returnedQty = 0) {
+  activeReturnOrderId = orderId;
+  activeReturnItemId = itemId;
+
+  // calculate remaining quantity
+  activeRemainingQty = qty - returnedQty;
+
+  if (activeRemainingQty <= 0) {
+    Swal.fire("Not Allowed", "All quantities already returned", "info");
+    return;
+  }
+
+  // populate quantity dropdown
+  const qtySelect = document.getElementById("returnQty");
+  qtySelect.innerHTML = "";
+
+  for (let i = 1; i <= activeRemainingQty; i++) {
+    qtySelect.innerHTML += `<option value="${i}">${i}</option>`;
+  }
+
+  document.getElementById("returnReason").value = "";
+  document.getElementById("returnModal").style.display = "flex";
+}
+
+function closeReturnModal() {
+  document.getElementById("returnModal").style.display = "none";
+  document.getElementById("returnReason").value = "";
+  document.getElementById("returnQty").innerHTML = "";
+}
+
+/* ======================================================
+   SUBMIT RETURN
+====================================================== */
+async function submitReturn() {
+  const reason = document.getElementById("returnReason").value;
+  const returnQty = parseInt(
+    document.getElementById("returnQty").value
+  );
+  const token = localStorage.getItem("userToken");
+
+  if (!reason) {
+    Swal.fire("Required", "Please select a return reason", "warning");
+    return;
+  }
+
+  if (!returnQty || returnQty < 1) {
+    Swal.fire("Error", "Invalid return quantity", "error");
+    return;
+  }
+
+  try {
+    const res = await fetch(
+      `/api/orders/${activeReturnOrderId}/return-item/${activeReturnItemId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token
+        },
+        body: JSON.stringify({
+          reason,
+          returnQty
+        })
+      }
+    );
+
+    const data = await res.json();
+
+    if (data.success) {
+      closeReturnModal();
+
+      Swal.fire({
+        title: "Return Requested",
+        text: "Your return request has been submitted",
+        icon: "success",
+        timer: 1800,
+        showConfirmButton: false
+      });
+
+      loadOrderDetails();
+    } else {
+      Swal.fire("Error", data.message || "Return failed", "error");
+    }
+
+  } catch (err) {
+    console.error(err);
+    Swal.fire("Error", "Something went wrong", "error");
+  }
+}
+
+/* ======================================================
+   RETURN TRACKER (STEP 5)
+====================================================== */
+function getReturnStepIndex(status) {
+  if (status === "RETURN_REQUESTED") return 0;
+  if (status === "PICKUP_SCHEDULED") return 1;
+  if (status === "RETURN_SUCCESSFUL") return 2;
+  return -1;
+}
+
+function updateReturnTracker(status) {
+  const tracker = document.getElementById("returnTracker");
+  if (!tracker) return;
+
+  const steps = tracker.querySelectorAll(".tracker-step");
+  const lines = tracker.querySelectorAll(".tracker-line");
+
+  const activeIndex = getReturnStepIndex(status);
+  if (activeIndex === -1) return;
+
+  tracker.style.display = "flex";
+
+  steps.forEach((step, i) => {
+    step.classList.remove("active", "completed");
+    if (i < activeIndex) step.classList.add("completed");
+    if (i === activeIndex) step.classList.add("active");
+  });
+
+  lines.forEach((line, i) => {
+    line.classList.toggle("active", i < activeIndex);
+  });
+}
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/popup.js"></script>
+
+
+<div id="returnModal" class="return-modal">
+  <div class="return-box">
+    <h3>Request a Return</h3>
+    <p class="subtitle">Tell us why you want to return this order</p>
+
+   <label for="returnQty">Return Quantity</label>
+<select id="returnQty">
+  <!-- options will be injected dynamically -->
+</select>
+
+<label for="returnReason">Reason</label>
+<select id="returnReason">
+  <option value="">Select a reason</option>
+  <option value="Wrong size">Wrong size</option>
+  <option value="Color not liked">Color not liked</option>
+  <option value="Damaged product">Damaged product</option>
+  <option value="Quality not as expected">Quality not as expected</option>
+  <option value="Other">Other</option>
+</select>
+
+    <div class="modal-actions">
+      <button class="btn-outline" onclick="closeReturnModal()">Cancel</button>
+      <button class="btn-filled" onclick="submitReturn()">Request Return</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

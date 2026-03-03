@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wings Admin | Add Product</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --sidebar-width: 260px;
+            --main-bg: #F8F9FD;
+            --sidebar-bg: #ffffff;
+            --accent-blue: #6C8EEF;
+            --text-dark: #2D3748;
+            --text-gray: #A0AEC0;
+            --card-border: #EDF2F7;
+            --card-bg: #ffffff;
+            --input-bg: #F4F7FE;
+        }
+
+        [data-theme="dark"] {
+            --sidebar-bg: #1A202C;
+            --main-bg: #11141D;
+            --card-bg: #1A202C;
+            --text-dark: #E2E8F0;
+            --text-gray: #718096;
+            --card-border: #2D3748;
+            --input-bg: #2D3748;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--main-bg);
+            color: var(--text-dark);
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* --- SIDEBAR --- */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--sidebar-bg);
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            border-right: 1px solid var(--card-border);
+            display: flex;
+            flex-direction: column;
+            z-index: 1100;
+            /* Increased to stay above overlay */
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-scroll {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .sidebar-brand {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Brand Text Style matching your existing ENVA logo */
+        .sidebar-brand .logo {
+            font-size: 24px;
+            font-weight: 800;
+            /* Extra bold as seen in your main logo */
+            letter-spacing: 1px;
+            color: #000;
+            /* Or use #252B42 to match your header text */
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        .menu-label {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            text-transform: capitalize;
+            margin: 20px 0 10px 10px;
+            font-weight: 500;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: var(--text-gray);
+            text-decoration: none;
+            border-radius: 10px;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-item.active {
+            background: var(--accent-blue);
+            color: #fff;
+        }
+
+        .nav-item i {
+            margin-right: 12px;
+            font-size: 1.1rem;
+            min-width: 20px;
+        }
+
+        .nav-item:hover:not(.active) {
+            background: rgba(108, 142, 239, 0.1);
+            color: var(--accent-blue);
+        }
+
+        .admin-footer {
+            padding: 20px;
+            border-top: 1px solid var(--card-border);
+            background: var(--sidebar-bg);
+        }
+
+        .admin-profile-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .admin-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .admin-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin: 0;
+        }
+
+        .admin-email {
+            font-size: 0.7rem;
+            color: var(--text-gray);
+            margin: 0;
+        }
+
+        /* --- MAIN WRAPPER --- */
+        .main-wrapper {
+            margin-left: var(--sidebar-width);
+            width: calc(100% - var(--sidebar-width));
+            padding: 30px;
+            transition: margin 0.3s ease, width 0.3s ease;
+        }
+
+        /* --- HAMBURGER (Hidden by default) --- */
+        .hamburger-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+       .section-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 28px;
+    border: 1px solid #eef1f6;
+    box-shadow: 0 6px 25px rgba(15, 23, 42, 0.04);
+    margin-bottom: 25px;
+}
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .form-label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .custom-input {
+            background: var(--input-bg);
+            border: 1px solid transparent;
+            border-radius: 10px;
+            padding: 12px 15px;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            width: 100%;
+            transition: 0.2s;
+        }
+
+        .custom-input:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            background: var(--card-bg);
+        }
+
+        .sale-badge {
+            background: #fff;
+            padding: 12px 15px;
+            border-radius: 10px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            border: 1px solid var(--card-border);
+            display: block;
+        }
+
+        /* --- IMAGE UPLOAD SECTION --- */
+        .upload-area {
+            border: 2px dashed var(--card-border);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            background: var(--input-bg);
+            position: relative;
+        }
+
+        .main-preview img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .thumb-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .thumb-box {
+    aspect-ratio: 1;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    background: #fff;
+    transition: transform 0.2s ease;
+}
+
+.thumb-box:hover {
+    transform: scale(1.03);
+}
+
+.remove-thumb {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: #ffffff;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    font-size: 13px;
+    border: 1px solid #e5e9f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+        .thumb-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        
+
+        .color-dot {
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            display: inline-block;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: 0.2s;
+        }
+
+        .color-dot.active {
+            border-color: var(--accent-blue);
+        }
+
+        .btn-publish {
+    background: var(--accent-blue);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 28px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn-publish:hover {
+    background: #5b7ee6;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(108,142,239,0.25);
+}
+
+.btn-draft {
+    background: #ffffff;
+    border: 1px solid #e5e9f2;
+    border-radius: 10px;
+    padding: 12px 28px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-draft:hover {
+    background: #f4f7fe;
+}
+
+
+/* ===============================
+   TOKYO STYLE INVENTORY
+================================ */
+
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.inventory-item {
+    display: flex;
+    align-items: center;
+    background: #f4f7fe;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #e5e9f2;
+}
+
+.size-badge {
+    background: #e0e7ff;
+    color: #4f46e5;
+    font-weight: 600;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    min-width: 60px;
+    text-align: center;
+}
+
+.inventory-item input {
+    border: none;
+    background: transparent;
+    padding: 12px 16px;
+    width: 100%;
+    font-size: 0.95rem;
+    outline: none;
+}
+
+.inventory-item input:focus {
+    background: #ffffff;
+}
+
+.inventory-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.inventory-summary input {
+    width: 100%;
+    background: #f4f7fe;
+    border: 1px solid #e5e9f2;
+    border-radius: 12px;
+    padding: 12px 16px;
+}
+
+.status-pill {
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.status-pill.in {
+    background: #ecfdf5;
+    color: #16a34a;
+}
+
+.status-pill.low {
+    background: #fffbeb;
+    color: #f59e0b;
+}
+
+.status-pill.out {
+    background: #fef2f2;
+    color: #dc2626;
+}
+       /* ===============================
+   PREMIUM CARD STYLE
+================================ */
+
+.section-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 28px;
+    border: 1px solid #eef1f6;
+    box-shadow: 0 6px 25px rgba(15, 23, 42, 0.04);
+}
+
+/* ===============================
+   PREMIUM INPUT STYLE
+================================ */
+
+.custom-input,
+.premium-input {
+    background: #f4f7fe;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.custom-input:focus,
+.premium-input:focus {
+    background: #ffffff;
+    border-color: #6C8EEF;
+    box-shadow: 0 0 0 3px rgba(108, 142, 239, 0.15);
+    outline: none;
+}
+
+/* ===============================
+   UPLOAD AREA PREMIUM
+================================ */
+
+.upload-area {
+    background: #f4f7fe;
+    border: 2px dashed #d8e0f0;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.upload-area:hover {
+    border-color: #6C8EEF;
+    background: #eef3ff;
+}
+
+/* ===============================
+   INVENTORY PREMIUM
+================================ */
+
+.premium-inventory {
+    margin-top: 20px;
+}
+
+.premium-status {
+    background: #f4f7fe;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.premium-status.in {
+    color: #16A34A;
+}
+
+.premium-status.low {
+    color: #F59E0B;
+}
+
+.premium-status.out {
+    color: #DC2626;
+}
+
+        /* --- RESPONSIVE LOGIC --- */
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-wrapper {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+
+            .hamburger-btn {
+                display: block;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .pricing-row .col-6,
+            .inventory-row .col-6 {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+
+            .header-actions {
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .search-box-wrapper {
+                width: 100% !important;
+            }
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1000;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+
+        /* ===============================
+   PREMIUM CATEGORY DROPDOWN
+================================ */
+
+.category-wrapper {
+    position: relative;
+}
+
+.category-display {
+    background: #f4f7fe;
+    border-radius: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid transparent;
+}
+
+.category-display:hover {
+    border-color: #6C8EEF;
+}
+
+.category-dropdown {
+    position: absolute;
+    top: 105%;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e5e9f2;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    max-height: 220px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1000;
+}
+
+.category-dropdown.active {
+    display: block;
+}
+
+.category-item {
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.category-item:hover {
+    background: #f4f7fe;
+}
+
+.category-tags {
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.category-tag {
+    background: #e0e7ff;
+    color: #4f46e5;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.category-tag i {
+    cursor: pointer;
+    font-size: 0.75rem;
+}
+        
+.category-display {
+    background: #f4f7fe;
+    border-radius: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #e5e9f2;
+    transition: 0.2s;
+}
+
+.category-display:hover {
+    border-color: #6C8EEF;
+    background: #ffffff;
+}
+
+.placeholder-text {
+    color: #9aa4b2;
+    font-size: 0.9rem;
+}
+    </style>
+</head>
+
+<body>
+
+    <div class="overlay" id="sidebarOverlay" onclick="toggleMenu()"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-scroll">
+            <div class="sidebar-brand">
+                <span class="logo">ENVA</span>
+            </div>
+            <p class="menu-label">Main menu</p>
+            <a href="Dashbord.html" class="nav-item "><i class="bi bi-grid"></i> Dashboard</a>
+            <a href="OrderManagement.html" class="nav-item"><i class="bi bi-cart"></i> Order Management</a>
+            <a href="Customers.html" class="nav-item "><i class="bi bi-people"></i> Customers</a>
+            <a href="Cuopon.html" class="nav-item"><i class="bi bi-ticket-perforated"></i> Coupon Code</a>
+            <a href="Categories.html" class="nav-item "><i class="bi bi-tags"></i> Categories</a>
+            <a href="Transaction.html" class="nav-item"><i class="bi bi-arrow-left-right"></i> Transaction</a>
+            <a href="Offers.html" class="nav-item "><i class="bi bi-megaphone"></i> Offers & Ads</a>
+
+            <p class="menu-label">Product</p>
+            <a href="AddProduct.html" class="nav-item active"><i class="bi bi-plus-circle"></i> Add Products</a>
+            <a href="ProductList.html" class="nav-item"><i class="bi bi-list-ul"></i> Product List</a>
+            <a href="ProductReviews.html" class="nav-item"><i class="bi bi-chat-left-text"></i> Product Reviews</a>
+        </div>
+
+        <div class="admin-footer">
+            <p class="menu-label" style="margin-left:0; margin-top:0">Admin</p>
+            <a href="AdminRole.html" class="nav-item p-0 mb-3"><i class="bi bi-person-gear"></i> Admin role</a>
+            <div class="admin-profile-box">
+                <img src=public/Admin/ENVA.png class="admin-avatar" alt="Admin">
+                <div class="admin-info">
+                    <p class="admin-name">ENVA</p>
+                    <p class="admin-email">enva@gmail.com</p>
+                </div>
+                <i class="bi bi-box-arrow-right text-gray" style="cursor: pointer; margin-left: auto;"></i>
+            </div>
+            <a href="#" class="nav-item p-0" style="color: var(--accent-blue); font-weight: 600;">
+                <i class="bi bi-shop"></i> Your Shop <i class="bi bi-box-arrow-up-right ms-auto small"></i>
+            </a>
+        </div>
+    </aside>
+
+    <main class="main-wrapper">
+    <button class="hamburger-btn" onclick="toggleMenu()">
+        <i class="bi bi-list"></i>
+    </button>
+
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+        <h4 class="fw-semibold mb-0">Add New Product</h4>
+
+        <div class="d-flex gap-2 flex-wrap">
+            <button type="button" id="publishBtn" class="btn-publish">
+                Publish Product
+            </button>
+            <button class="btn-draft">
+                <i class="bi bi-save me-1"></i> Save to Draft
+            </button>
+        </div>
+    </div>
+
+    <!-- ========================= -->
+    <!-- ROW 1 : BASIC + IMAGE -->
+    <!-- ========================= -->
+    <div class="row g-4 align-items-start">
+
+        <!-- LEFT : BASIC DETAILS -->
+        <div class="col-lg-7">
+            <div class="section-card">
+                <h5 class="section-title">Basic Details</h5>
+
+                <div class="mb-3">
+                    <label class="form-label">Product Name</label>
+                    <input type="text" id="productName" class="custom-input" placeholder="Enter product name">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Brand</label>
+                    <input type="text" id="productBrand" class="custom-input" value="ENVA">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Product Description</label>
+                    <textarea id="productDescription" class="custom-input" rows="4"
+                        placeholder="Write product description"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT : IMAGE + CATEGORY -->
+        <div class="col-lg-5">
+            <div class="section-card" style="border:2px solid var(--accent-blue);">
+
+                <h5 class="section-title">Product Image</h5>
+
+                <input type="file" id="mainFileInput" hidden accept="image/*" multiple>
+
+                <div class="upload-area mb-3">
+                    <div id="imagePreviewGrid" class="thumb-grid"></div>
+
+                    <button type="button"
+                        class="btn btn-light btn-sm mt-3"
+                        onclick="document.getElementById('mainFileInput').click()">
+                        <i class="bi bi-image"></i> Upload Images
+                    </button>
+                </div>
+
+                <h5 class="section-title mt-4">Category</h5>
+
+                <div class="mb-3">
+                    <label class="form-label">Product Category</label>
+                    <div class="category-wrapper">
+    <div class="category-display" id="categoryDisplay">
+        <span id="categoryPlaceholder" class="placeholder-text">
+            Select category
+        </span>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+
+    <div class="category-dropdown" id="categoryDropdown"></div>
+</div>
+
+<div id="selectedCategoryTags" class="category-tags"></div>
+
+                <div class="mb-3">
+                    <label class="form-label">Product Tag</label>
+                    <input type="text" class="custom-input" placeholder="Eg: trending, new">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================= -->
+    <!-- ROW 2 : PRICING + INVENTORY -->
+    <!-- ========================= -->
+    <div class="row g-4 mt-3">
+
+        <div class="col-lg-7">
+
+            <!-- PRICING -->
+            <div class="section-card">
+                <h5 class="section-title">Pricing</h5>
+
+                <div class="mb-3">
+                    <label class="form-label">Product Price</label>
+                    <input type="number" id="productPrice" class="custom-input" placeholder="₹ Price">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Discount Price (optional)</label>
+                    <input type="number" id="discountPrice" class="custom-input" placeholder="₹ Discount">
+                </div>
+            </div>
+
+        <div class="section-card premium-inventory">
+    <h5 class="section-title">Inventory & Sizes</h5>
+    <p class="text-muted small mb-4">Enter stock quantity for each size</p>
+
+    <div class="inventory-grid">
+
+        <div class="inventory-item">
+            <span class="size-badge">S</span>
+            <input type="number" class="size-input" value="0">
+        </div>
+
+        <div class="inventory-item">
+            <span class="size-badge">M</span>
+            <input type="number" class="size-input" value="0">
+        </div>
+
+        <div class="inventory-item">
+            <span class="size-badge">L</span>
+            <input type="number" class="size-input" value="0">
+        </div>
+
+        <div class="inventory-item">
+            <span class="size-badge">XL</span>
+            <input type="number" class="size-input" value="0">
+        </div>
+
+        <div class="inventory-item">
+            <span class="size-badge">XXL</span>
+            <input type="number" class="size-input" value="0">
+        </div>
+
+    </div>
+
+    <div class="inventory-summary mt-4">
+        <div>
+            <label>Total Stock (Auto)</label>
+            <input type="number" id="totalStock" value="0" readonly>
+        </div>
+
+        <div>
+            <label>Status (Auto)</label>
+            <div id="stockStatus" class="status-pill out">Out of Stock</div>
+        </div>
+    </div>
+</div>
+        </div>
+    </div>
+    </main>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* ===================================================
+       IMAGE PREVIEW (MAX 5)
+    =================================================== */
+
+    const mainFileInput = document.getElementById("mainFileInput");
+    const previewGrid = document.getElementById("imagePreviewGrid");
+    const publishBtn = document.getElementById("publishBtn");
+
+    let selectedImages = [];
+    const MAX_IMAGES = 5;
+
+    if (mainFileInput && previewGrid) {
+        mainFileInput.addEventListener("change", function () {
+
+            const files = Array.from(this.files);
+
+            if (selectedImages.length + files.length > MAX_IMAGES) {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Limit Exceeded",
+                    text: `Maximum ${MAX_IMAGES} images allowed`
+                });
+                mainFileInput.value = "";
+                return;
+            }
+
+            files.forEach(file => {
+
+                selectedImages.push(file);
+
+                const reader = new FileReader();
+                reader.onload = function (e) {
+
+                    const thumb = document.createElement("div");
+                    thumb.classList.add("thumb-box");
+
+                    thumb.innerHTML = `
+                        <img src="${e.target.result}">
+                        <span class="remove-thumb">&times;</span>
+                    `;
+
+                    thumb.querySelector(".remove-thumb")
+                        .addEventListener("click", () => {
+                            previewGrid.removeChild(thumb);
+                            selectedImages = selectedImages.filter(img => img !== file);
+                        });
+
+                    previewGrid.appendChild(thumb);
+                };
+
+                reader.readAsDataURL(file);
+            });
+
+            mainFileInput.value = "";
+        });
+    }
+
+
+    /* ===================================================
+       PROFESSIONAL CATEGORY DROPDOWN
+    =================================================== */
+
+    const selectedCategories = [];
+    const display = document.getElementById("categoryDisplay");
+    const dropdown = document.getElementById("categoryDropdown");
+    const tagsContainer = document.getElementById("selectedCategoryTags");
+
+    async function loadCategories() {
+        const token = localStorage.getItem("adminToken");
+        if (!token) return;
+
+        try {
+            const res = await fetch("/api/categories/admin", {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+
+            if (!res.ok) throw new Error("Failed to fetch categories");
+
+            const categories = await res.json();
+            dropdown.innerHTML = "";
+
+            categories.forEach(cat => {
+                if (cat.isPublished) {
+
+                    const div = document.createElement("div");
+                    div.className = "category-item";
+
+                    div.innerHTML = `
+                        <input type="checkbox" value="${cat._id}">
+                        <span>${cat.name}</span>
+                    `;
+
+                    div.querySelector("input").addEventListener("change", function () {
+
+                        if (this.checked) {
+                            selectedCategories.push({
+                                id: cat._id,
+                                name: cat.name
+                            });
+                        } else {
+                            const index = selectedCategories.findIndex(c => c.id === cat._id);
+                            if (index > -1) selectedCategories.splice(index, 1);
+                        }
+
+                        renderSelectedTags();
+                    });
+
+                    dropdown.appendChild(div);
+                }
+            });
+
+        } catch (err) {
+            console.error("Category load error:", err);
+        }
+    }
+
+    function renderSelectedTags() {
+    const container = document.getElementById("selectedCategoryTags");
+    const placeholder = document.getElementById("categoryPlaceholder");
+
+    container.innerHTML = "";
+
+    if (selectedCategories.length === 0) {
+        placeholder.textContent = "Select category";
+        placeholder.style.color = "#9aa4b2";
+    } else {
+        placeholder.textContent = selectedCategories.map(c => c.name).join(", ");
+        placeholder.style.color = "#2D3748";
+    }
+
+    selectedCategories.forEach(cat => {
+        const tag = document.createElement("div");
+        tag.className = "category-tag";
+        tag.innerHTML = `
+            ${cat.name}
+            <i class="bi bi-x"></i>
+        `;
+
+        tag.querySelector("i").addEventListener("click", () => {
+            selectedCategories.splice(
+                selectedCategories.findIndex(c => c.id === cat.id),
+                1
+            );
+
+            document.querySelectorAll(".category-item input").forEach(input => {
+                if (input.value === cat.id) input.checked = false;
+            });
+
+            renderSelectedTags();
+        });
+
+        container.appendChild(tag);
+    });
+}
+
+    display.addEventListener("click", () => {
+        dropdown.classList.toggle("active");
+    });
+
+    document.addEventListener("click", function (e) {
+        if (!e.target.closest(".category-wrapper")) {
+            dropdown.classList.remove("active");
+        }
+    });
+
+    loadCategories();
+
+
+    /* ===================================================
+       INVENTORY AUTO CALCULATION
+    =================================================== */
+
+    const sizeInputs = document.querySelectorAll(".size-input");
+    const totalStockInput = document.getElementById("totalStock");
+    const statusBox = document.getElementById("stockStatus");
+
+    function updateInventory() {
+
+        let total = 0;
+
+        sizeInputs.forEach(input => {
+            total += Number(input.value) || 0;
+        });
+
+        totalStockInput.value = total;
+
+        if (total === 0) {
+            statusBox.textContent = "Out of Stock";
+            statusBox.className = "status-pill out";
+        }
+        else if (total <= 5) {
+            statusBox.textContent = "Low Stock";
+            statusBox.className = "status-pill low";
+        }
+        else {
+            statusBox.textContent = "In Stock";
+            statusBox.className = "status-pill in";
+        }
+    }
+
+    sizeInputs.forEach(input => {
+        input.addEventListener("input", updateInventory);
+    });
+
+    updateInventory();
+
+
+    /* ===================================================
+       PUBLISH PRODUCT
+    =================================================== */
+
+    publishBtn.addEventListener("click", async () => {
+
+        const token = localStorage.getItem("adminToken");
+        if (!token) {
+            Swal.fire({
+                icon: "error",
+                title: "Not Logged In",
+                text: "Admin not authenticated"
+            });
+            return;
+        }
+
+        const name = document.getElementById("productName").value.trim();
+        const brand = document.getElementById("productBrand").value.trim() || "ENVA";
+        const description = document.getElementById("productDescription").value.trim();
+        const price = document.getElementById("productPrice").value.trim();
+
+        if (!name || !description || !price || selectedCategories.length === 0) {
+            Swal.fire({
+                icon: "warning",
+                title: "Missing Fields",
+                text: "Please complete all required fields"
+            });
+            return;
+        }
+
+        if (selectedImages.length === 0) {
+            Swal.fire({
+                icon: "warning",
+                title: "No Images",
+                text: "Upload at least one product image"
+            });
+            return;
+        }
+
+        let sizes = {};
+        let totalStock = 0;
+
+        sizeInputs.forEach(input => {
+            const sizeLabel = input.previousElementSibling.textContent;
+            const value = Number(input.value) || 0;
+            sizes[sizeLabel] = value;
+            totalStock += value;
+        });
+
+        const formData = new FormData();
+        formData.append("name", name);
+        formData.append("brand", brand);
+        formData.append("description", description);
+        formData.append("price", Number(price));
+        formData.append("sizes", JSON.stringify(sizes));
+        formData.append("totalStock", totalStock);
+
+        selectedCategories.forEach(cat => {
+            formData.append("category", cat.id);
+        });
+
+        selectedImages.forEach(img => {
+            formData.append("images", img);
+        });
+
+        try {
+            const res = await fetch("/api/admin/products", {
+                method: "POST",
+                headers: { Authorization: `Bearer ${token}` },
+                body: formData
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: data.message || "Failed to publish"
+                });
+                return;
+            }
+
+            Swal.fire({
+                icon: "success",
+                title: "Product Published!",
+                timer: 1500,
+                showConfirmButton: false
+            });
+
+            setTimeout(() => {
+                window.location.href = "/admin/ProductList.html";
+            }, 1500);
+
+        } catch (error) {
+            console.error(error);
+            Swal.fire({
+                icon: "error",
+                title: "Server Error",
+                text: "Please try again"
+            });
+        }
+    });
+
+});
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/popup.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - ENVA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="orders.css">
+    <link rel="stylesheet" href="userSigned.css">
+</head>
+<body>
+
+    <header class="main-header">
+
+  <!-- Mobile Menu Icon -->
+  <span class="menu-toggle" id="menuToggle">
+    <i class="fas fa-bars"></i>
+  </span>
+
+  <!-- Logo -->
+  <div class="logo">ENVA</div>
+
+  <!-- Desktop Nav -->
+  <nav class="nav-links">
+    <a href="usersigned.html">HOME</a>
+    <a href="shopuser.html">SHOP</a>
+    <a href="about.html">ABOUT</a>
+    <a href="contact.html">CONTACT</a>
+  </nav>
+
+  <!-- Header Actions -->
+  <div class="header-actions">
+
+    <!-- Search -->
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <i class="fas fa-search"></i>
+    </div>
+
+    <!-- Icons -->
+    <div class="icon-group">
+
+      <a href="#"><i class="far fa-heart"></i></a>
+      <a href="#"><i class="fas fa-shopping-cart"></i></a>
+
+      <!-- USER MENU -->
+      <div class="user-menu">
+        <a href="#" id="userToggle" class="user-icon">
+          <i class="far fa-user"></i>
+        </a>
+
+        <div class="user-dropdown" id="userDropdown">
+          <a href="myaccount.html">
+            <i class="far fa-user"></i> Manage My Account
+          </a>
+          <a href="orders.html">
+            <i class="fas fa-box"></i> My Orders
+          </a>
+          <a href="logout.html" class="logout">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</header>
+
+  <!-- MOBILE MENU -->
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">HOME</a>
+  <a href="shop.html">SHOP</a>
+  <a href="about.html">ABOUT</a>
+  <a href="contact.html">CONTACT</a>
+</nav>
+
+
+  <div class="header-actions">
+
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <i class="fas fa-search"></i>
+    </div>
+    <!-- MOBILE SEARCH BAR -->
+<div class="mobile-search" id="mobileSearch">
+  <div class="mobile-search-box">
+    <input type="text" placeholder="Search products...">
+    <span class="close-search" id="closeSearch">
+      <i class="fas fa-times"></i>
+    </span>
+  </div>
+</div>
+
+    <span class="search-icon">
+    <i class="fas fa-search"></i>
+  </span>
+
+    <div class="icon-group">
+      <a href="#"><i class="far fa-heart"></i></a>
+      <a href="#"><i class="fas fa-shopping-cart"></i></a>
+      <a href="#"><i class="far fa-user"></i></a>
+    </div>
+  </div>
+</header>
+
+    <main class="account-wrapper container">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <a href="usersigned.html">Home</a> /
+        <span class="active-page">My Account</span>
+    </nav>
+
+    <!-- Dynamic Welcome -->
+    <div class="welcome-section">
+        <h2 id="welcomeName">HELLO USER</h2>
+    </div>
+
+    <div class="account-grid">
+
+       <!-- SIDEBAR -->
+<aside class="sidebar">
+
+    <!-- ACCOUNT SECTION -->
+    <div class="sidebar-section">
+        <p class="sidebar-title">Manage My Account</p>
+        <ul class="sidebar-menu">
+            <li><a href="myaccount.html" class="active">My Profile</a></li>
+            <li><a href="address.html">Address Book</a></li>
+            <li><a href="payment-options.html">My Payment Options</a></li>
+        </ul>
+    </div>
+
+    <!-- ORDERS SECTION -->
+    <div class="sidebar-section">
+        <p class="sidebar-title">My Orders</p>
+        <ul class="sidebar-menu">
+            <li><a href="orders.html">Orders</a></li>
+            <li><a href="returns.html">Returns</a></li>
+            <li><a href="cancel.html">Cancellations</a></li>
+        </ul>
+    </div>
+
+    <!-- WISHLIST -->
+    <div class="sidebar-section">
+        <a href="wishlist.html" class="standalone-link">My Wishlist</a>
+    </div>
+
+    <!-- LOGOUT -->
+    <button type="button" id="logoutBtn" class="logout-btn">
+        Logout
+    </button>
+
+  </aside>
+           
+            <div class="my-orders-section">
+  <h2 class="section-title">My Orders</h2>
+  <div id="ordersContainer"></div>
+</div>
+
+            </div> </div> </main> 
+            <footer class="main-footer">
+        <div class="footer-top">
+            <div class="container footer-brand-row">
+                <h3 class="logo">ENVA</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-middle">
+            <div class="container footer-grid">
+                <div class="footer-col">
+                    <h5>Company Info</h5>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Carrier</a></li>
+                        <li><a href="#">We are hiring</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Carrier</a></li>
+                        <li><a href="#">We are hiring</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Features</h5>
+                    <ul>
+                        <li><a href="#">Business Marketing</a></li>
+                        <li><a href="#">User Analytic</a></li>
+                        <li><a href="#">Live Chat</a></li>
+                        <li><a href="#">Unlimited Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Resources</h5>
+                    <ul>
+                        <li><a href="#">IOS & Android</a></li>
+                        <li><a href="#">Watch a Demo</a></li>
+                        <li><a href="#">Customers</a></li>
+                        <li><a href="#">API</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col newsletter">
+                    <h5>Get In Touch</h5>
+                    <form class="subscribe-form">
+                        <input type="email" placeholder="Your Email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <p class="form-text">Lore imp sum dolor Amit</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p>Made With Love By Finland All Right Reserved</p>
+            </div>
+        </div>
+    </footer>
+   <script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* ================= USER DROPDOWN ================= */
+  const userToggle = document.getElementById("userToggle");
+  const userDropdown = document.getElementById("userDropdown");
+
+  if (userToggle && userDropdown) {
+    userToggle.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      userDropdown.classList.toggle("active");
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".user-menu")) {
+        userDropdown.classList.remove("active");
+      }
+    });
+  }
+
+  /* ================= MOBILE MENU ================= */
+  const menuToggle = document.getElementById("menuToggle");
+  const mobileNav = document.getElementById("mobileNav");
+
+  if (menuToggle && mobileNav) {
+    menuToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      mobileNav.classList.toggle("active");
+    });
+
+    mobileNav.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileNav.classList.remove("active");
+      });
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".main-header") && !e.target.closest(".mobile-nav")) {
+        mobileNav.classList.remove("active");
+      }
+    });
+  }
+
+  /* ================= LOAD ORDERS ================= */
+  loadMyOrders();
+
+});
+function getOrderDisplayStatus(order) {
+  if (!order.items) return order.status;
+
+  const hasReturnedItem = order.items.some(item =>
+    ["RETURNED", "REFUNDED"].includes(item.returnStatus)
+  );
+
+  if (hasReturnedItem) {
+    return "Returned";
+  }
+
+  return order.status;
+}
+
+
+
+async function loadMyOrders() {
+  const token = localStorage.getItem("userToken");
+
+  if (!token) {
+    window.location.href = "login.html";
+    return;
+  }
+
+  try {
+    const res = await fetch("/api/orders", {
+      headers: {
+        Authorization: "Bearer " + token
+      }
+    });
+
+    const data = await res.json();
+    console.log("ORDERS RESPONSE:", data); // 🔍 debug
+
+    const container = document.getElementById("ordersContainer");
+    container.innerHTML = "";
+
+    if (!data.orders || data.orders.length === 0) {
+      container.innerHTML = "<p>No orders found</p>";
+      return;
+    }
+
+    data.orders.forEach(order => {
+      container.innerHTML += `
+        <div class="order-card">
+          <div class="card-row">
+            <div class="order-meta">
+              <span class="order-id">Order #${order._id.slice(-6)}</span>
+              <span class="order-date">
+                ${new Date(order.createdAt).toLocaleDateString()}
+              </span>
+            </div>
+           <div class="status-badge">
+  ${getOrderDisplayStatus(order)}
+</div>
+
+          </div>
+
+          <div class="card-row footer-row">
+            <div class="order-stats">
+              <span class="order-price">₹${order.total}</span>
+              <span class="item-count">${order.items.length} items</span>
+            </div>
+            <a href="order-detail.html?id=${order._id}" class="details-btn">
+              View Details
+            </a>
+          </div>
+        </div>
+      `;
+    });
+
+  } catch (err) {
+    console.error(err);
+    Swal.fire("Error", "Failed to load orders", "error");
+  }
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/popup.js"></script>
+
+</body>
+</html>

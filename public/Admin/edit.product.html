@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Product | ENVA Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #F8F9FD;
+    }
+
+    .card {
+      border-radius: 18px;
+      border: none;
+    }
+
+    .form-control {
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    .preview-img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      margin-right: 10px;
+    }
+
+    .size-box input {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container mt-5 mb-5">
+  <div class="card shadow-sm p-4">
+    <h4 class="mb-4 fw-semibold">Edit Product</h4>
+
+    <form id="editProductForm">
+      <div class="row g-3">
+
+        <!-- Name -->
+        <div class="col-md-6">
+          <label class="form-label">Product Name</label>
+          <input type="text" id="productName" class="form-control" required>
+        </div>
+
+        <!-- Price -->
+        <div class="col-md-6">
+          <label class="form-label">Price (₹)</label>
+          <input type="number" id="price" class="form-control" required>
+        </div>
+
+        <!-- Description -->
+        <div class="col-md-12">
+          <label class="form-label">Description</label>
+          <textarea id="description" rows="3" class="form-control"></textarea>
+        </div>
+
+        <!-- Sizes -->
+        <div class="col-md-12">
+          <label class="form-label fw-semibold">Sizes & Stock</label>
+          <div class="row g-2 size-box">
+            <div class="col"><input type="number" id="sizeS" placeholder="S" class="form-control"></div>
+            <div class="col"><input type="number" id="sizeM" placeholder="M" class="form-control"></div>
+            <div class="col"><input type="number" id="sizeL" placeholder="L" class="form-control"></div>
+            <div class="col"><input type="number" id="sizeXL" placeholder="XL" class="form-control"></div>
+            <div class="col"><input type="number" id="sizeXXL" placeholder="XXL" class="form-control"></div>
+          </div>
+        </div>
+
+        <!-- Images -->
+        <div class="col-md-12">
+          <label class="form-label">Existing Images</label>
+          <div id="imagePreview" class="d-flex mb-2 flex-wrap"></div>
+
+          <label class="form-label mt-3">Upload New Images</label>
+          <input type="file" id="images" class="form-control" multiple>
+        </div>
+
+        <!-- Buttons -->
+        <div class="col-md-12 mt-4 d-flex justify-content-between">
+          <a href="ProductList.html" class="btn btn-light">Cancel</a>
+          <button type="submit" class="btn btn-primary px-4">Update Product</button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const productId = params.get("id");
+const token = localStorage.getItem("adminToken");
+
+if (!productId || !token) {
+  alert("Invalid access");
+  window.location.href = "ProductList.html";
+}
+
+/* =========================
+   LOAD PRODUCT
+========================= */
+async function loadProduct() {
+  try {
+    const res = await fetch(`/api/products/admin/products/${productId}`,  {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+
+    const data = await res.json();
+    const product = data.product || data;
+
+    document.getElementById("productName").value = product.name || "";
+    document.getElementById("price").value = product.price || "";
+    document.getElementById("description").value = product.description || "";
+
+    if (product.sizes) {
+      document.getElementById("sizeS").value = product.sizes.S || 0;
+      document.getElementById("sizeM").value = product.sizes.M || 0;
+      document.getElementById("sizeL").value = product.sizes.L || 0;
+      document.getElementById("sizeXL").value = product.sizes.XL || 0;
+      document.getElementById("sizeXXL").value = product.sizes.XXL || 0;
+    }
+
+    const preview = document.getElementById("imagePreview");
+    preview.innerHTML = "";
+
+    product.images?.forEach(img => {
+      const image = document.createElement("img");
+      image.src = img;
+      image.className = "preview-img";
+      preview.appendChild(image);
+    });
+
+  } catch (error) {
+    alert("Failed to load product");
+  }
+}
+
+loadProduct();
+
+/* =========================
+   UPDATE PRODUCT
+========================= */
+document.getElementById("editProductForm").addEventListener("submit", async e => {
+  e.preventDefault();
+
+  const formData = new FormData();
+
+  const sizes = {
+    S: document.getElementById("sizeS").value || 0,
+    M: document.getElementById("sizeM").value || 0,
+    L: document.getElementById("sizeL").value || 0,
+    XL: document.getElementById("sizeXL").value || 0,
+    XXL: document.getElementById("sizeXXL").value || 0
+  };
+
+  formData.append("name", document.getElementById("productName").value.trim());
+  formData.append("price", document.getElementById("price").value);
+  formData.append("description", document.getElementById("description").value);
+  formData.append("sizes", JSON.stringify(sizes));
+
+  const files = document.getElementById("images").files;
+  for (let i = 0; i < files.length; i++) {
+    formData.append("images", files[i]);
+  }
+
+  try {
+    const res = await fetch(`/api/products/admin/products/${productId}`,  {
+      method: "PUT",
+      headers: { Authorization: `Bearer ${token}` },
+      body: formData
+    });
+
+    const data = await res.json();
+
+if (!res.ok) {
+  console.log("ERROR RESPONSE:", data);
+  alert(data.message || "Update failed");
+  return;
+}
+
+    alert("✅ Product updated successfully");
+    window.location.href = "ProductList.html";
+
+  } catch (error) {
+    alert("Server error");
+  }
+});
+</script>
+
+</body>
+</html>

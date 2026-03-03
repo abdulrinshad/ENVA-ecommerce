@@ -1,0 +1,228 @@
+/* ==============================
+   ACCOUNT MAIN LAYOUT
+============================== */
+.account-wrapper {
+  padding: 40px 0 60px;
+}
+
+.breadcrumb {
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: #777;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: #555;
+}
+
+.breadcrumb a:hover {
+  color: #000;
+}
+
+.active-page {
+  color: #000;
+  font-weight: 500;
+}
+
+/* Welcome */
+.welcome-section h2 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 35px;
+}
+
+/* ==============================
+   GRID STRUCTURE
+============================== */
+.account-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 40px;
+}
+
+/* ==============================
+   SIDEBAR
+============================== */
+.sidebar {
+  padding-right: 10px;
+}
+
+.sidebar-category {
+  margin-bottom: 25px;
+}
+
+.sidebar-category h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  color: #333;
+}
+
+.sidebar-category ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-category ul li {
+  margin-bottom: 8px;
+}
+
+.sidebar-category ul li a,
+.standalone-link {
+  font-size: 15px;
+  text-decoration: none;
+  color: #555;
+  transition: 0.2s ease;
+  display: block;
+}
+
+.sidebar-category ul li a:hover,
+.standalone-link:hover {
+  color: #000;
+}
+
+.sidebar-category ul li a.active {
+  color: #0d6efd;
+  font-weight: 600;
+}
+
+/* Logout Button */
+.logout-btn {
+  margin-top: 20px;
+  border: 1px solid #ff4d4f;
+  background: transparent;
+  color: #ff4d4f;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.logout-btn:hover {
+  background: #ff4d4f;
+  color: #fff;
+}
+
+/* ==============================
+   CONTENT AREA
+============================== */
+.account-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.account-content h3,
+.account-content h4 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* ==============================
+   CARD STYLE (Orders, Returns etc)
+============================== */
+.account-card {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.account-card h5 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.account-card p {
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #666;
+}
+
+.account-price {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+/* ==============================
+   STATUS BADGES
+============================== */
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-placed {
+  background: #e6f4ea;
+  color: #1e7e34;
+}
+
+.status-returned {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-approved {
+  background: #e3f2fd;
+  color: #0d6efd;
+}
+
+/* ==============================
+   WALLET SECTION
+============================== */
+.wallet-box {
+  background: #f8f9fa;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+}
+
+.wallet-balance {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+/* ==============================
+   FORM INPUTS
+============================== */
+.account-content input,
+.account-content select,
+.account-content textarea {
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+/* ==============================
+   TABLE
+============================== */
+.account-table th {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.account-table td {
+  font-size: 14px;
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+@media (max-width: 992px) {
+  .account-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    margin-bottom: 30px;
+  }
+}

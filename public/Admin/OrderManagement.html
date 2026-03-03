@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wings Admin | Order Management</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+          :root {
+            --sidebar-width: 260px;
+            --main-bg: #F8F9FD;
+            --sidebar-bg: #ffffff;
+            --accent-blue: #6C8EEF;
+            --text-dark: #2D3748;
+            --text-gray: #A0AEC0;
+            --card-border: #EDF2F7;
+            --table-header: #F1F6FF;
+            --card-bg: #ffffff;
+        }
+
+        /* DARK MODE VARIABLES */
+        [data-theme="dark"] {
+            --sidebar-bg: #1A202C;
+            --main-bg: #11141D;
+            --card-bg: #1A202C;
+            --text-dark: #E2E8F0;
+            --text-gray: #718096;
+            --card-border: #2D3748;
+            --table-header: #2D3748;
+        }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--main-bg); margin: 0; display: flex; color: var(--text-dark); }
+
+        /* --- SIDEBAR --- */
+        .sidebar { width: var(--sidebar-width); background: var(--sidebar-bg); height: 100vh; position: fixed; border-right: 1px solid var(--card-border); display: flex; flex-direction: column; z-index: 1050; }
+        .sidebar-scroll { flex-grow: 1; overflow-y: auto; padding: 20px; }
+        .sidebar-brand img { height: 45px; margin-bottom: 25px; }
+        .menu-label { font-size: 0.75rem; color: var(--text-gray); text-transform: capitalize; margin: 20px 0 10px 10px; font-weight: 500; }
+        .nav-item { display: flex; align-items: center; padding: 12px 15px; color: var(--text-gray); text-decoration: none; border-radius: 10px; margin-bottom: 5px; font-size: 0.9rem; transition: 0.3s; }
+        .nav-item.active { background: var(--accent-blue); color: #fff; }
+        .nav-item i { margin-right: 12px; font-size: 1.1rem; }
+        
+        .admin-footer { padding: 20px; border-top: 1px solid var(--card-border); }
+        .admin-profile { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+        .admin-avatar { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; }
+
+        /* --- MAIN CONTENT --- */
+        .main-wrapper { margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); padding: 30px; }
+        
+        /* Top Navigation Style */
+        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 35px; }
+
+        /* THE UNIFIED SEARCH STYLE FOR ALL SEARCH BARS */
+        .search-box {
+            background: var(--card-bg); 
+            border-radius: 12px; 
+            padding: 8px 20px;
+            display: flex; 
+            align-items: center;
+            border: 1px solid var(--card-border);
+        }
+        .search-box input { 
+            border: none; 
+            outline: none; 
+            background: transparent; 
+            color: var(--text-dark); 
+            width: 100%; 
+            font-size: 0.9rem;
+        }
+        .search-box i { 
+            color: var(--text-gray); 
+        }
+
+        
+           /* Sidebar Brand Styling */
+.sidebar-brand {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+/* Brand Text Style matching your existing ENVA logo */
+.sidebar-brand .logo {
+    font-size: 24px;
+    font-weight: 800; /* Extra bold as seen in your main logo */
+    letter-spacing: 1px;
+    color: #000; /* Or use #252B42 to match your header text */
+    text-transform: uppercase;
+    text-decoration: none;
+}
+/* STAT CARDS - FIXED BACKGROUND */
+.stat-card { 
+    background: var(--card-bg); 
+    border: 1px solid var(--card-border); 
+    border-radius: 16px; 
+    padding: 20px; 
+    transition: all 0.3s ease;
+}
+
+.stat-card h3 { 
+    font-size: 1.8rem; 
+    font-weight: 700; 
+    margin: 5px 0; 
+    color: var(--text-dark); /* This switches with the theme */
+}
+
+.stat-card .trend { 
+    font-size: 0.8rem; 
+    color: #48BB78; 
+}
+
+/* This replaces the 'text-muted' behavior and uses your variables */
+.stat-card p { 
+    color: var(--text-gray) !important; 
+    margin: 0;
+}
+         /* --- TABLE & FILTER STYLES --- */
+        .order-section { background: var(--card-bg); border-radius: 20px; border: 1px solid var(--card-border); padding: 25px; margin-top: 30px; }
+        
+        .filter-tab { background: var(--table-header); border-radius: 10px; padding: 5px; display: inline-flex; }
+        .filter-tab button { border: none; background: transparent; padding: 6px 15px; font-size: 0.85rem; border-radius: 8px; color: var(--text-gray); }
+        .filter-tab button.active { background: var(--card-bg); color: var(--accent-blue); font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+
+        .tool-btn { border: 1px solid var(--card-border); background: var(--card-bg); border-radius: 8px; padding: 8px; color: var(--text-gray); display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; }
+
+        .order-table { width: 100%; margin-top: 20px; border-collapse: separate; border-spacing: 0; }
+        .order-table thead { background: var(--table-header); }
+        .order-table th { padding: 15px; text-align: left; font-size: 0.85rem; color: var(--text-dark); border: none; }
+        .order-table td { padding: 15px; vertical-align: middle; border-bottom: 1px solid var(--card-border); font-size: 0.85rem; color: var(--text-dark); }
+
+        
+         /* Status Badges */
+        .badge-delivered { background: #E6FFFA; color: #38B2AC; padding: 5px 12px; border-radius: 6px; font-weight: 600; }
+        .badge-shipped { background: #EBF2FF; color: #6C8EEF; padding: 5px 12px; border-radius: 6px; font-weight: 600; }
+        .badge-pending { background: #FFFBEB; color: #F6AD55; padding: 5px 12px; border-radius: 6px; font-weight: 600; }
+        .badge-canceled { background: #FFF5F5; color: #F56565; padding: 5px 12px; border-radius: 6px; font-weight: 600; }
+        
+       
+        /* Pagination */
+        .pagination-container { display: flex; justify-content: space-between; align-items: center; margin-top: 25px; }
+        .page-btn { border: 1px solid var(--card-border); background: var(--card-bg); padding: 6px 15px; border-radius: 8px; font-size: 0.85rem; color: var(--text-dark); cursor: pointer; }
+        .page-numbers .num { width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; border-radius: 6px; cursor: pointer; font-size: 0.85rem; margin: 0 2px; border: 1px solid transparent; }
+        .page-numbers .num.active { background: #EBF2FF; color: var(--accent-blue); font-weight: 600; }
+
+        /* Responsive Mobile */
+        @media (max-width: 992px) {
+            .sidebar { transform: translateX(-100%); position: fixed; }
+            .sidebar.active { transform: translateX(0); }
+            .main-wrapper { margin-left: 0; width: 100%; }
+            .mobile-toggle { display: block !important; }
+        }
+        .mobile-toggle { display: none; cursor: pointer; font-size: 1.5rem; }
+
+        .order-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 12px;
+}
+
+.order-table thead th {
+  background: #f5f8ff;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2d3748;
+  padding: 14px 16px;
+}
+
+.order-table tbody tr {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+}
+
+.order-table tbody td {
+  padding: 16px;
+  font-size: 14px;
+  color: #2d3748;
+  vertical-align: middle;
+}
+
+.order-table tbody tr td:first-child {
+  border-radius: 14px 0 0 14px;
+}
+
+.order-table tbody tr td:last-child {
+  border-radius: 0 14px 14px 0;
+}
+
+.order-table td img {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  margin-right: 10px;
+}
+
+.order-table td {
+  display: table-cell;
+}
+
+.order-table td img + span {
+  font-weight: 500;
+}
+
+
+.payment-paid {
+  color: #22c55e;
+  font-weight: 600;
+}
+
+.payment-unpaid {
+  color: #f59e0b;
+  font-weight: 600;
+}
+
+.payment-failed {
+  color: #ef4444;
+  font-weight: 600;
+}
+
+
+.status-dropdown {
+  appearance: none;
+  padding: 7px 34px 7px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px;
+}
+
+/* Arrow */
+.status-dropdown {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23666' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+}
+
+/* Colors */
+.status-dropdown.placed {
+  background: #fff7ed;
+  color: #f97316;
+}
+
+.status-dropdown.shipped {
+  background: #eef2ff;
+  color: #4f46e5;
+}
+
+.status-dropdown.delivered {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+.status-dropdown.cancelled {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.admin-product-img {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+}
+
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-scroll">
+           <div class="sidebar-brand">
+    <span class="logo">ENVA</span>
+</div>
+            <p class="menu-label">Main menu</p>
+            <a href="dashboard.html" class="nav-item"><i class="bi bi-grid"></i> Dashboard</a>
+            <a href="OrderMangement.html" class="nav-item active"><i class="bi bi-cart"></i> Order Management</a>
+            <a href="Customers.html" class="nav-item"><i class="bi bi-people"></i> Customers</a>
+            <a href="Cuopon.html" class="nav-item"><i class="bi bi-ticket-perforated"></i> Coupon Code</a>
+            <a href="Categories.html" class="nav-item"><i class="bi bi-tags"></i> Categories</a>
+            <a href="Transaction.html" class="nav-item"><i class="bi bi-arrow-left-right"></i> Transaction</a>
+           <a href="Offers.html" class="nav-item "><i class="bi bi-megaphone"></i> Offers & Ads</a>
+
+            <p class="menu-label">Product</p>
+            <a href="AddProduct.html" class="nav-item"><i class="bi bi-plus-circle"></i> Add Products</a>
+          
+            <a href="ProductList.html" class="nav-item"><i class="bi bi-list-ul"></i> Product List</a>
+            <a href="ProductReviews.html" class="nav-item"><i class="bi bi-chat-left-text"></i> Product Reviews</a>
+        </div>
+        <div class="admin-footer">
+            <p class="menu-label" style="margin:0 0 10px 0">Admin</p>
+            <a href="AdminRole.html" class="nav-item p-0 mb-3"><i class="bi bi-person-gear"></i> Admin role</a>
+            <div class="admin-profile">
+                <img src="profile-pic.png" class="admin-avatar">
+                <div><p class="m-0 fw-bold small">ENVA</p><p class="m-0 text-muted" style="font-size: 0.65rem;">enva@gmail.com</p></div>
+                <i class="bi bi-box-arrow-right ms-auto"></i>
+            </div>
+            <a href="#" class="nav-item p-0 text-primary fw-bold" style="font-size:0.8rem">
+                <i class="bi bi-shop"></i> Your Shop <i class="bi bi-box-arrow-up-right ms-auto"></i>
+            </a>
+        </div>
+    </aside>
+
+    <main class="main-wrapper">
+         <div class="top-bar">
+            <div class="d-flex align-items-center gap-3">
+                <i class="bi bi-list mobile-toggle" onclick="document.getElementById('sidebar').classList.toggle('active')"></i>
+                <h4 class="m-0 fw-semibold">Order Management</h4>
+            </div>
+            <div class="search-box d-none d-md-flex">
+                <input type="text" placeholder="Search data, reports...">
+                <i class="bi bi-search text-gray"></i>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <div class="theme-toggle" onclick="toggleTheme()"><i class="bi bi-moon-stars-fill" id="tIcon"></i></div>
+                <img src="profile-pic.png" class="rounded-circle border" width="38" height="38">
+            </div>
+        </div>
+
+        <div class="row g-4">
+    <div class="col-md-3">
+        <div class="stat-card">
+            <p class="small">Total Orders</p>  <span class="trend">↑ 14.4%</span>
+            <p style="font-size:0.7rem">Last 7 days</p> </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card">
+            <p class="small">New Orders</p>
+             <span class="trend">↑ 20%</span>
+            <p style="font-size:0.7rem">Last 7 days</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card">
+            <p class="small">Completed Orders</p>
+            <span class="trend" style="color:#38B2AC">85%</span>
+            <p style="font-size:0.7rem">Last 7 days</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card">
+            <p class="small">Canceled Orders</p>
+            <span class="trend text-danger">↓ 5%</span>
+            <p style="font-size:0.7rem">Last 7 days</p>
+        </div>
+    </div>
+</div>
+
+        <div class="order-section">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                <h5 class="fw-bold m-0">Order List</h5>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-primary rounded-pill px-4" style="background:var(--accent-blue); border:none;"><i class="bi bi-plus"></i> Add Order</button>
+                    <button class="btn btn-light border rounded-pill">More Action <i class="bi bi-chevron-down"></i></button>
+                </div>
+            </div>
+
+          <div class="d-flex justify-content-between align-items-center mt-4 flex-wrap gap-3">
+
+  <!-- STATUS TABS -->
+  <div class="filter-tab">
+    <button class="active" data-status="">All Orders</button>
+    <button data-status="Delivered">Completed</button>
+    <button data-status="Placed">Pending</button>
+    <button data-status="Cancelled">Canceled</button>
+    <button data-status="Returned">Returned</button>
+  </div>
+
+  <!-- RIGHT SIDE CONTROLS -->
+  <div class="d-flex gap-2 align-items-center">
+
+    <!-- SEARCH -->
+    <div class="search-box" style="width:250px;">
+        <input type="text" id="orderSearch" placeholder="Search Order ID...">
+        <i class="bi bi-search"></i>
+    </div>
+
+    <!-- FILTER DROPDOWN -->
+    <div class="dropdown">
+      <button class="tool-btn" data-bs-toggle="dropdown">
+        <i class="bi bi-funnel"></i>
+      </button>
+
+      <div class="dropdown-menu p-3 shadow" style="min-width:230px;">
+        <label class="small fw-bold mb-1">Status</label>
+        <select id="statusFilterDropdown" class="form-select form-select-sm mb-2">
+  <option value="">All</option>
+  <option value="Placed">Placed</option>
+  <option value="Shipped">Shipped</option>
+  <option value="Delivered">Delivered</option>
+  <option value="Cancelled">Cancelled</option>
+  <option value="Returned">Returned</option>
+  <option value="Partially Returned">Partially Returned</option>
+</select>
+
+        <label class="small fw-bold mb-1">Payment</label>
+        <select id="paymentFilterDropdown" class="form-select form-select-sm mb-2">
+          <option value="">All</option>
+          <option value="paid">Paid</option>
+          <option value="pending">Pending</option>
+          <option value="refunded">Refunded</option>
+          <option value="failed">Failed</option>
+        </select>
+
+        <label class="small fw-bold mb-1">Date</label>
+        <select id="dateFilterDropdown" class="form-select form-select-sm">
+          <option value="">All Time</option>
+          <option value="today">Today</option>
+          <option value="7days">Last 7 Days</option>
+          <option value="1month">Last 1 Month</option>
+          <option value="1year">Last 1 Year</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- SORT -->
+    <button class="tool-btn">
+      <i class="bi bi-arrow-down-up"></i>
+    </button>
+
+    <!-- MORE -->
+    <button class="tool-btn">
+      <i class="bi bi-three-dots"></i>
+    </button>
+
+  </div>
+</div>
+
+            <div class="table-responsive">
+                <table class="order-table">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox"> No.</th>
+                            <th>Order Id</th>
+                            <th>Product</th>
+                            <th>Date</th>
+                            <th>Price</th>
+                            <th>Payment</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                     <tbody>
+                       
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination-container">
+                <button class="page-btn"><i class="bi bi-arrow-left"></i> Previous</button>
+                <div class="page-numbers">
+                    <span class="num active">1</span>
+                    <span class="num">2</span>
+                    <span class="num">3</span>
+                   
+                    <span class="num text-muted">....</span>
+                
+                </div>
+                <button class="page-btn">Next <i class="bi bi-arrow-right"></i></button>
+            </div>
+            
+        </div>
+    </main>
+<script>
+/* ======================================================
+   THEME TOGGLE
+====================================================== */
+function toggleTheme() {
+  const html = document.documentElement;
+  const icon = document.getElementById("tIcon");
+
+  if (html.getAttribute("data-theme") === "dark") {
+    html.removeAttribute("data-theme");
+    icon.classList.replace("bi-sun-fill", "bi-moon-stars-fill");
+  } else {
+    html.setAttribute("data-theme", "dark");
+    icon.classList.replace("bi-moon-stars-fill", "bi-sun-fill");
+  }
+}
+
+/* ======================================================
+   GLOBAL FILTER STATE
+====================================================== */
+let currentStatus = "";
+let currentSearch = "";
+let currentPayment = "";
+let currentDate = "";
+let currentPage = 1;
+
+/* ======================================================
+   INITIAL LOAD
+====================================================== */
+document.addEventListener("DOMContentLoaded", () => {
+  setupFilters();
+  loadOrders();
+});
+
+/* ======================================================
+   SETUP FILTER EVENTS (UPDATED CLEAN VERSION)
+====================================================== */
+function setupFilters() {
+
+  /* ======================
+     SEARCH FILTER
+  ====================== */
+  document.getElementById("orderSearch")
+    ?.addEventListener("input", function () {
+      currentSearch = this.value.trim();
+      loadOrders();
+    });
+
+  /* ======================
+     STATUS FILTER (DROPDOWN)
+  ====================== */
+  document.getElementById("statusFilterDropdown")
+    ?.addEventListener("change", function () {
+      currentStatus = this.value;
+      loadOrders();
+    });
+
+  /* ======================
+     PAYMENT FILTER
+  ====================== */
+  document.getElementById("paymentFilterDropdown")
+    ?.addEventListener("change", function () {
+      currentPayment = this.value;
+      loadOrders();
+    });
+
+  /* ======================
+     DATE FILTER
+  ====================== */
+  document.getElementById("dateFilterDropdown")
+    ?.addEventListener("change", function () {
+      currentDate = this.value;
+      loadOrders();
+    });
+}
+
+/* ======================
+   STATUS TAB FILTER
+====================== */
+document.querySelectorAll(".filter-tab button")
+  .forEach(btn => {
+    btn.addEventListener("click", function () {
+
+      // remove active class
+      document.querySelectorAll(".filter-tab button")
+        .forEach(b => b.classList.remove("active"));
+
+      // set active
+      this.classList.add("active");
+
+      // set status
+      currentStatus = this.dataset.status || "";
+
+      loadOrders();
+    });
+  });
+
+
+/* ======================================================
+   LOAD ORDERS (WITH FILTERS)
+====================================================== */
+async function loadOrders(page = 1) {
+  try {
+    const token = localStorage.getItem("adminToken");
+    if (!token) return alert("Admin not logged in");
+
+    // 🧠 Build query safely
+    const params = new URLSearchParams();
+
+    params.append("page", page);
+    params.append("limit", 10);
+
+    if (currentStatus) {
+      params.append("status", currentStatus);
+    }
+
+    if (currentSearch) {
+      params.append("search", currentSearch);
+    }
+
+    if (typeof currentPayment !== "undefined" && currentPayment) {
+      params.append("paymentStatus", currentPayment);
+    }
+
+    if (typeof currentDate !== "undefined" && currentDate) {
+      params.append("date", currentDate);
+    }
+
+    const url = `/api/admin/orders/management?${params.toString()}`;
+
+    const res = await fetch(url, {
+      headers: { Authorization: "Bearer " + token }
+    });
+
+    const data = await res.json();
+
+    if (!data.success) {
+      alert("Failed to load orders");
+      return;
+    }
+
+    renderOrders(data.orders);
+
+    // 🔥 Pagination support
+    if (data.totalPages) {
+      renderPagination(data.totalPages, data.currentPage);
+    }
+
+  } catch (err) {
+    console.error("LOAD ORDERS ERROR:", err);
+  }
+}
+
+/* ======================================================
+   RENDER ORDERS TABLE
+====================================================== */
+function renderOrders(orders) {
+  const tbody = document.querySelector(".order-table tbody");
+  tbody.innerHTML = "";
+
+  if (!orders.length) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="7" class="text-center py-4">
+          No orders found
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  orders.forEach((order, index) => {
+
+    const paymentColor =
+  order.paymentStatus === "paid" ? "#22c55e" :
+  order.paymentStatus === "refunded" ? "#6366f1" :
+  order.paymentStatus === "failed" ? "#ef4444" :
+  "#f59e0b";
+
+    tbody.innerHTML += `
+      <tr>
+        <td><input type="checkbox"> ${index + 1}</td>
+
+        <td class="fw-bold">
+          #${order._id.slice(-6)}
+        </td>
+
+        <td style="display:flex; align-items:center; gap:10px;">
+          <img
+            src="${getProductImage(order)}"
+            class="admin-product-img"
+          />
+          <span>${order.items?.[0]?.name || "—"}</span>
+        </td>
+
+        <td>${new Date(order.createdAt).toLocaleDateString()}</td>
+
+        <td>₹${order.total}</td>
+
+        <td style="color:${paymentColor}; font-weight:600;">
+          ● ${order.paymentStatus}
+        </td>
+
+        <td>
+          ${renderAdminAction(order)}
+        </td>
+      </tr>
+    `;
+  });
+}
+
+/* ======================================================
+   ADMIN ACTION HANDLER
+====================================================== */
+function renderAdminAction(order) {
+
+  const cancelItem = order.items.find(
+    item => item.cancelStatus === "REQUESTED"
+  );
+
+  if (cancelItem) {
+    return actionButtons(
+      order._id,
+      cancelItem._id,
+      "cancel"
+    );
+  }
+
+  const returnItem = order.items.find(
+    item => item.returnStatus === "REQUESTED"
+  );
+
+  if (returnItem) {
+    return actionButtons(
+      order._id,
+      returnItem._id,
+      "return"
+    );
+  }
+
+  return renderStatusDropdown(order);
+}
+
+/* ======================================================
+   ACCEPT / DECLINE BUTTONS TEMPLATE
+====================================================== */
+function actionButtons(orderId, itemId, type) {
+
+  const acceptURL =
+    type === "cancel"
+      ? `/api/admin/orders/${orderId}/items/${itemId}/cancel/accept`
+      : `/api/admin/orders/${orderId}/items/${itemId}/accept-return`;
+
+  const declineURL =
+    type === "cancel"
+      ? `/api/admin/orders/${orderId}/items/${itemId}/cancel/decline`
+      : `/api/admin/orders/${orderId}/items/${itemId}/decline-return`;
+
+  return `
+    <div style="display:flex; gap:6px;">
+      <button class="btn btn-sm btn-success"
+        onclick="adminDecision('${acceptURL}', true)">
+        Accept
+      </button>
+      <button class="btn btn-sm btn-danger"
+        onclick="adminDecision('${declineURL}', false)">
+        Decline
+      </button>
+    </div>
+  `;
+}
+
+/* ======================================================
+   HANDLE ACCEPT / DECLINE
+====================================================== */
+async function adminDecision(url, isReturn) {
+  try {
+    const token = localStorage.getItem("adminToken");
+
+    const options = {
+      method: "PUT",
+      headers: {
+        Authorization: "Bearer " + token
+      }
+    };
+
+    // Return requires approvedQty
+    if (isReturn && url.includes("accept-return")) {
+      options.headers["Content-Type"] = "application/json";
+      options.body = JSON.stringify({ approvedQty: 1 });
+    }
+
+    const res = await fetch(url, options);
+    const data = await res.json();
+
+    if (data.success) {
+      alert("Action completed successfully");
+      loadOrders();
+    } else {
+      alert(data.message || "Action failed");
+    }
+
+  } catch (err) {
+    console.error("ADMIN ACTION ERROR:", err);
+  }
+}
+
+/* ======================================================
+   STATUS DROPDOWN
+====================================================== */
+function renderStatusDropdown(order) {
+
+  let options = [];
+
+  if (order.status === "Placed") {
+    options = ["Placed", "Shipped", "Cancelled"];
+  } else if (order.status === "Shipped") {
+    options = ["Shipped", "Delivered"];
+  } else {
+    options = [order.status];
+  }
+
+  return `
+    <select
+      class="status-dropdown ${order.status.toLowerCase()}"
+      onchange="handleStatusChange('${order._id}', this)">
+      ${options.map(s => `
+        <option value="${s}" ${s === order.status ? "selected" : ""}>
+          ${s}
+        </option>
+      `).join("")}
+    </select>
+  `;
+}
+
+/* ======================================================
+   UPDATE ORDER STATUS
+====================================================== */
+async function handleStatusChange(orderId, selectEl) {
+
+  const newStatus = selectEl.value;
+  selectEl.className = "status-dropdown " + newStatus.toLowerCase();
+
+  try {
+    const token = localStorage.getItem("adminToken");
+
+    const res = await fetch(
+      `/api/admin/orders/${orderId}/status`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token
+        },
+        body: JSON.stringify({ status: newStatus })
+      }
+    );
+
+    const data = await res.json();
+    if (!data.success) alert("Failed to update status");
+
+  } catch (err) {
+    console.error("STATUS UPDATE ERROR:", err);
+  }
+}
+
+/* ================================
+   PAGINATION
+================================ */
+function renderPagination(totalPages, currentPage) {
+  const container = document.querySelector(".page-numbers");
+  container.innerHTML = "";
+
+  for (let i = 1; i <= totalPages; i++) {
+    container.innerHTML += `
+      <span class="num ${i === currentPage ? "active" : ""}"
+        onclick="loadOrders(${i})">${i}</span>
+    `;
+  }
+}
+
+/* ======================================================
+   PRODUCT IMAGE HELPER
+====================================================== */
+function getProductImage(order) {
+  const item = order.items?.[0];
+
+  if (!item?.product?.images?.length)
+    return "https://via.placeholder.com/40x40?text=IMG";
+
+  let image = item.product.images[0];
+  image = image.replace(/^\/?uploads\//, "");
+  return `/uploads/${image}`;
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

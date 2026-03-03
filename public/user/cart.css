@@ -1,0 +1,591 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 5%;
+    align-items: center;
+}
+
+.logo { font-size: 24px; font-weight: 600; letter-spacing: 4px; }
+nav a { text-decoration: none; color: #333; margin: 0 15px; font-size: 13px; }
+.nav-icons { display: flex; gap: 20px; cursor: pointer; }
+
+/* Layout Variables */
+:root {
+    --navy: #252B42;
+    --gray: #737373;
+    --blue: #23A6F0;
+    --bg-light: #F9F9F9;
+}
+
+body { font-family: 'Montserrat', sans-serif; color: var(--navy); margin: 0; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* Page Header */
+.cart-header { display: flex; justify-content: space-between; align-items: baseline; padding: 40px 0; border-bottom: 1px solid #E6E6E6; margin-bottom: 40px; }
+.cart-header h1 { font-size: 24px; font-weight: 700; margin: 0; }
+.item-count { color: var(--gray); font-weight: 600; }
+
+/* Main Grid Layout */
+.cart-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 120px auto 0;
+  margin-top: 150px;
+}
+
+
+/* Product Table Structure */
+.table-head { display: flex; padding-bottom: 20px; color: #BDBDBD; font-size: 12px; font-weight: 700; letter-spacing: 1px; }
+.cart-row { display: flex; align-items: center; padding: 30px 0; border-bottom: 1px solid #F1F1F1; }
+
+.col-product { flex: 2; }
+.col-qty, .col-price, .col-total { flex: 1; text-align: center; }
+
+/* Product Info Cell */
+.product-info { display: flex; gap: 20px; align-items: center; }
+.product-info img { width: 80px; height: 100px; object-fit: cover; border-radius: 4px; }
+.details h5 { margin: 0 0 5px; font-size: 16px; }
+.details p { margin: 0; font-size: 14px; color: var(--gray); }
+.remove-btn { background: none; border: none; color: #E74040; cursor: pointer; font-weight: 700; font-size: 12px; padding: 0; margin-top: 10px; }
+
+/* Qty Buttons */
+.qty-control { display: flex; justify-content: center; align-items: center; }
+.qty-control button { width: 30px; height: 30px; border: 1px solid #DDD; background: white; cursor: pointer; }
+.qty-control input { width: 40px; height: 30px; border: 1px solid #DDD; border-left: none; border-right: none; text-align: center; font-weight: 700; }
+
+/* Order Summary Sidebar */
+.order-summary { background: var(--bg-light); padding: 40px; border-radius: 8px; }
+.order-summary h3 { margin-top: 0; font-size: 20px; }
+.summary-row { display: flex; justify-content: space-between; margin: 25px 0; font-weight: 700; }
+.summary-field { margin-bottom: 25px; }
+.summary-field label { display: block; font-size: 12px; font-weight: 700; margin-bottom: 10px; }
+.summary-field select, .promo-box input { width: 100%; padding: 12px; border: 1px solid #DDD; border-radius: 4px; }
+
+.promo-box { display: flex; margin-top: 5px; }
+.promo-box input { border-radius: 4px 0 0 4px; }
+.promo-box button { background: #E74040; color: white; border: none; padding: 0 20px; border-radius: 0 4px 4px 0; font-weight: 700; cursor: pointer; }
+
+.total { font-size: 18px; color: var(--navy); padding-top: 10px; }
+.checkout-btn { width: 100%; padding: 18px; background: #7395FF; color: white; border: none; border-radius: 4px; font-weight: 700; cursor: pointer; margin-top: 20px; }
+
+.continue-link { display: inline-block; margin-top: 40px; text-decoration: none; color: var(--blue); font-weight: 700; font-size: 14px; }
+
+
+/* Footer Global */
+.main-footer {
+    background-color: #FFFFFF;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Footer Top Bar */
+.footer-top {
+    background-color: #FAFAFA; /* Light gray background from Figma */
+    padding: 40px 0;
+}
+
+.footer-brand-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-brand-row .logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #252B42;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.social-icons a {
+    color: #23A6F0; /* Primary blue color for icons */
+    font-size: 24px;
+}
+
+/* Footer Middle (Links) */
+.footer-middle {
+    padding: 70px 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columns as seen in design */
+    gap: 30px;
+}
+
+.footer-col h5 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #252B42;
+    margin-bottom: 20px;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    text-decoration: none;
+    color: #737373;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.footer-col ul li a:hover {
+    color: #23A6F0;
+}
+
+/* Newsletter Input */
+.subscribe-form {
+    display: flex;
+    height: 50px;
+}
+
+.subscribe-form input {
+    background: #F9F9F9;
+    border: 1px solid #E6E6E6;
+    border-radius: 5px 0 0 5px;
+    padding: 0 20px;
+    flex: 1;
+    font-size: 14px;
+}
+
+.subscribe-form button {
+    background-color: #23A6F0;
+    color: white;
+    border: none;
+    padding: 0 20px;
+    border-radius: 0 5px 5px 0;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.form-text {
+    font-size: 12px;
+    color: #737373;
+    margin-top: 10px;
+}
+
+/* Footer Bottom Bar */
+.footer-bottom {
+    background-color: #FAFAFA;
+    padding: 25px 0;
+}
+
+.footer-bottom p {
+    font-size: 14px;
+    font-weight: 700;
+    color: #737373;
+    text-align: left;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 992px) {
+    .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    .newsletter { grid-column: span 2; }
+}
+
+@media (max-width: 600px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .newsletter { grid-column: span 1; }
+    .footer-brand-row { flex-direction: column; gap: 20px; text-align: center; }
+}
+/* Container for the cart and checkout area */
+.cart-page {
+    margin-bottom: 40px; /* Reduced from 100px for a smaller gap */
+}
+
+/* The ENVA Brand Section in Footer */
+.main-footer {
+    border-top: 1px solid #F1F1F1;
+    padding-top: 40px; /* Smaller internal top padding */
+}
+
+/* Spacing between ENVA logo and the 5-column grid */
+.footer-top {
+    margin-bottom: 30px; /* Tightens the area around the ENVA logo */
+}
+/* ================= PERFECT MOBILE CART ================= */
+@media (max-width: 768px) {
+
+  /* Page layout */
+  .cart-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* Remove desktop header */
+  .table-head {
+    display: none;
+  }
+
+  /* Cart item card */
+  .cart-row {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 14px;
+    border: 1px solid #eaeaea;
+    border-radius: 10px;
+    background: #fff;
+  }
+
+  /* Product top row */
+  .product-info {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: 12px;
+    align-items: start;
+  }
+
+  .product-info img {
+    width: 70px;
+    height: auto;
+    border-radius: 6px;
+  }
+
+  .product-info .details h5 {
+    font-size: 14px;
+    margin: 0 0 4px;
+  }
+
+  .product-info .details p {
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 4px;
+  }
+
+  .remove-btn {
+    font-size: 12px;
+    color: #e53935;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  /* Info rows (Qty / Price / Total) */
+  .col-qty,
+  .col-price,
+  .col-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    padding-top: 6px;
+    border-top: 1px dashed #eee;
+  }
+
+  .col-qty::before {
+    content: "Qty";
+    font-weight: 600;
+  }
+
+  .col-price::before {
+    content: "Price";
+    font-weight: 600;
+  }
+
+  .col-total::before {
+    content: "Total";
+    font-weight: 600;
+  }
+
+  /* Quantity buttons */
+  .qty-control {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .qty-control button {
+    width: 28px;
+    height: 28px;
+  }
+
+  .qty-control input {
+    width: 40px;
+    text-align: center;
+  }
+
+  /* Continue shopping */
+  .continue-link {
+    font-size: 14px;
+    margin-top: 10px;
+    display: inline-block;
+  }
+
+  /* Order summary */
+  .order-summary {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid #eaeaea;
+    border-radius: 10px;
+    background: #fff;
+  }
+
+  .order-summary h3 {
+    font-size: 16px;
+  }
+
+  .checkout-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 15px;
+  }
+}
+/* ================= MOBILE CART FIX ================= */
+@media (max-width: 768px) {
+
+  .cart-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    
+
+    /* 🔥 RESET DESKTOP PROBLEMS */
+    margin: 0;
+    margin-top: 20px;
+    width: 100%;
+    padding: 0 14px;
+  }
+
+  /* Cart items full width */
+  .cart-items {
+    width: 100%;
+  }
+
+  /* Each product card */
+  .cart-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 14px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+  }
+
+  .cart-row img {
+    width: 70px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+
+  .cart-row .details h5 {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  .cart-row .details p {
+    font-size: 12px;
+    color: #666;
+  }
+
+  /* Quantity buttons */
+  .qty-control {
+    margin-top: 8px;
+  }
+
+  /* Order summary like screenshot */
+  .order-summary {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  .order-summary h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  .summary-row {
+    font-size: 14px;
+  }
+
+  .checkout-btn {
+    width: 100%;
+    margin-top: 12px;
+  }
+}
+
+ @media(max-width: 768px){
+.cart-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: 20px 0px 0px;
+    width: 100%;
+    padding: 0px 14px;
+    margin-top: 120px;
+}
+ }
+
+ 
+ /* ==============================
+   AVAILABLE OFFERS (COUPONS)
+================================ */
+
+#couponList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 12px 0 18px;
+}
+
+/* Base Coupon Card */
+.coupon-card {
+  border: 1.5px dashed #d0d5dd;
+  border-radius: 10px;
+  padding: 14px 16px;
+  background: #fafafa;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* Coupon Text */
+.coupon-card strong {
+  font-size: 14px;
+  color: #1a73e8;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.coupon-card p {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111;
+  margin: 0;
+}
+
+.coupon-card small {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* ==============================
+   ACTIVE COUPON
+================================ */
+
+.coupon-active {
+  background: #f0f7ff;
+  border-color: #1a73e8;
+}
+
+.coupon-active:hover {
+  background: #e8f2ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(26, 115, 232, 0.15);
+}
+
+/* ==============================
+   DISABLED / NOT ELIGIBLE
+================================ */
+
+.coupon-disabled {
+  background: #f5f5f5;
+  border-color: #ddd;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.coupon-disabled strong {
+  color: #9ca3af;
+}
+
+.coupon-disabled p {
+  color: #9ca3af;
+}
+
+/* ==============================
+   AVAILABLE OFFERS TITLE
+================================ */
+
+.available-offers-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+/* ==============================
+   PROMO INPUT SECTION POLISH
+================================ */
+
+.promo-box {
+  display: flex;
+  gap: 6px;
+}
+
+#couponInput {
+  flex: 1;
+  height: 42px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  padding: 0 12px;
+  font-size: 14px;
+}
+
+#applyCouponBtn {
+  height: 42px;
+  padding: 0 18px;
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#applyCouponBtn:hover {
+  background: #dc2626;
+}
+
+#applyCouponBtn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+/* ===============================
+   MINIMAL STOCK TEXT (SMALL)
+================================ */
+
+.stock-msg {
+  margin-top: 4px;
+  font-size: 10px;
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.2px;
+}
+
+/* OUT OF STOCK */
+.stock-msg.out {
+  color: #d32f2f;
+}
+
+/* ONLY X LEFT */
+.stock-msg.critical {
+  color: #e53935;
+}
+
+/* LOW STOCK */
+.stock-msg.low {
+  color: #f57c00;
+}
+
+/* IN STOCK (optional if needed) */
+.stock-msg.in {
+  color: #2e7d32;
+}

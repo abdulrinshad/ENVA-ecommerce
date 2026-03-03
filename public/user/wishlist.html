@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist | ENVA Jewelry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="wishlist.css">
+    <link rel="stylesheet" href="userSigned.css">
+</head>
+<body>
+
+   <header class="main-header">
+
+  <!-- Mobile Menu Icon -->
+  <span class="menu-toggle" id="menuToggle">
+    <i class="fas fa-bars"></i>
+  </span>
+
+  <!-- Logo -->
+  <div class="logo">ENVA</div>
+
+  <!-- Desktop Nav -->
+  <nav class="nav-links">
+    <a href="usersigned.html">HOME</a>
+    <a href="shopuser.html">SHOP</a>
+    <a href="about.html">ABOUT</a>
+    <a href="contact.html">CONTACT</a>
+  </nav>
+
+  <!-- Header Actions -->
+  <div class="header-actions">
+
+    <!-- Search -->
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <i class="fas fa-search"></i>
+    </div>
+
+    <!-- Icons -->
+    <div class="icon-group">
+
+      <a href="#"><i class="far fa-heart"></i></a>
+      <a href="#"><i class="fas fa-shopping-cart"></i></a>
+
+      <!-- USER MENU -->
+      <div class="user-menu">
+        <a href="#" id="userToggle" class="user-icon">
+          <i class="far fa-user"></i>
+        </a>
+
+        <div class="user-dropdown" id="userDropdown">
+          <a href="myaccount.html">
+            <i class="far fa-user"></i> Manage My Account
+          </a>
+          <a href="orders.html">
+            <i class="fas fa-box"></i> My Orders
+          </a>
+          <a href="logout.html" class="logout">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</header>
+
+
+  <!-- MOBILE MENU -->
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">HOME</a>
+  <a href="shop.html">SHOP</a>
+  <a href="about.html">ABOUT</a>
+  <a href="contact.html">CONTACT</a>
+</nav>
+
+
+  <div class="header-actions">
+
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <i class="fas fa-search"></i>
+    </div>
+    <!-- MOBILE SEARCH BAR -->
+<div class="mobile-search" id="mobileSearch">
+  <div class="mobile-search-box">
+    <input type="text" placeholder="Search products...">
+    <span class="close-search" id="closeSearch">
+      <i class="fas fa-times"></i>
+    </span>
+  </div>
+</div>
+
+    <span class="search-icon">
+    <i class="fas fa-search"></i>
+  </span>
+
+    <div class="icon-group">
+      <a href="#"><i class="far fa-heart"></i></a>
+      <a href="#"><i class="fas fa-shopping-cart"></i></a>
+      <a href="#"><i class="far fa-user"></i></a>
+    </div>
+  </div>
+</header>
+
+    <main class="wishlist-page-wrapper">
+  <div class="container">
+
+    <!-- ================= HEADER ================= -->
+    <div class="wishlist-header">
+      <h3 class="wishlist-count" id="wishlistCount">
+        Wishlist (0)
+      </h3>
+
+      <button class="btn-outline" id="moveAllBtn">
+        Move All To Cart
+      </button>
+    </div>
+
+    <!-- ================= GRID ================= -->
+    <div class="wishlist-grid" id="wishlistGrid">
+      
+      <!-- Dynamic wishlist cards will load here -->
+
+    </div>
+
+    <!-- ================= EMPTY STATE ================= -->
+    <div id="emptyWishlist" style="display:none; text-align:center; padding:80px 0;">
+      <i class="far fa-heart" style="font-size:48px; color:#ccc; margin-bottom:20px;"></i>
+      <h3 style="margin-bottom:10px;">Your Wishlist is Empty</h3>
+      <p style="color:#777; margin-bottom:20px;">
+        Start adding items you love ❤️
+      </p>
+      <a href="shopuser.html" class="btn-outline">
+        Continue Shopping
+      </a>
+    </div>
+
+  </div>
+</main>
+
+    <footer class="main-footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="footer-brand-row">
+                <h3 class="logo">ENVA</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-middle">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Company Info</h5>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Carrier</a></li>
+                        <li><a href="#">We are hiring</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Carrier</a></li>
+                        <li><a href="#">We are hiring</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Features</h5>
+                    <ul>
+                        <li><a href="#">Business Marketing</a></li>
+                        <li><a href="#">User Analytic</a></li>
+                        <li><a href="#">Live Chat</a></li>
+                        <li><a href="#">Unlimited Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Resources</h5>
+                    <ul>
+                        <li><a href="#">IOS & Android</a></li>
+                        <li><a href="#">Watch a Demo</a></li>
+                        <li><a href="#">Customers</a></li>
+                        <li><a href="#">API</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col newsletter">
+                    <h5>Get In Touch</h5>
+                    <form class="subscribe-form">
+                        <input type="email" placeholder="Your Email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <p class="form-text">Lore imp sum dolor Amit</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container">
+            <p>Made With Love By Finland All Right Reserved</p>
+        </div>
+    </div>
+</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  /* =====================================================
+   ENVA – PROFESSIONAL WISHLIST PAGE SCRIPT
+===================================================== */
+
+/* ===============================
+   AUTH CHECK
+================================ */
+function getToken() {
+  return localStorage.getItem("userToken");
+}
+
+function isLoggedIn() {
+  return !!getToken();
+}
+
+/* ===============================
+   GLOBAL ELEMENTS
+================================ */
+const grid = document.getElementById("wishlistGrid");
+const countText = document.getElementById("wishlistCount");
+const emptyBox = document.getElementById("emptyWishlist");
+const moveAllBtn = document.getElementById("moveAllBtn");
+
+/* =====================================================
+   PAGE INIT
+===================================================== */
+document.addEventListener("DOMContentLoaded", async () => {
+
+  if (!isLoggedIn()) {
+    showLoginAlert();
+    return;
+  }
+
+  await loadWishlist();
+  initNavbar();
+});
+
+/* =====================================================
+   LOGIN ALERT
+===================================================== */
+function showLoginAlert() {
+  Swal.fire({
+    icon: "warning",
+    title: "Login Required",
+    text: "Please login to view your wishlist",
+    showCancelButton: true,
+    confirmButtonText: "Login",
+    cancelButtonText: "Cancel",
+    confirmButtonColor: "#6c63ff"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.href = "login.html";
+    } else {
+      window.location.href = "index.html";
+    }
+  });
+}
+
+/* =====================================================
+   LOAD WISHLIST
+===================================================== */
+async function loadWishlist() {
+  try {
+    const res = await fetch("/api/wishlist", {
+      headers: {
+        Authorization: "Bearer " + getToken()
+      }
+    });
+
+    if (!res.ok) throw new Error("Unauthorized");
+
+    const data = await res.json();
+    if (!data.success) return;
+
+    const wishlist = data.wishlist || [];
+
+    countText.innerText = `Wishlist (${wishlist.length})`;
+    grid.innerHTML = "";
+
+    if (wishlist.length === 0) {
+      emptyBox.style.display = "block";
+      moveAllBtn.style.display = "none";
+      return;
+    }
+
+    emptyBox.style.display = "none";
+    moveAllBtn.style.display = "inline-block";
+
+    wishlist.forEach(product => {
+      grid.innerHTML += `
+        <div class="wishlist-card">
+
+          <div class="wishlist-img-box">
+            <img 
+              src="${product.images?.[0] || '/images/no-image.png'}"
+              alt="${product.name}"
+              style="cursor:pointer"
+              onclick="goToProduct('${product._id}')"
+            >
+
+            <button class="remove-wishlist"
+                    onclick="removeItem('${product._id}')">
+              <i class="far fa-trash-alt"></i>
+            </button>
+
+            <button class="add-to-cart-bar"
+                    onclick="moveToCart('${product._id}')">
+              <i class="fas fa-shopping-cart"></i> Add To Cart
+            </button>
+          </div>
+
+          <div class="wishlist-info">
+            <h4>${product.name}</h4>
+
+            <div class="price-row">
+              <span class="current-price">₹${product.price}</span>
+              ${product.oldPrice ? 
+                `<span class="old-price">₹${product.oldPrice}</span>` 
+                : ""}
+            </div>
+
+            <p class="product-tagline">Premium Collection</p>
+          </div>
+
+        </div>
+      `;
+    });
+
+  } catch (error) {
+    console.error("Wishlist Load Error:", error);
+
+    Swal.fire({
+      icon: "error",
+      title: "Session Expired",
+      text: "Please login again"
+    }).then(() => {
+      localStorage.removeItem("userToken");
+      window.location.href = "login.html";
+    });
+  }
+}
+
+/* =====================================================
+   REMOVE ITEM
+===================================================== */
+async function removeItem(productId) {
+  try {
+    await fetch(`/api/wishlist/${productId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: "Bearer " + getToken()
+      }
+    });
+
+    await loadWishlist();
+
+    Swal.fire({
+      icon: "success",
+      title: "Removed",
+      timer: 1000,
+      showConfirmButton: false
+    });
+
+  } catch (error) {
+    console.error("Remove Failed:", error);
+  }
+}
+
+/* =====================================================
+   MOVE SINGLE TO CART
+===================================================== */
+async function moveToCart(productId) {
+  try {
+    await fetch("/api/cart/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + getToken()
+      },
+      body: JSON.stringify({
+        productId,
+        qty: 1,
+        size: "M"
+      })
+    });
+
+    await removeItem(productId);
+
+    Swal.fire({
+      icon: "success",
+      title: "Moved to Cart",
+      timer: 1200,
+      showConfirmButton: false
+    });
+
+  } catch (error) {
+    console.error("Move to Cart Failed:", error);
+  }
+}
+
+/* =====================================================
+   MOVE ALL TO CART
+===================================================== */
+moveAllBtn.addEventListener("click", async () => {
+
+  try {
+    const res = await fetch("/api/wishlist", {
+      headers: {
+        Authorization: "Bearer " + getToken()
+      }
+    });
+
+    const data = await res.json();
+    const wishlist = data.wishlist || [];
+
+    for (let product of wishlist) {
+
+      await fetch("/api/cart/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + getToken()
+        },
+        body: JSON.stringify({
+          productId: product._id,
+          qty: 1,
+          size: "M"
+        })
+      });
+
+      await fetch(`/api/wishlist/${product._id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: "Bearer " + getToken()
+        }
+      });
+    }
+
+    await loadWishlist();
+
+    Swal.fire({
+      icon: "success",
+      title: "All items moved to cart",
+      timer: 1500,
+      showConfirmButton: false
+    });
+
+  } catch (error) {
+    console.error("Move All Failed:", error);
+  }
+});
+
+/* =====================================================
+   PRODUCT REDIRECT
+===================================================== */
+function goToProduct(productId) {
+  window.location.href = `product-single.html?id=${productId}`;
+}
+
+/* =====================================================
+   NAVBAR LOGIC
+===================================================== */
+function initNavbar() {
+
+  const userToggle = document.getElementById("userToggle");
+  const userDropdown = document.getElementById("userDropdown");
+
+  if (userToggle && userDropdown) {
+    userToggle.addEventListener("click", (e) => {
+      e.preventDefault();
+      userDropdown.classList.toggle("active");
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".user-menu")) {
+        userDropdown.classList.remove("active");
+      }
+    });
+  }
+
+  const menuToggle = document.getElementById("menuToggle");
+  const mobileNav = document.getElementById("mobileNav");
+
+  if (menuToggle && mobileNav) {
+    menuToggle.addEventListener("click", () => {
+      mobileNav.classList.toggle("active");
+    });
+  }
+}
+</script>
+
+<script src="/js/popup.js"></script>
+<script src="/js/popup.js"></script>
+</body>
+</html>

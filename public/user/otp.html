@@ -1,0 +1,322 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Verify OTP - Tokyo Sports</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="userSigned.css">
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        min-height: 100vh;
+        background: #f5f7fb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .otp-wrapper {
+        background: #ffffff;
+        width: 900px;
+        border-radius: 24px;
+        display: flex;
+        overflow: hidden;
+      }
+
+      /* LEFT SIDE */
+      .otp-left {
+        flex: 1;
+        padding: 60px;
+      }
+
+      .brand {
+        display: inline-block;
+        background: #eef2ff;
+        color: #3b82f6;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 14px;
+        margin-bottom: 30px;
+      }
+
+      .otp-left h2 {
+        font-size: 28px;
+        margin-bottom: 10px;
+      }
+
+      .otp-left p {
+        color: #555;
+        margin-bottom: 25px;
+      }
+
+      .otp-left p span {
+        font-weight: 600;
+        color: #000;
+      }
+
+      .otp-inputs {
+        display: flex;
+        gap: 14px;
+        margin-bottom: 30px;
+      }
+
+      .otp-box {
+        width: 60px;
+        height: 60px;
+        border-radius: 14px;
+        border: 1px solid #ddd;
+        font-size: 22px;
+        text-align: center;
+        outline: none;
+      }
+
+      .otp-box:focus {
+        border-color: #3b82f6;
+      }
+
+      .verify-btn {
+        width: 100%;
+        padding: 16px;
+        background: #3b82f6;
+        color: white;
+        border: none;
+        border-radius: 30px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .verify-btn:hover {
+        background: #2563eb;
+      }
+
+      .otp-note {
+        margin-top: 14px;
+        font-size: 14px;
+        color: #777;
+        text-align: center;
+      }
+
+      /* RIGHT SIDE IMAGE */
+      .otp-right {
+        flex: 1;
+        background: url("https://images.unsplash.com/photo-1523381210434-271e8be1f52b")
+          center / cover no-repeat;
+        position: relative;
+      }
+
+      .otp-right::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.75);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 48px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        color: #111;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 900px) {
+        .otp-wrapper {
+          width: 95%;
+          flex-direction: column;
+        }
+
+        .otp-right {
+          height: 260px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- ================= HEADER ================= -->
+  <header class="main-header">
+
+    <!-- Mobile Menu Icon -->
+    <span class="menu-toggle" id="menuToggle">
+      <i class="fas fa-bars"></i>
+    </span>
+
+    <!-- Logo -->
+    <div class="logo">ENVA</div>
+
+    <!-- Desktop Nav -->
+    <nav class="nav-links">
+      <a href="usersigned.html">HOME</a>
+      <a href="shopuser.html">SHOP</a>
+      <a href="about.html">ABOUT</a>
+      <a href="contact.html">CONTACT</a>
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="header-actions">
+
+      <!-- Search -->
+      <div class="search-bar">
+        <input type="text" placeholder="Search...">
+        <i class="fas fa-search"></i>
+      </div>
+
+      <!-- Icons -->
+      <div class="icon-group">
+
+        <a href="#"><i class="far fa-heart"></i></a>
+        <a href="#"><i class="fas fa-shopping-cart"></i></a>
+
+        <!-- USER MENU -->
+        <div class="user-menu">
+          <a href="#" id="userToggle" class="user-icon">
+            <i class="far fa-user"></i>
+          </a>
+
+          <div class="user-dropdown" id="userDropdown">
+            <a href="myaccount.html">
+              <i class="far fa-user"></i> Manage My Account
+            </a>
+            <a href="orders.html">
+              <i class="fas fa-box"></i> My Orders
+            </a>
+            <a href="logout.html" class="logout">
+              <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </header>
+
+  <!-- ================= MOBILE NAV ================= -->
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="usersigned.html">HOME</a>
+    <a href="shopuser.html">SHOP</a>
+    <a href="about.html">ABOUT</a>
+    <a href="contact.html">CONTACT</a>
+  </nav>
+
+  <!-- ================= HERO / CAROUSEL ================= -->
+
+  <!-- ================= MOBILE SEARCH ================= -->
+  <div class="mobile-search" id="mobileSearch">
+    <div class="mobile-search-box">
+      <input type="text" placeholder="Search products...">
+      <span class="close-search" id="closeSearch">
+        <i class="fas fa-times"></i>
+      </span>
+    </div>
+  </div>
+
+
+      <span class="search-icon">
+      <i class="fas fa-search"></i>
+    </span>
+
+      <div class="icon-group">
+        <a href="#"><i class="far fa-heart"></i></a>
+        <a href="#"><i class="fas fa-shopping-cart"></i></a>
+        <a href="#"><i class="far fa-user"></i></a>
+      </div>
+    </div>
+  </header>
+
+    <div class="otp-wrapper">
+      <!-- LEFT -->
+      <div class="otp-left">
+        <span class="brand">Enva Clothing</span>
+        <h2>Check your email</h2>
+        <p>
+          We sent a code to <span id="userEmail">your@email.com</span>
+        </p>
+
+        <div class="otp-inputs">
+          <input class="otp-box" maxlength="1" />
+          <input class="otp-box" maxlength="1" />
+          <input class="otp-box" maxlength="1" />
+          <input class="otp-box" maxlength="1" />
+          <input class="otp-box" maxlength="1" />
+          <input class="otp-box" maxlength="1" />
+        </div>
+
+        <button class="verify-btn" onclick="verifyOtp()">Verify Code</button>
+
+        <div class="otp-note">Check your Email for the OTP</div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="otp-right"></div>
+    </div>
+
+    
+   <script>
+  const inputs = document.querySelectorAll(".otp-box");
+
+  // Auto move input
+  inputs.forEach((input, index) => {
+    input.addEventListener("input", () => {
+      if (input.value && index < inputs.length - 1) {
+        inputs[index + 1].focus();
+      }
+    });
+
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Backspace" && !input.value && index > 0) {
+        inputs[index - 1].focus();
+      }
+    });
+  });
+
+  // ✅ GET EMAIL FROM LOCAL STORAGE
+  const email = localStorage.getItem("signupEmail");
+  document.getElementById("userEmail").innerText =
+    email || "your@email.com";
+
+  async function verifyOtp() {
+    const otp = Array.from(inputs).map(i => i.value).join("");
+
+    if (otp.length !== 6) {
+      Swal.fire("Error ❌", "Enter full OTP", "error");
+      return;
+    }
+
+    const res = await fetch("/api/auth/verify-otp", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, otp }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      Swal.fire("Error ❌", data.message, "error");
+      return;
+    }
+
+    Swal.fire("Success ✅", "Account verified successfully", "success");
+
+    localStorage.removeItem("signupEmail");
+
+    setTimeout(() => {
+      window.location.href = "login.html";
+    }, 1500);
+  }
+</script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="/js/popup.js"></script>
+  </body>
+  </html>

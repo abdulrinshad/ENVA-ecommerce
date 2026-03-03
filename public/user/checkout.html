@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | ENVA Luxury</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="checkout.css">
+    <link rel="stylesheet" href="userSigned.css">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+</head>
+<body>
+
+    <header class="main-header">
+
+  <!-- Mobile Menu Icon -->
+  <span class="menu-toggle" id="menuToggle">
+    <i class="fas fa-bars"></i>
+  </span>
+
+  <!-- Logo -->
+  <div class="logo">ENVA</div>
+
+  <!-- Desktop Nav -->
+  <nav class="nav-links">
+    <a href="usersigned.html">HOME</a>
+    <a href="shopuser.html">SHOP</a>
+    <a href="about.html">ABOUT</a>
+    <a href="contact.html">CONTACT</a>
+  </nav>
+
+  <!-- Header Actions -->
+  <div class="header-actions">
+
+    <!-- Search -->
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <i class="fas fa-search"></i>
+    </div>
+
+    <!-- Icons -->
+    <div class="icon-group">
+
+      <a href="#"><i class="far fa-heart"></i></a>
+      <a href="#"><i class="fas fa-shopping-cart"></i></a>
+
+      <!-- USER MENU -->
+      <div class="user-menu">
+        <a href="#" id="userToggle" class="user-icon">
+          <i class="far fa-user"></i>
+        </a>
+
+        <div class="user-dropdown" id="userDropdown">
+          <a href="myaccount.html">
+            <i class="far fa-user"></i> Manage My Account
+          </a>
+          <a href="orders.html">
+            <i class="fas fa-box"></i> My Orders
+          </a>
+          <a href="logout.html" class="logout">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</header>
+
+  <!-- MOBILE MENU -->
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">HOME</a>
+  <a href="shop.html">SHOP</a>
+  <a href="about.html">ABOUT</a>
+  <a href="contact.html">CONTACT</a>
+</nav>
+
+
+  <div class="header-actions">
+
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <i class="fas fa-search"></i>
+    </div>
+    <!-- MOBILE SEARCH BAR -->
+<div class="mobile-search" id="mobileSearch">
+  <div class="mobile-search-box">
+    <input type="text" placeholder="Search products...">
+    <span class="close-search" id="closeSearch">
+      <i class="fas fa-times"></i>
+    </span>
+  </div>
+</div>
+
+    <span class="search-icon">
+    <i class="fas fa-search"></i>
+  </span>
+
+    <div class="icon-group">
+      <a href="#"><i class="far fa-heart"></i></a>
+      <a href="#"><i class="fas fa-shopping-cart"></i></a>
+      <a href="#"><i class="far fa-user"></i></a>
+    </div>
+  </div>
+</header>
+
+     
+    <main class="checkout-wrapper container">
+  <nav class="breadcrumb-nav">
+    <a href="index.html">Account</a> /
+    <a href="cart.html">View Cart</a> /
+    <span>Checkout</span>
+  </nav>
+
+  <div class="checkout-layout">
+
+    <!-- SHIPPING ADDRESS (EMPTY FOR NOW) -->
+    <section class="billing-section">
+  <h2 class="section-title">Shipping Address</h2>
+
+  <!-- ADDRESS LIST -->
+  <div id="addressList">
+    <p class="address-placeholder">No address selected</p>
+  </div>
+
+  <button class="add-address-btn" id="addAddressBtn">
+    <i class="fas fa-plus"></i> Add New Address
+  </button>
+</section>
+
+
+
+    <!-- ORDER SUMMARY -->
+    <aside class="summary-sidebar">
+      <div class="summary-card">
+
+        <!-- CART ITEMS WILL LOAD HERE -->
+        <div class="order-items" id="checkoutItems"></div>
+
+        <!-- BILL SUMMARY -->
+        <div class="bill-calc">
+          <div class="calc-line">
+            <span>Subtotal</span>
+            <span id="checkoutSubtotal">₹0</span>
+          </div>
+
+          <div class="calc-line" id="discountRow" style="display:none;">
+  <span style="color:green;">Coupon Discount</span>
+  <span style="color:green;" id="checkoutDiscount">-₹0</span>
+</div>
+
+
+          <div class="calc-line">
+            <span>Shipping</span>
+            <span id="checkoutShipping">₹5</span>
+          </div>
+
+          <div class="calc-line total">
+            <span>Total</span>
+            <span id="checkoutTotal">₹0</span>
+          </div>
+        </div>
+
+       <h4 class="pay-title">Payment Method</h4>
+
+<!-- WALLET -->
+<div class="payment-option active">
+  <input type="radio" name="paymentMethod" value="wallet" />
+  <div class="pay-text">
+    <strong>My Wallet</strong>
+    <p>Available Balance: ₹<span id="checkoutWalletBalance">0</span></p>
+  </div>
+  <i class="fas fa-wallet"></i>
+</div>
+
+<!-- RAZORPAY / UPI -->
+<div class="payment-option">
+  <input type="radio" name="paymentMethod" value="razorpay" checked />
+  <div class="pay-text">
+    <strong>Razorpay / UPI / Card</strong>
+    <span>Pay securely via UPI, Card, Netbanking</span>
+  </div>
+  <i class="far fa-credit-card"></i>
+</div>
+
+<!-- CASH ON DELIVERY -->
+<div class="payment-option">
+  <input type="radio" name="paymentMethod" value="cod" />
+  <div class="pay-text">
+    <strong>Cash on Delivery</strong>
+    <span>Pay when product is delivered</span>
+  </div>
+  <i class="fas fa-money-bill"></i>
+</div>
+
+<button id="placeOrderBtn" class="place-order-btn">
+  PLACE ORDER
+</button>
+
+
+    </aside>
+
+  </div>
+</main>
+
+
+     <footer class="main-footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="footer-brand-row">
+                <h3 class="logo">ENVA</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-middle">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Company Info</h5>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Carrier</a></li>
+                        <li><a href="#">We are hiring</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Carrier</a></li>
+                        <li><a href="#">We are hiring</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Features</h5>
+                    <ul>
+                        <li><a href="#">Business Marketing</a></li>
+                        <li><a href="#">User Analytic</a></li>
+                        <li><a href="#">Live Chat</a></li>
+                        <li><a href="#">Unlimited Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Resources</h5>
+                    <ul>
+                        <li><a href="#">IOS & Android</a></li>
+                        <li><a href="#">Watch a Demo</a></li>
+                        <li><a href="#">Customers</a></li>
+                        <li><a href="#">API</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col newsletter">
+                    <h5>Get In Touch</h5>
+                    <form class="subscribe-form">
+                        <input type="email" placeholder="Your Email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <p class="form-text">Lore imp sum dolor Amit</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container">
+            <p>Made With Love By Finland All Right Reserved</p>
+        </div>
+    </div>
+</footer>
+<!-- ADDRESS MODAL -->
+<div class="address-modal" id="addressModal">
+  <div class="modal-overlay"></div>
+
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>Add New Address</h3>
+      <button class="close-modal" id="closeModal">&times;</button>
+    </div>
+
+    <!-- ✅ FORM START -->
+    <form class="address-form" id="addressForm">
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label>First Name*</label>
+          <input type="text" name="firstName" required>
+        </div>
+
+        <div class="form-group">
+          <label>Last Name*</label>
+          <input type="text" name="lastName" required>
+        </div>
+
+        <div class="form-group">
+          <label>Phone*</label>
+          <input type="tel" name="phone" placeholder="10 digit number" required>
+        </div>
+
+        <div class="form-group">
+          <label>Pincode*</label>
+          <input type="text" name="pincode" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Street Address*</label>
+        <input type="text" name="street" placeholder="House No, Street, Area" required>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label>City*</label>
+          <input type="text" name="city" required>
+        </div>
+
+        <div class="form-group">
+          <label>State*</label>
+          <input type="text" name="state" required>
+        </div>
+      </div>
+
+      <div class="checkbox-line">
+        <input type="checkbox" checked>
+        <span>Save this address to my Address Book for future use</span>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn-cancel" id="cancelModal">Cancel</button>
+        <!-- ✅ SUBMIT BUTTON INSIDE FORM -->
+        <button type="submit" class="btn-save">Save & Use</button>
+      </div>
+
+    </form>
+    <!-- ✅ FORM END -->
+
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  loadCheckoutCart();
+  loadWalletBalance();
+  initPaymentUI();
+  initPlaceOrder();
+  initAddressModal();
+  loadAddresses();
+});
+
+/* =========================
+   LOAD CART FROM BACKEND
+========================= */
+async function loadCheckoutCart() {
+  try {
+    const token = localStorage.getItem("userToken");
+    if (!token) {
+      window.location.href = "login.html";
+      return;
+    }
+
+    const res = await fetch("/api/cart", {
+      headers: { Authorization: "Bearer " + token }
+    });
+
+    const cart = await res.json();
+    console.log("CHECKOUT CART:", cart);
+
+    if (!cart.items || cart.items.length === 0) {
+      document.getElementById("checkoutItems").innerHTML =
+        "<p class='empty-text'>Your cart is empty</p>";
+      return;
+    }
+
+    renderCheckout(cart);
+
+  } catch (err) {
+    console.error(err);
+    alert("Unable to load checkout");
+  }
+}
+
+/* =========================
+   RENDER CHECKOUT (CORRECT)
+========================= */
+function renderCheckout(cart) {
+  const container = document.getElementById("checkoutItems");
+  container.innerHTML = "";
+
+  cart.items.forEach(item => {
+    const product = item.product;
+    const image = product?.images?.[0] || "/images/no-image.png";
+    const lineTotal = item.qty * item.price;
+
+    container.innerHTML += `
+      <div class="order-item">
+        <div class="item-left">
+          <img src="${image}" alt="${product.name}">
+          <div class="item-info">
+            <p class="item-name">${product.name}</p>
+            <p class="item-meta">Size: ${item.size} · Qty: ${item.qty}</p>
+          </div>
+        </div>
+        <div class="item-price">₹${lineTotal}</div>
+      </div>
+    `;
+  });
+
+  const shipping = 5;
+  const subtotal = cart.total;                 // ✅ original
+  const discount = cart.coupon?.discount || 0; // ✅ coupon amount
+  const total = subtotal - discount + shipping;
+
+  // Subtotal
+  document.getElementById("checkoutSubtotal").innerText = `₹${subtotal}`;
+
+  // Discount row (ONLY if coupon applied)
+  const discountRow = document.getElementById("discountRow");
+  const discountEl = document.getElementById("checkoutDiscount");
+
+  if (discount > 0) {
+    discountRow.style.display = "flex";
+    discountEl.innerText = `-₹${discount}`;
+  } else {
+    discountRow.style.display = "none";
+  }
+
+  // Shipping & total
+  document.getElementById("checkoutShipping").innerText = `₹${shipping}`;
+  document.getElementById("checkoutTotal").innerText = `₹${total}`;
+}
+
+/* =========================
+   WALLET BALANCE
+========================= */
+async function loadWalletBalance() {
+  try {
+    const token = localStorage.getItem("userToken");
+    if (!token) return;
+
+    const res = await fetch("/api/wallet", {
+      headers: { Authorization: "Bearer " + token }
+    });
+
+    const wallet = await res.json();
+    document.getElementById("checkoutWalletBalance").innerText =
+      wallet.balance.toFixed(2);
+
+  } catch (err) {
+    console.error("Wallet load failed", err);
+  }
+}
+
+/* =========================
+   PAYMENT UI
+========================= */
+function initPaymentUI() {
+  document.querySelectorAll(".payment-option").forEach(option => {
+    option.addEventListener("click", () => {
+      document.querySelectorAll(".payment-option")
+        .forEach(p => p.classList.remove("active"));
+
+      option.classList.add("active");
+      option.querySelector("input").checked = true;
+    });
+  });
+}
+
+/* =========================
+   PLACE ORDER
+========================= */
+function initPlaceOrder() {
+  const btn = document.getElementById("placeOrderBtn");
+
+  btn.addEventListener("click", async () => {
+    const addressId = localStorage.getItem("selectedAddressId");
+    if (!addressId) {
+      Swal.fire("Address Required", "Please select address", "warning");
+      return;
+    }
+
+    const paymentMethod = document.querySelector(
+      'input[name="paymentMethod"]:checked'
+    )?.value;
+
+    if (!paymentMethod) {
+      Swal.fire("Select Payment Method");
+      return;
+    }
+
+    if (paymentMethod === "razorpay") {
+      startRazorpayPayment(addressId);
+      return;
+    }
+
+    await placeOrder(addressId, paymentMethod);
+  });
+}
+
+/* =========================
+   RAZORPAY
+========================= */
+async function startRazorpayPayment(addressId) {
+  try {
+    const token = localStorage.getItem("userToken");
+
+    const res = await fetch("/api/payment/create-order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token
+      }
+    });
+
+    const order = await res.json();
+
+    const options = {
+      key: "rzp_test_SBB6tymM8aRBjZ",
+      amount: order.amount,
+      currency: "INR",
+      name: "ENVA Luxury",
+      order_id: order.id,
+      handler: function (response) {
+        placeOrder(addressId, "razorpay", response);
+      }
+    };
+
+    new Razorpay(options).open();
+
+  } catch (err) {
+    Swal.fire("Payment Error");
+  }
+}
+
+/* =========================
+   FINAL ORDER CREATE
+========================= */
+async function placeOrder(addressId, paymentMethod, razorpayData = null) {
+  const res = await fetch("/api/orders", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("userToken")
+    },
+    body: JSON.stringify({ address: addressId, paymentMethod, razorpayData })
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    Swal.fire("Order Failed", data.message, "error");
+    return;
+  }
+
+  Swal.fire("Order Placed 🎉").then(() => {
+    localStorage.removeItem("selectedAddressId");
+    window.location.href = "orders.html";
+  });
+}
+
+function initAddressModal() {
+  const modal = document.getElementById("addressModal");
+  const openBtn = document.getElementById("addAddressBtn");
+  const closeBtn = document.getElementById("closeModal");
+  const cancelBtn = document.getElementById("cancelModal");
+  const overlay = modal?.querySelector(".modal-overlay");
+
+  if (!modal || !openBtn) return;
+
+  openBtn.addEventListener("click", () => {
+    modal.classList.add("active");
+  });
+
+  closeBtn?.addEventListener("click", () => {
+    modal.classList.remove("active");
+  });
+
+  cancelBtn?.addEventListener("click", () => {
+    modal.classList.remove("active");
+  });
+
+  overlay?.addEventListener("click", () => {
+    modal.classList.remove("active");
+  });
+
+  initSaveAddress();
+}
+
+function initSaveAddress() {
+  const form = document.getElementById("addressForm");
+  if (!form) return;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const token = localStorage.getItem("userToken");
+    if (!token) return;
+
+    const payload = Object.fromEntries(new FormData(form));
+
+    const res = await fetch("/api/address", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      Swal.fire("Error", "Failed to save address", "error");
+      return;
+    }
+
+    localStorage.setItem("selectedAddressId", data.address._id);
+
+    document.getElementById("addressModal").classList.remove("active");
+    form.reset();
+    loadAddresses();
+  });
+}
+
+async function loadAddresses() {
+  const token = localStorage.getItem("userToken");
+  if (!token) return;
+
+  const res = await fetch("/api/address", {
+    headers: { Authorization: "Bearer " + token }
+  });
+
+  const addresses = await res.json();
+  const container = document.getElementById("addressList");
+
+  if (!addresses || addresses.length === 0) {
+    container.innerHTML =
+      `<p class="address-placeholder">No address selected</p>`;
+    return;
+  }
+
+  container.innerHTML = "";
+  const selectedId = localStorage.getItem("selectedAddressId");
+
+  addresses.forEach(addr => {
+    const card = document.createElement("div");
+    card.className = `address-card ${addr._id === selectedId ? "active" : ""}`;
+
+    card.innerHTML = `
+      <label class="address-radio">
+        <input type="radio" name="address"
+          ${addr._id === selectedId ? "checked" : ""}>
+        <div>
+          <strong>${addr.firstName} ${addr.lastName}</strong>
+          <p>${addr.street}</p>
+          <p>${addr.city}, ${addr.state} - ${addr.pincode}</p>
+          <p>Phone: ${addr.phone}</p>
+        </div>
+      </label>
+    `;
+
+    card.addEventListener("click", () => {
+      localStorage.setItem("selectedAddressId", addr._id);
+      loadAddresses();
+    });
+
+    container.appendChild(card);
+  });
+}
+
+</script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/popup.js"></script>
+
+
+</body>
+</html>

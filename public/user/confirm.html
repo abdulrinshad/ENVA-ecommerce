@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirmation Code - ENVA</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <!-- COMMON HEADER + FOOTER -->
+  <link rel="stylesheet" href="signup.css">
+
+  <!-- CONFIRM PAGE ONLY -->
+  <link rel="stylesheet" href="confirm.css">
+</head>
+
+<body class="confirm-page">
+
+<!-- ================= HEADER ================= -->
+<header class="main-header container">
+
+  <span class="menu-toggle" id="menuToggle">
+    <i class="fas fa-bars"></i>
+  </span>
+
+  <div class="logo">ENVA</div>
+
+  <nav class="nav-links">
+    <a href="index.html">HOME</a>
+    <a href="shop.html">SHOP</a>
+    <a href="about.html">ABOUT</a>
+    <a href="contact.html">CONTACT</a>
+  </nav>
+
+  <div class="header-actions">
+    <div class="search-bar">
+      <input type="text" placeholder="What are you looking for?">
+      <i class="fas fa-search"></i>
+    </div>
+
+    <span class="search-icon">
+      <i class="fas fa-search"></i>
+    </span>
+
+    <div class="icon-group">
+      <a href="wishlist.html"><i class="far fa-heart"></i></a>
+      <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+      <a href="myaccount.html"><i class="far fa-user"></i></a>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">HOME</a>
+  <a href="shop.html">SHOP</a>
+  <a href="about.html">ABOUT</a>
+  <a href="contact.html">CONTACT</a>
+</nav>
+
+<!-- ================= CONFIRMATION ================= -->
+<main class="auth-wrapper container">
+
+  <div class="auth-visual">
+    <div class="image-box">
+      <img src="images/ENVA.png" alt="ENVA">
+    </div>
+  </div>
+
+  <div class="auth-content">
+    <div class="auth-form-box">
+
+      <h1 class="auth-title">Confirmation Code</h1>
+      <p class="auth-subtitle">
+        Enter the verification code sent to your email
+      </p>
+
+      <!-- FORM (action overridden by JS) -->
+      <form id="confirmForm">
+
+        <div class="input-underline-group">
+          <input
+            type="text"
+            id="otp"
+            placeholder="Enter the confirmation code"
+            required
+          >
+        </div>
+
+        <button type="submit" class="btn-primary-blue">
+          Submit
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="main-footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="footer-brand-row">
+        <h3 class="logo">ENVA</h3>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container">
+      <p>Made With Love By Finland All Right Reserved</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= JS ================= -->
+<script>
+/* ===== MOBILE MENU ===== */
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.getElementById("menuToggle");
+  const mobileNav = document.getElementById("mobileNav");
+  const icon = toggleBtn.querySelector("i");
+
+  toggleBtn.addEventListener("click", () => {
+    mobileNav.classList.toggle("active");
+    icon.classList.toggle("fa-bars");
+    icon.classList.toggle("fa-times");
+  });
+});
+
+/* ===== VERIFY RESET OTP (FIXED) ===== */
+document.getElementById("confirmForm").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const otp = document.getElementById("otp").value.trim();
+  const email = localStorage.getItem("resetEmail");
+
+  if (!otp) {
+    showPopup("error", "Missing Code", "Please enter the confirmation code");
+    return;
+  }
+
+  if (!email) {
+    showPopup("error", "Session Expired", "Please try again");
+    window.location.href = "forget.html";
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:5000/api/auth/verify-reset-otp", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, otp }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      showPopup("error", "Invalid Code", data.message);
+      return;
+    }
+
+    showPopup("success", "Code Verified", "OTP verified successfully");
+
+    setTimeout(() => {
+      window.location.href = "change.html";
+    }, 1500);
+
+  } catch (err) {
+    showPopup("error", "Server Error", "Please try again later");
+  }
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/popup.js"></script>
+</body>
+</html>
