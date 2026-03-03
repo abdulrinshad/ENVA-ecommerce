@@ -1,18 +1,15 @@
 const express = require("express");
 const router = express.Router();
 
-const {
-  getAllOrders,
-  getOrdersForManagement,   // 👈 ADD THIS
-  updateOrderStatus,
-  acceptItemReturn,
-  declineItemReturn,
-  schedulePickup,
-  completeReturn,
-  acceptItemCancel,
-  declineItemCancel
-
-} = require("../controllers/adminOrder.controller");
+const getAllOrders = require("../controllers/admin-order/getAllOrders.controller");
+const getOrdersForManagement = require("../controllers/admin-order/getOrdersForManagement.controller");
+const updateOrderStatus = require("../controllers/admin-order/updateOrderStatus.controller");
+const acceptItemReturn = require("../controllers/admin-order/acceptItemReturn.controller");
+const declineItemReturn = require("../controllers/admin-order/declineItemReturn.controller");
+const schedulePickup = require("../controllers/admin-order/schedulePickup.controller");
+const completeReturn = require("../controllers/admin-order/completeReturn.controller");
+const acceptItemCancel = require("../controllers/admin-order/acceptItemCancel.controller");
+const declineItemCancel = require("../controllers/admin-order/declineItemCancel.controller");
 
 const { protect, adminOnly } = require("../middleware/auth.middleware");
 

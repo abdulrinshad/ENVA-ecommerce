@@ -1,15 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const {
-  getCart,
-  addToCart,
-  updateCartItem,
-  removeFromCart,
-  applyCoupon,
-  clearCart
-} = require("../controllers/cart.controller");
-
+const cartController = require("../controllers/cart");
 const { protect } = require("../middleware/auth.middleware");
 
 /* =========================
@@ -17,21 +9,21 @@ const { protect } = require("../middleware/auth.middleware");
 ========================= */
 
 // Get logged-in user's cart
-router.get("/", protect, getCart);
+router.get("/", protect, cartController.getCart);
 
 // Add item to cart
-router.post("/add", protect, addToCart);
+router.post("/add", protect, cartController.addToCart);
 
 // Update quantity (+ / -)
-router.put("/update", protect, updateCartItem);
+router.put("/update", protect, cartController.updateCartItem);
 
 // Remove item
-router.delete("/remove/:itemId", protect, removeFromCart);
+router.delete("/remove/:itemId", protect, cartController.removeFromCart);
 
 // Apply coupon
-router.post("/apply-coupon", protect, applyCoupon);
+router.post("/apply-coupon", protect, cartController.applyCoupon);
 
-// Clear cart (after checkout)
-router.delete("/clear", protect, clearCart);
+// Clear cart
+router.delete("/clear", protect, cartController.clearCart);
 
 module.exports = router;
