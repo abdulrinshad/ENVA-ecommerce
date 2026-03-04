@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const couponController = require("../controllers/coupon.controller");
+const couponController = require("../controllers/coupon"); // ✅ FIXED PATH
 const { protect, adminOnly } = require("../middleware/auth.middleware");
 
 /* =========================

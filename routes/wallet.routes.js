@@ -4,7 +4,7 @@ const { protect } = require("../middleware/auth.middleware");
 const {
   getWallet,
   addMoneyToWallet
-} = require("../controllers/wallet.controller");
+} = require("../controllers/wallet");
 
 /* =====================
    GET WALLET DETAILS

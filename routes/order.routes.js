@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // Import controller as a single object (bulletproof)
-const orderController = require("../controllers/order.controller");
+const orderController = require("../controllers/order");
 
 // Import middleware (both exist ✅)
 const { protect, adminOnly } = require("../middleware/auth.middleware");

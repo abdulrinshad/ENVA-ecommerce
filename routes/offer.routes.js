@@ -1,21 +1,21 @@
 const express = require("express");
 const router = express.Router();
-const offerController = require("../controllers/offer.controller");
+
+const offerController = require("../controllers/offer");
+const { protect, adminOnly } = require("../middleware/auth.middleware");
 
 /* ======================================================
    ADMIN ROUTES
 ====================================================== */
 
 // Create new offer
-router.post("/", offerController.createOffer);
+router.post("/", protect, adminOnly, offerController.createOffer);
 
-router.get("/product/:id", offerController.getSingleShopProduct);
 // Get all offers (admin table)
-router.get("/", offerController.getAllOffers);
+router.get("/", protect, adminOnly, offerController.getAllOffers);
 
 // Delete offer
-router.delete("/:id", offerController.deleteOffer);
-
+router.delete("/:id", protect, adminOnly, offerController.deleteOffer);
 
 
 /* ======================================================
@@ -24,5 +24,9 @@ router.delete("/:id", offerController.deleteOffer);
 
 // Get products with applied offers (shop page)
 router.get("/shop-products", offerController.getShopProducts);
+
+// Get single product with offer
+router.get("/product/:id", offerController.getSingleShopProduct);
+
 
 module.exports = router;
