@@ -270,6 +270,273 @@
   border: 1px solid #e5e7eb;
 }
 
+/* ===============================
+   PREMIUM ADMIN ORDER MODAL
+================================ */
+
+#orderModal .modal-dialog{
+    max-width:720px;
+}
+
+#orderModal .modal-content{
+    border-radius:18px;
+    border:none;
+    padding:0;
+    overflow:hidden;
+    box-shadow:0 30px 80px rgba(0,0,0,0.18);
+}
+
+/* HEADER */
+
+#orderModal .modal-header{
+    padding:22px 26px;
+    border-bottom:1px solid #eef2f6;
+}
+
+#orderModal .modal-title{
+    font-weight:700;
+    font-size:18px;
+    color:#1e293b;
+}
+
+#orderModal .btn-close{
+    background:#f1f5f9;
+    border-radius:50%;
+    padding:8px;
+    opacity:1;
+}
+
+/* BODY */
+
+#orderModal .modal-body{
+    padding:26px;
+}
+
+/* STATUS BADGE */
+
+#modalOrderStatus{
+    font-size:12px;
+    font-weight:600;
+    padding:6px 14px;
+    border-radius:999px;
+    background:#fff7ed;
+    color:#f97316;
+}
+
+/* PRODUCT CARD */
+
+#modalProducts > div{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:14px;
+    border-radius:12px;
+    border:1px solid #eef2f7;
+    background:#fafbfc;
+    transition:all .2s ease;
+}
+
+#modalProducts > div:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.06);
+}
+
+/* PRODUCT IMAGE */
+
+#modalProducts img{
+    width:58px;
+    height:58px;
+    border-radius:8px;
+    object-fit:cover;
+    border:1px solid #e5e7eb;
+}
+
+/* PRODUCT NAME */
+
+#modalProducts div div:first-child{
+    font-weight:600;
+    color:#111827;
+    font-size:14px;
+}
+
+/* PRODUCT META */
+
+#modalProducts small{
+    font-size:12px;
+    color:#6b7280;
+}
+
+/* STATUS SELECT */
+
+#modalStatusSelect{
+    border-radius:10px;
+    border:1px solid #e5e7eb;
+    padding:8px 12px;
+    font-weight:500;
+}
+
+/* TOTAL SECTION */
+
+#orderModal .text-end h5{
+    font-weight:700;
+    color:#2563eb;
+    margin-top:4px;
+}
+
+/* FOOTER */
+
+#orderModal .modal-footer{
+    border-top:1px solid #eef2f7;
+    padding:18px 26px;
+}
+
+#orderModal .modal-footer .btn{
+    border-radius:10px;
+    padding:8px 18px;
+}
+
+/* MODAL ANIMATION */
+
+.modal.fade .modal-dialog{
+    transform:scale(.92);
+    transition:all .25s ease;
+}
+
+.modal.show .modal-dialog{
+    transform:scale(1);
+}
+
+
+/* ===============================
+   PREMIUM ORDER MODAL
+================================ */
+
+.premium-order-modal{
+border-radius:18px;
+overflow:hidden;
+border:none;
+box-shadow:0 35px 80px rgba(0,0,0,0.18);
+}
+
+/* HEADER */
+
+.premium-header{
+padding:24px 28px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid #eef2f6;
+}
+
+.premium-header small{
+color:#6b7280;
+font-size:13px;
+}
+
+.status-badge{
+padding:6px 14px;
+border-radius:999px;
+font-size:12px;
+font-weight:600;
+background:#fff7ed;
+color:#f97316;
+}
+
+/* SECTION */
+
+.section-title{
+font-weight:700;
+margin-bottom:15px;
+color:#1f2937;
+}
+
+/* PRODUCT LIST */
+
+.product-list{
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.product-card{
+display:flex;
+align-items:center;
+gap:14px;
+padding:14px;
+border-radius:12px;
+border:1px solid #eef2f7;
+background:#fafbfc;
+transition:.2s;
+}
+
+.product-card:hover{
+transform:translateY(-2px);
+box-shadow:0 8px 20px rgba(0,0,0,0.06);
+}
+
+.product-card img{
+width:60px;
+height:60px;
+object-fit:cover;
+border-radius:8px;
+border:1px solid #e5e7eb;
+}
+
+.product-name{
+font-weight:600;
+font-size:14px;
+color:#111827;
+}
+
+.product-meta{
+font-size:12px;
+color:#6b7280;
+}
+
+/* ORDER SUMMARY */
+
+.order-summary{
+margin-top:20px;
+padding-top:15px;
+border-top:1px solid #eef2f6;
+}
+
+.summary-label{
+font-size:13px;
+font-weight:600;
+margin-bottom:6px;
+display:block;
+}
+
+.premium-select{
+border-radius:10px;
+border:1px solid #e5e7eb;
+padding:8px 12px;
+}
+
+/* PAYMENT */
+
+.payment-info{
+font-size:14px;
+margin-bottom:5px;
+}
+
+.total-price{
+color:#2563eb;
+font-weight:700;
+}
+
+/* FOOTER */
+
+.premium-footer{
+padding:18px 28px;
+border-top:1px solid #eef2f6;
+}
+
+.close-btn{
+border-radius:10px;
+padding:8px 18px;
+}
     </style>
 </head>
 <body>
@@ -447,6 +714,7 @@
                             <th>Price</th>
                             <th>Payment</th>
                             <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                      <tbody>
@@ -471,6 +739,7 @@
         </div>
     </main>
 <script>
+
 /* ======================================================
    THEME TOGGLE
 ====================================================== */
@@ -487,6 +756,7 @@ function toggleTheme() {
   }
 }
 
+
 /* ======================================================
    GLOBAL FILTER STATE
 ====================================================== */
@@ -495,6 +765,8 @@ let currentSearch = "";
 let currentPayment = "";
 let currentDate = "";
 let currentPage = 1;
+let currentModalOrderId = null;
+
 
 /* ======================================================
    INITIAL LOAD
@@ -504,99 +776,80 @@ document.addEventListener("DOMContentLoaded", () => {
   loadOrders();
 });
 
+
 /* ======================================================
-   SETUP FILTER EVENTS (UPDATED CLEAN VERSION)
+   SETUP FILTER EVENTS
 ====================================================== */
 function setupFilters() {
 
-  /* ======================
-     SEARCH FILTER
-  ====================== */
   document.getElementById("orderSearch")
     ?.addEventListener("input", function () {
       currentSearch = this.value.trim();
       loadOrders();
     });
 
-  /* ======================
-     STATUS FILTER (DROPDOWN)
-  ====================== */
   document.getElementById("statusFilterDropdown")
     ?.addEventListener("change", function () {
       currentStatus = this.value;
       loadOrders();
     });
 
-  /* ======================
-     PAYMENT FILTER
-  ====================== */
   document.getElementById("paymentFilterDropdown")
     ?.addEventListener("change", function () {
       currentPayment = this.value;
       loadOrders();
     });
 
-  /* ======================
-     DATE FILTER
-  ====================== */
   document.getElementById("dateFilterDropdown")
     ?.addEventListener("change", function () {
       currentDate = this.value;
       loadOrders();
     });
+
 }
-
-/* ======================
-   STATUS TAB FILTER
-====================== */
-document.querySelectorAll(".filter-tab button")
-  .forEach(btn => {
-    btn.addEventListener("click", function () {
-
-      // remove active class
-      document.querySelectorAll(".filter-tab button")
-        .forEach(b => b.classList.remove("active"));
-
-      // set active
-      this.classList.add("active");
-
-      // set status
-      currentStatus = this.dataset.status || "";
-
-      loadOrders();
-    });
-  });
 
 
 /* ======================================================
-   LOAD ORDERS (WITH FILTERS)
+   STATUS TAB FILTER
+====================================================== */
+document.querySelectorAll(".filter-tab button")
+.forEach(btn => {
+
+  btn.addEventListener("click", function () {
+
+    document.querySelectorAll(".filter-tab button")
+      .forEach(b => b.classList.remove("active"));
+
+    this.classList.add("active");
+
+    currentStatus = this.dataset.status || "";
+
+    loadOrders();
+
+  });
+
+});
+
+
+/* ======================================================
+   LOAD ORDERS
 ====================================================== */
 async function loadOrders(page = 1) {
+
   try {
+
     const token = localStorage.getItem("adminToken");
     if (!token) return alert("Admin not logged in");
 
-    // 🧠 Build query safely
     const params = new URLSearchParams();
 
     params.append("page", page);
     params.append("limit", 10);
 
-    if (currentStatus) {
-      params.append("status", currentStatus);
-    }
-
-    if (currentSearch) {
-      params.append("search", currentSearch);
-    }
-
-    if (typeof currentPayment !== "undefined" && currentPayment) {
-      params.append("paymentStatus", currentPayment);
-    }
-
-    if (typeof currentDate !== "undefined" && currentDate) {
-      params.append("date", currentDate);
-    }
+    if (currentStatus) params.append("status", currentStatus);
+    if (currentSearch) params.append("search", currentSearch);
+    if (currentPayment) params.append("paymentStatus", currentPayment);
+    if (currentDate) params.append("date", currentDate);
 
     const url = `/api/admin/orders/management?${params.toString()}`;
 
@@ -613,7 +866,6 @@ async function loadOrders(page = 1) {
 
     renderOrders(data.orders);
 
-    // 🔥 Pagination support
     if (data.totalPages) {
       renderPagination(data.totalPages, data.currentPage);
     }
@@ -621,19 +873,22 @@ async function loadOrders(page = 1) {
   } catch (err) {
     console.error("LOAD ORDERS ERROR:", err);
   }
+
 }
+
 
 /* ======================================================
    RENDER ORDERS TABLE
 ====================================================== */
 function renderOrders(orders) {
+
   const tbody = document.querySelector(".order-table tbody");
   tbody.innerHTML = "";
 
   if (!orders.length) {
     tbody.innerHTML = `
       <tr>
-        <td colspan="7" class="text-center py-4">
+        <td colspan="8" class="text-center py-4">
           No orders found
         </td>
       </tr>
@@ -644,13 +899,14 @@ function renderOrders(orders) {
   orders.forEach((order, index) => {
 
     const paymentColor =
-  order.paymentStatus === "paid" ? "#22c55e" :
-  order.paymentStatus === "refunded" ? "#6366f1" :
-  order.paymentStatus === "failed" ? "#ef4444" :
-  "#f59e0b";
+      order.paymentStatus === "paid" ? "#22c55e" :
+      order.paymentStatus === "refunded" ? "#6366f1" :
+      order.paymentStatus === "failed" ? "#ef4444" :
+      "#f59e0b";
 
     tbody.innerHTML += `
       <tr>
+
         <td><input type="checkbox"> ${index + 1}</td>
 
         <td class="fw-bold">
@@ -662,7 +918,7 @@ function renderOrders(orders) {
             src="${getProductImage(order)}"
             class="admin-product-img"
           />
-          <span>${order.items?.[0]?.name || "—"}</span>
+          <span>${order.items?.map(i => i.name).join(", ")}</span>
         </td>
 
         <td>${new Date(order.createdAt).toLocaleDateString()}</td>
@@ -676,10 +932,191 @@ function renderOrders(orders) {
         <td>
           ${renderAdminAction(order)}
         </td>
+
+        <td>
+          <button class="btn btn-sm btn-primary"
+            onclick="viewOrder('${order._id}')">
+            View
+          </button>
+        </td>
+
       </tr>
     `;
   });
+
 }
+
+
+/* ======================================================
+   VIEW ORDER (MODAL)
+====================================================== */
+async function viewOrder(orderId) {
+
+  try {
+
+    const token = localStorage.getItem("adminToken");
+
+    const res = await fetch(`/api/admin/orders/${orderId}`, {
+      headers: { Authorization: "Bearer " + token }
+    });
+
+    const data = await res.json();
+
+    if (!data.success) {
+      alert("Failed to load order");
+      return;
+    }
+
+    const order = data.order;
+
+    currentModalOrderId = order._id;
+
+    document.getElementById("modalOrderId").innerText =
+      "#" + order._id.slice(-6);
+
+    document.getElementById("modalOrderDate").innerText =
+      "Placed on " + new Date(order.createdAt).toLocaleDateString();
+
+    document.getElementById("modalOrderStatus").innerText =
+      order.status;
+
+    document.getElementById("modalPayment").innerText =
+      order.paymentMethod;
+
+    document.getElementById("modalTotal").innerText =
+      order.total;
+
+    renderModalProducts(order.items);
+
+    populateModalStatus(order);
+
+    const modal = new bootstrap.Modal(
+      document.getElementById("orderModal")
+    );
+
+    modal.show();
+
+  } catch (err) {
+    console.error("VIEW ORDER ERROR:", err);
+  }
+
+}
+
+
+/* ======================================================
+   MODAL STATUS OPTIONS
+====================================================== */
+function populateModalStatus(order) {
+
+  const select = document.getElementById("modalStatusSelect");
+
+  let options = [];
+
+  if (order.status === "Placed") {
+    options = ["Placed", "Shipped", "Cancelled"];
+  }
+  else if (order.status === "Shipped") {
+    options = ["Shipped", "Delivered"];
+  }
+  else {
+    options = [order.status];
+  }
+
+  select.innerHTML = options.map(s =>
+    `<option value="${s}" ${s === order.status ? "selected" : ""}>${s}</option>`
+  ).join("");
+
+}
+
+
+/* ======================================================
+   UPDATE STATUS FROM MODAL
+====================================================== */
+async function updateModalStatus() {
+
+  const newStatus =
+    document.getElementById("modalStatusSelect").value;
+
+  try {
+
+    const token = localStorage.getItem("adminToken");
+
+    const res = await fetch(
+      `/api/admin/orders/${currentModalOrderId}/status`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token
+        },
+        body: JSON.stringify({ status: newStatus })
+      }
+    );
+
+    const data = await res.json();
+
+    if (data.success) {
+
+      alert("Order status updated");
+
+      bootstrap.Modal
+        .getInstance(document.getElementById("orderModal"))
+        .hide();
+
+      loadOrders();
+
+    } else {
+
+      alert(data.message || "Failed to update");
+
+    }
+
+  } catch (err) {
+    console.error("MODAL STATUS UPDATE ERROR:", err);
+  }
+
+}
+
+
+/* ======================================================
+   RENDER MODAL PRODUCTS
+====================================================== */
+function renderModalProducts(items) {
+
+  const container = document.getElementById("modalProducts");
+
+  container.innerHTML = items.map(item => {
+
+    const image =
+      item.product?.images?.[0]
+        ? "/uploads/" + item.product.images[0].replace(/^\/?uploads\//, "")
+        : "https://via.placeholder.com/60";
+
+    return `
+      <div style="
+        display:flex;
+        align-items:center;
+        gap:12px;
+        padding:10px;
+        border:1px solid #eee;
+        border-radius:10px;
+        margin-bottom:10px">
+
+        <img src="${image}" width="50" height="50"
+          style="object-fit:cover;border-radius:6px">
+
+        <div style="flex:1">
+          <div style="font-weight:600">${item.name}</div>
+          <small>Qty: ${item.qty} | ₹${item.price}</small>
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+
+}
+
 
 /* ======================================================
    ADMIN ACTION HANDLER
@@ -691,11 +1128,7 @@ function renderAdminAction(order) {
   );
 
   if (cancelItem) {
-    return actionButtons(
-      order._id,
-      cancelItem._id,
-      "cancel"
-    );
+    return actionButtons(order._id, cancelItem._id, "cancel");
   }
 
   const returnItem = order.items.find(
@@ -703,82 +1136,16 @@ function renderAdminAction(order) {
   );
 
   if (returnItem) {
-    return actionButtons(
-      order._id,
-      returnItem._id,
-      "return"
-    );
+    return actionButtons(order._id, returnItem._id, "return");
   }
 
   return renderStatusDropdown(order);
+
 }
 
-/* ======================================================
-   ACCEPT / DECLINE BUTTONS TEMPLATE
-====================================================== */
-function actionButtons(orderId, itemId, type) {
-
-  const acceptURL =
-    type === "cancel"
-      ? `/api/admin/orders/${orderId}/items/${itemId}/cancel/accept`
-      : `/api/admin/orders/${orderId}/items/${itemId}/accept-return`;
-
-  const declineURL =
-    type === "cancel"
-      ? `/api/admin/orders/${orderId}/items/${itemId}/cancel/decline`
-      : `/api/admin/orders/${orderId}/items/${itemId}/decline-return`;
-
-  return `
-    <div style="display:flex; gap:6px;">
-      <button class="btn btn-sm btn-success"
-        onclick="adminDecision('${acceptURL}', true)">
-        Accept
-      </button>
-      <button class="btn btn-sm btn-danger"
-        onclick="adminDecision('${declineURL}', false)">
-        Decline
-      </button>
-    </div>
-  `;
-}
 
 /* ======================================================
-   HANDLE ACCEPT / DECLINE
-====================================================== */
-async function adminDecision(url, isReturn) {
-  try {
-    const token = localStorage.getItem("adminToken");
-
-    const options = {
-      method: "PUT",
-      headers: {
-        Authorization: "Bearer " + token
-      }
-    };
-
-    // Return requires approvedQty
-    if (isReturn && url.includes("accept-return")) {
-      options.headers["Content-Type"] = "application/json";
-      options.body = JSON.stringify({ approvedQty: 1 });
-    }
-
-    const res = await fetch(url, options);
-    const data = await res.json();
-
-    if (data.success) {
-      alert("Action completed successfully");
-      loadOrders();
-    } else {
-      alert(data.message || "Action failed");
-    }
-
-  } catch (err) {
-    console.error("ADMIN ACTION ERROR:", err);
-  }
-}
-
-/* ======================================================
-   STATUS DROPDOWN
+   STATUS DROPDOWN (TABLE)
 ====================================================== */
 function renderStatusDropdown(order) {
 
@@ -796,24 +1163,30 @@ function renderStatusDropdown(order) {
     <select
       class="status-dropdown ${order.status.toLowerCase()}"
       onchange="handleStatusChange('${order._id}', this)">
+
       ${options.map(s => `
         <option value="${s}" ${s === order.status ? "selected" : ""}>
           ${s}
         </option>
       `).join("")}
+
     </select>
   `;
 }
 
+
 /* ======================================================
-   UPDATE ORDER STATUS
+   UPDATE STATUS FROM TABLE
 ====================================================== */
 async function handleStatusChange(orderId, selectEl) {
 
   const newStatus = selectEl.value;
-  selectEl.className = "status-dropdown " + newStatus.toLowerCase();
+
+  selectEl.className =
+    "status-dropdown " + newStatus.toLowerCase();
 
   try {
+
     const token = localStorage.getItem("adminToken");
 
     const res = await fetch(
@@ -829,43 +1202,136 @@ async function handleStatusChange(orderId, selectEl) {
     );
 
     const data = await res.json();
-    if (!data.success) alert("Failed to update status");
+
+    if (!data.success) {
+      alert("Failed to update status");
+      return;
+    }
+
+    /* 🔥 IMPORTANT */
+    loadOrders();   // refresh table
 
   } catch (err) {
     console.error("STATUS UPDATE ERROR:", err);
   }
-}
 
-/* ================================
+}
+/* ======================================================
    PAGINATION
-================================ */
+====================================================== */
 function renderPagination(totalPages, currentPage) {
-  const container = document.querySelector(".page-numbers");
+
+  const container =
+    document.querySelector(".page-numbers");
+
   container.innerHTML = "";
 
   for (let i = 1; i <= totalPages; i++) {
+
     container.innerHTML += `
       <span class="num ${i === currentPage ? "active" : ""}"
         onclick="loadOrders(${i})">${i}</span>
     `;
+
   }
+
 }
+
 
 /* ======================================================
    PRODUCT IMAGE HELPER
 ====================================================== */
 function getProductImage(order) {
+
   const item = order.items?.[0];
 
   if (!item?.product?.images?.length)
     return "https://via.placeholder.com/40x40?text=IMG";
 
   let image = item.product.images[0];
+
   image = image.replace(/^\/?uploads\//, "");
+
   return `/uploads/${image}`;
 }
+
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<div class="modal fade" id="orderModal" tabindex="-1">
+<div class="modal-dialog modal-lg modal-dialog-centered">
+<div class="modal-content premium-order-modal">
+
+<!-- HEADER -->
+<div class="modal-header premium-header">
+<div>
+<h5 class="modal-title">
+Order <span id="modalOrderId"></span>
+</h5>
+<small id="modalOrderDate"></small>
+</div>
+
+<span id="modalOrderStatus" class="status-badge">Placed</span>
+
+<button class="btn-close" data-bs-dismiss="modal"></button>
+</div>
+
+
+<!-- BODY -->
+<div class="modal-body">
+
+<!-- PRODUCTS -->
+<h6 class="section-title">Products</h6>
+<div id="modalProducts" class="product-list"></div>
+
+
+<!-- ORDER SUMMARY -->
+<div class="order-summary">
+
+<div class="row">
+
+<div class="col-md-6">
+
+<label class="summary-label">Update Order Status</label>
+
+<select id="modalStatusSelect"
+class="form-select premium-select"
+onchange="updateModalStatus()">
+</select>
+
+</div>
+
+<div class="col-md-6 text-end">
+
+<p class="payment-info">
+Payment Method :
+<b id="modalPayment"></b>
+</p>
+
+<h4 class="total-price">
+₹<span id="modalTotal"></span>
+</h4>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="modal-footer premium-footer">
+
+<button class="btn btn-light close-btn" data-bs-dismiss="modal">
+Close
+</button>
+
+</div>
+
+</div>
+</div>
+</div>
 </body>
 </html>

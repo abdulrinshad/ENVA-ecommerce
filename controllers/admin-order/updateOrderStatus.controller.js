@@ -14,10 +14,26 @@ module.exports = async (req, res) => {
       });
     }
 
+    // Update order status
     order.status = status;
 
+    /* ======================================
+       SET DELIVERY DATE
+    ====================================== */
     if (status === "Delivered") {
       order.deliveredAt = new Date();
+    }
+
+    /* ======================================
+       COD PAYMENT AUTO UPDATE
+    ====================================== */
+    if (
+      order.paymentMethod === "cod" &&
+      status === "Delivered" &&
+      order.paymentStatus === "pending"
+    ) {
+      order.paymentStatus = "paid";
+      order.paidAt = new Date();
     }
 
     await order.save();
@@ -25,7 +41,8 @@ module.exports = async (req, res) => {
     res.json({
       success: true,
       message: "Order status updated",
-      status: order.status
+      status: order.status,
+      paymentStatus: order.paymentStatus
     });
 
   } catch (error) {

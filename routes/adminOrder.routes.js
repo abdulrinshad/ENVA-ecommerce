@@ -10,6 +10,7 @@ const schedulePickup = require("../controllers/admin-order/schedulePickup.contro
 const completeReturn = require("../controllers/admin-order/completeReturn.controller");
 const acceptItemCancel = require("../controllers/admin-order/acceptItemCancel.controller");
 const declineItemCancel = require("../controllers/admin-order/declineItemCancel.controller");
+const getSingleOrder = require("../controllers/admin-order/getSingleOrder.controller");
 
 const { protect, adminOnly } = require("../middleware/auth.middleware");
 
@@ -31,6 +32,14 @@ router.get(
   protect,
   adminOnly,
   getOrdersForManagement
+);
+
+// GET SINGLE ORDER DETAILS
+router.get(
+  "/orders/:id",
+  protect,
+  adminOnly,
+  getSingleOrder
 );
 
 // UPDATE ORDER STATUS
