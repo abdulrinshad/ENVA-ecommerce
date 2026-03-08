@@ -5,10 +5,7 @@ module.exports = async (req, res) => {
     const categories = await Category.find()
       .sort({ createdAt: -1 });
 
-    res.json({
-      success: true,
-      categories
-    });
+    res.json(categories);
 
   } catch (error) {
     console.error("GET ADMIN CATEGORIES ERROR:", error);

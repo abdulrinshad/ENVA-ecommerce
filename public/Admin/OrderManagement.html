@@ -1143,6 +1143,152 @@ function renderAdminAction(order) {
 
 }
 
+function actionButtons(orderId, itemId, type) {
+
+  if (type === "cancel") {
+
+    return `
+      <button class="btn btn-sm btn-success"
+        onclick="acceptCancel('${orderId}','${itemId}')">
+        Accept
+      </button>
+
+      <button class="btn btn-sm btn-danger"
+        onclick="declineCancel('${orderId}','${itemId}')">
+        Decline
+      </button>
+    `;
+
+  }
+
+  if (type === "return") {
+
+    return `
+      <button class="btn btn-sm btn-success"
+        onclick="acceptReturn('${orderId}','${itemId}')">
+        Accept
+      </button>
+
+      <button class="btn btn-sm btn-danger"
+        onclick="declineReturn('${orderId}','${itemId}')">
+        Decline
+      </button>
+    `;
+
+  }
+
+}
+async function acceptCancel(orderId, itemId) {
+
+  const token = localStorage.getItem("adminToken");
+
+  const res = await fetch(
+    `/api/admin/orders/${orderId}/items/${itemId}/cancel/accept`,
+    {
+      method: "PUT",
+      headers: {
+        Authorization: "Bearer " + token
+      }
+    }
+  );
+
+  const data = await res.json();
+
+  if (data.success) {
+    alert("Cancel approved");
+    loadOrders();
+  }
+}
+
+
+async function declineCancel(orderId, itemId) {
+
+  const token = localStorage.getItem("adminToken");
+
+  const res = await fetch(
+    `/api/admin/orders/${orderId}/items/${itemId}/cancel/decline`,
+    {
+      method: "PUT",
+      headers: {
+        Authorization: "Bearer " + token
+      }
+    }
+  );
+
+  const data = await res.json();
+
+  if (data.success) {
+    alert("Cancel declined");
+    loadOrders();
+  }
+}
+
+async function acceptReturn(orderId,itemId){
+
+  const token = localStorage.getItem("adminToken");
+
+  const res = await fetch(
+    `/api/admin/orders/${orderId}/items/${itemId}/accept-return`,
+    {
+      method:"PUT",
+      headers:{
+        "Content-Type":"application/json",
+        Authorization:"Bearer "+token
+      },
+      body: JSON.stringify({ approvedQty:1 })
+    }
+  );
+
+  const data = await res.json();
+
+  if(data.success){
+    alert("Return approved");
+    loadOrders();
+  }
+}
+
+async function declineReturn(orderId,itemId){
+
+  const token = localStorage.getItem("adminToken");
+
+  const res = await fetch(
+    `/api/admin/orders/${orderId}/items/${itemId}/decline-return`,
+    {
+      method:"PUT",
+      headers:{
+        Authorization:"Bearer "+token
+      }
+    }
+  );
+
+  const data = await res.json();
+
+  if(data.success){
+    alert("Return declined");
+    loadOrders();
+  }
+}
+
+async function handleCancelRequest(orderId, itemId) {
+
+  const token = localStorage.getItem("adminToken");
+
+  const res = await fetch(
+    `/api/admin/orders/${orderId}/items/${itemId}/accept-cancel`,
+    {
+      method: "PUT",
+      headers: { Authorization: "Bearer " + token }
+    }
+  );
+
+  const data = await res.json();
+
+  if (data.success) {
+    alert("Cancel approved");
+    loadOrders();
+  }
+
+}
 
 /* ======================================================
    STATUS DROPDOWN (TABLE)

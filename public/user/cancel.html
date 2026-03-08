@@ -346,7 +346,7 @@ function renderCancellations(items) {
               Order #${item.orderId.slice(-6)}
             </span>
             <span class="order-date">
-              ${new Date(item.orderDate).toLocaleDateString()}
+              ${new Date(item.createdAt).toLocaleDateString("en-IN")}
             </span>
           </div>
 

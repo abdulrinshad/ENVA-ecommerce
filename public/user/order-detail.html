@@ -427,7 +427,11 @@ if (item.product?.images?.[0]) {
         </span>
 
         <div class="product-actions">
-          <button class="btn-outline">INVOICE</button>
+          ${order.status === "Delivered" ? `
+<button class="btn-outline" onclick="openInvoice('${order._id}')">
+INVOICE
+</button>
+` : ``}
 
           <!-- ================= RETURN ================= -->
           ${
@@ -493,6 +497,7 @@ if (item.product?.images?.[0]) {
     </div>
   `;
 });
+
 
 
   /* =========================
@@ -720,6 +725,20 @@ function updateReturnTracker(status) {
   lines.forEach((line, i) => {
     line.classList.toggle("active", i < activeIndex);
   });
+}
+// ================= INVOICE =================
+function openInvoice(orderId) {
+  console.log("Invoice clicked for:", orderId);
+
+  const token = localStorage.getItem("userToken");
+
+  if (!token) {
+    Swal.fire("Session expired", "Please login again", "warning");
+    return;
+  }
+
+  // open invoice page
+  window.open(`/user/invoice.html?orderId=${orderId}`, "_blank");
 }
 </script>
 

@@ -1,5 +1,6 @@
 const Order = require("../../models/order.model");
 const User = require("../../models/user.model");
+const Product = require("../../models/product.model");
 
 module.exports = async (req, res) => {
   try {
@@ -48,10 +49,31 @@ module.exports = async (req, res) => {
     item.returnStatus =
       item.returnedQty === item.qty ? "RETURNED" : "APPROVED";
 
+
+    /* =========================
+       RESTORE PRODUCT STOCK
+    ========================= */
+
+    const product = await Product.findById(item.product);
+
+    if (product) {
+
+      if (item.size && product.sizes[item.size] !== undefined) {
+        product.sizes[item.size] += approvedQty;
+      }
+
+      product.totalStock += approvedQty;
+
+      await product.save();
+    }
+
+
     /* =========================
        AUTO REFUND (NON-COD)
     ========================= */
+
     if (order.paymentMethod !== "cod") {
+
       const user = await User.findById(order.user);
 
       if (!user.wallet) {
@@ -61,6 +83,7 @@ module.exports = async (req, res) => {
       const refundAmount = item.price * approvedQty;
 
       user.wallet.balance += refundAmount;
+
       user.wallet.transactions.push({
         type: "credit",
         amount: refundAmount,
@@ -70,14 +93,17 @@ module.exports = async (req, res) => {
       await user.save();
     }
 
+
     /* =========================
        ORDER STATUS
     ========================= */
+
     const allReturned = order.items.every(
       i => (i.returnedQty || 0) === i.qty
     );
 
     if (allReturned) {
+
       order.status = "Returned";
 
       if (order.paymentMethod !== "cod") {
@@ -85,21 +111,26 @@ module.exports = async (req, res) => {
       }
 
     } else {
+
       order.status = "Partially Returned";
+
     }
 
     await order.save();
 
     res.json({
       success: true,
-      message: "Return approved & refund processed"
+      message: "Return approved, stock restored & refund processed"
     });
 
   } catch (error) {
+
     console.error("ACCEPT ITEM RETURN ERROR:", error);
+
     res.status(500).json({
       success: false,
-      message: "Server error"
+      message: error.message
     });
+
   }
 };

@@ -544,6 +544,7 @@ async function createCategory() {
     });
 
     const data = await res.json();
+const categories = data.categories;
     if (!res.ok) throw new Error(data.message);
 
     Swal.fire("Success", "Category created", "success");

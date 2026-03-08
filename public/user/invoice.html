@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ENVA Invoice</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+
+body{
+font-family: 'Segoe UI', Arial, sans-serif;
+padding:40px;
+background:#f4f6f8;
+color:#333;
+}
+
+.invoice-box{
+max-width:850px;
+margin:auto;
+background:#fff;
+padding:45px;
+border-radius:8px;
+box-shadow:0 6px 20px rgba(0,0,0,0.08);
+}
+
+.invoice-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+}
+
+.brand{
+font-size:28px;
+font-weight:700;
+letter-spacing:2px;
+}
+
+.invoice-meta{
+text-align:right;
+font-size:14px;
+color:#555;
+}
+
+.section{
+margin-top:25px;
+}
+
+.section-title{
+font-weight:600;
+margin-bottom:8px;
+color:#666;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:15px;
+}
+
+th{
+background:#fafafa;
+text-align:left;
+padding:12px;
+font-weight:600;
+border-bottom:2px solid #eee;
+}
+
+td{
+padding:12px;
+border-bottom:1px solid #eee;
+}
+
+.total-row{
+margin-top:25px;
+display:flex;
+justify-content:flex-end;
+font-size:20px;
+font-weight:600;
+}
+
+.footer{
+margin-top:40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.thankyou{
+font-size:14px;
+color:#555;
+}
+
+.brand-seal{
+border:2px solid #000;
+border-radius:50%;
+width:90px;
+height:90px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:12px;
+font-weight:700;
+text-align:center;
+letter-spacing:1px;
+}
+
+.download-btn{
+margin-top:30px;
+padding:12px 24px;
+background:#000;
+color:#fff;
+border:none;
+border-radius:4px;
+cursor:pointer;
+font-weight:600;
+}
+
+</style>
+</head>
+
+<body>
+<div class="invoice-box" id="invoice">
+
+<div class="invoice-header">
+<div class="brand">ENVA</div>
+
+<div class="invoice-meta">
+<div><strong>Invoice</strong></div>
+<div>Order ID: <span id="orderId"></span></div>
+<div>Date: <span id="orderDate"></span></div>
+</div>
+</div>
+
+
+<div class="section">
+<div class="section-title">Billing Details</div>
+<div>
+Rinshad<br>
+673015<br>
+7034308604
+</div>
+</div>
+
+
+<div class="section">
+<div class="section-title">Order Items</div>
+
+<table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Qty</th>
+<th>Price</th>
+<th>Total</th>
+</tr>
+</thead>
+
+<tbody id="items"></tbody>
+</table>
+</div>
+
+
+<div class="total-row">
+Total: ₹<span id="total"></span>
+</div>
+
+
+<div class="footer">
+
+<div class="thankyou">
+Thank you for choosing <strong>ENVA</strong>.<br>
+We appreciate your trust in our brand.
+</div>
+
+<div class="brand-seal">
+ENVA<br>OFFICIAL
+</div>
+
+</div>
+
+</div>
+
+<div style="text-align:center;">
+<button class="download-btn" onclick="downloadPDF()">Download Invoice</button>
+</div>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+const orderId = params.get("orderId");
+const token = localStorage.getItem("userToken");
+
+async function loadInvoice(){
+
+const res = await fetch(`/api/orders/${orderId}`,{
+headers:{ Authorization:"Bearer "+token }
+});
+
+const data = await res.json();
+const order = data.order;
+
+document.getElementById("orderId").innerText = order._id;
+document.getElementById("total").innerText = order.total;
+
+document.getElementById("orderDate").innerText =
+new Date(order.createdAt).toLocaleDateString();
+
+const items = document.getElementById("items");
+
+order.items.forEach(item=>{
+items.innerHTML += `
+<tr>
+<td>${item.name}</td>
+<td>${item.qty}</td>
+<td>₹${item.price}</td>
+<td>₹${item.qty * item.price}</td>
+</tr>
+`;
+});
+
+}
+
+function downloadPDF(){
+
+const element = document.getElementById("invoice");
+
+const opt = {
+margin: 10,
+filename: `ENVA_Invoice_${orderId}.pdf`,
+image: { type: 'jpeg', quality: 0.98 },
+html2canvas: { scale: 2 },
+jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+};
+
+html2pdf().set(opt).from(element).save();
+
+}
+
+loadInvoice();
+
+</script>
+
+</body>
+</html>
