@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
         message: "Order not found"
       });
     }
-
+    
     const item = order.items.id(itemId);
 
     if (!item) {
