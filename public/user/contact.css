@@ -582,3 +582,41 @@ textarea{
     right: -10px;
   }
 }
+
+/* ===============================
+   MOBILE FOOTER IMPROVEMENT
+================================ */
+@media (max-width:768px){
+
+  .footer-grid{
+    grid-template-columns: repeat(2,1fr);
+    gap:30px;
+  }
+
+  .footer-col h5{
+    font-size:14px;
+  }
+
+  .footer-col ul li a{
+    font-size:13px;
+  }
+
+  .newsletter{
+    grid-column: span 2; /* newsletter takes full width */
+    margin-top:10px;
+  }
+
+  .subscribe-form{
+    width:100%;
+  }
+
+  .subscribe-form input{
+    flex:1;
+  }
+
+  .footer-bottom p{
+    text-align:center;
+    font-size:12px;
+  }
+
+}

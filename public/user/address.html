@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="address.css">
     <link rel="stylesheet" href="userSigned.css">
     
+    
 </head>
 <body>
     <header class="main-header">
@@ -104,7 +105,7 @@
   </div>
 </header>
     
-   <main class="account-wrapper container">
+  <main class="account-wrapper container">
 
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
@@ -114,7 +115,7 @@
 
     <!-- Dynamic Welcome -->
     <div class="welcome-section">
-        <h2 id="welcomeName">HELLO RINSHAD</h2>
+        <h2 id="welcomeName">HELLO USER</h2>
     </div>
 
     <div class="account-grid">
@@ -126,8 +127,8 @@
     <div class="sidebar-section">
         <p class="sidebar-title">Manage My Account</p>
         <ul class="sidebar-menu">
-            <li><a href="myaccount.html" class="active">My Profile</a></li>
-            <li><a href="address.html">Address Book</a></li>
+            <li><a href="myaccount.html">My Profile</a></li>
+            <li><a href="address.html" class="active">Address Book</a></li>
             <li><a href="payment-options.html">My Payment Options</a></li>
         </ul>
     </div>
@@ -139,13 +140,11 @@
             <li><a href="orders.html">Orders</a></li>
             <li><a href="returns.html">Returns</a></li>
             <li><a href="cancel.html">Cancellations</a></li>
+            <li><a href="wishlist.html">Wishlist </a></li>
         </ul>
     </div>
 
-    <!-- WISHLIST -->
-    <div class="sidebar-section">
-        <a href="wishlist.html" class="standalone-link">My Wishlist</a>
-    </div>
+   
 
     <!-- LOGOUT -->
     <button type="button" id="logoutBtn" class="logout-btn">
@@ -244,6 +243,8 @@
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
+
+  let editingAddressId = null;
 document.addEventListener("DOMContentLoaded", () => {
   loadAddresses();
 
@@ -288,14 +289,22 @@ document.addEventListener("DOMContentLoaded", () => {
       state:     state.value.trim()
     };
 
-    const res = await fetch("/api/address", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token
-      },
-      body: JSON.stringify(data)
-    });
+    let url = "/api/address";
+let method = "POST";
+
+if(editingAddressId){
+  url = "/api/address/" + editingAddressId;
+  method = "PUT";
+}
+
+const res = await fetch(url,{
+  method: method,
+  headers:{
+    "Content-Type":"application/json",
+    Authorization:"Bearer " + token
+  },
+  body: JSON.stringify(data)
+});
 
     if (!res.ok) {
       Swal.fire("Error", "Failed to save address", "error");
@@ -329,14 +338,27 @@ async function loadAddresses() {
     }
 
     addresses.forEach(addr => {
-      grid.innerHTML += `
-        <div class="address-entry-card">
-          <p><strong>${addr.firstName} ${addr.lastName}</strong></p>
-          <p>${addr.street}, ${addr.city}</p>
-          <p>${addr.state} - ${addr.pincode}</p>
-          <p>Phone: ${addr.phone}</p>
-        </div>
-      `;
+    grid.innerHTML += `
+<div class="address-entry-card">
+
+  <div class="address-top">
+    <strong>${addr.firstName} ${addr.lastName}</strong>
+
+    <div class="address-actions">
+      <i class="fas fa-pen edit-btn"
+         onclick='openEditAddress(${JSON.stringify(addr)})'></i>
+
+      <i class="fas fa-trash delete-btn"
+         onclick="deleteAddress('${addr._id}')"></i>
+    </div>
+  </div>
+
+  <p>${addr.street}, ${addr.city}</p>
+  <p>${addr.state} - ${addr.pincode}</p>
+  <p>Phone: ${addr.phone}</p>
+
+</div>
+`;
     });
 
   } catch (err) {
@@ -348,6 +370,49 @@ async function loadAddresses() {
 function clearForm() {
   ["firstName","lastName","phone","pincode","street","city","state"]
     .forEach(id => document.getElementById(id).value = "");
+}
+
+async function deleteAddress(id){
+
+  const confirm = await Swal.fire({
+    title: "Delete Address?",
+    text: "This action cannot be undone",
+    icon: "warning",
+    showCancelButton: true
+  });
+
+  if(!confirm.isConfirmed) return;
+
+  const token = localStorage.getItem("userToken");
+
+  const res = await fetch("/api/address/" + id,{
+    method:"DELETE",
+    headers:{
+      Authorization:"Bearer " + token
+    }
+  });
+
+  if(res.ok){
+    loadAddresses();
+    Swal.fire("Deleted!","Address removed","success");
+  }else{
+    Swal.fire("Error","Failed to delete","error");
+  }
+}
+
+function openEditAddress(addr){
+
+  editingAddressId = addr._id;
+
+  document.getElementById("addressModal").classList.remove("hidden");
+
+  document.getElementById("firstName").value = addr.firstName;
+  document.getElementById("lastName").value  = addr.lastName;
+  document.getElementById("phone").value     = addr.phone;
+  document.getElementById("pincode").value   = addr.pincode;
+  document.getElementById("street").value    = addr.street;
+  document.getElementById("city").value      = addr.city;
+  document.getElementById("state").value     = addr.state;
 }
 </script>
 

@@ -1311,3 +1311,135 @@ body { font-family: var(--text-sans); background-color: #fff; overflow-x: hidden
 .product-img-box:hover .hover-cart-bar {
   bottom: 0;
 }
+
+/* =================================
+   MOBILE CATEGORY SCROLL
+================================= */
+
+@media (max-width:768px){
+
+  .shop-categories .container{
+    padding:0;
+  }
+
+  .category-row{
+    display:flex;
+    flex-wrap:nowrap;
+    gap:12px;
+
+    overflow-x:auto;
+    overflow-y:hidden;
+
+    padding:0 15px 12px;
+
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  /* hide scrollbar */
+  .category-row::-webkit-scrollbar{
+    display:none;
+  }
+
+  .category-row{
+    scrollbar-width:none;
+  }
+
+  /* category cards */
+  .category-card{
+    flex:0 0 130px;
+    min-width:130px;
+    height:170px;
+
+    border-radius:16px;
+    overflow:hidden;
+
+    scroll-snap-align:start;
+  }
+
+  .category-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+
+  .category-overlay{
+    background:linear-gradient(
+      to top,
+      rgba(0,0,0,0.65),
+      rgba(0,0,0,0.2)
+    );
+  }
+
+  .category-overlay h4{
+    font-size:12px;
+    letter-spacing:1px;
+  }
+
+}
+/* ===============================
+   MOBILE CATEGORY SPACING FIX
+================================ */
+@media (max-width:768px){
+
+  .shop-categories{
+    margin-top: 90px;   /* pushes category section down */
+  }
+
+}
+
+/* ===============================
+   MOBILE CATEGORY SIZE UPGRADE
+================================ */
+@media (max-width:768px){
+
+  .category-card{
+    flex:0 0 160px;     /* card width */
+    min-width:160px;
+
+    height:200px;       /* card height */
+    border-radius:18px;
+  }
+
+  .category-overlay h4{
+    font-size:14px;     /* slightly bigger title */
+  }
+
+}
+/* ===============================
+   MOBILE FOOTER IMPROVEMENT
+================================ */
+@media (max-width:768px){
+
+  .footer-grid{
+    grid-template-columns: repeat(2,1fr);
+    gap:30px;
+  }
+
+  .footer-col h5{
+    font-size:14px;
+  }
+
+  .footer-col ul li a{
+    font-size:13px;
+  }
+
+  .newsletter{
+    grid-column: span 2; /* newsletter takes full width */
+    margin-top:10px;
+  }
+
+  .subscribe-form{
+    width:100%;
+  }
+
+  .subscribe-form input{
+    flex:1;
+  }
+
+  .footer-bottom p{
+    text-align:center;
+    font-size:12px;
+  }
+
+}

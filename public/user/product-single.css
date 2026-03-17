@@ -1,61 +1,3 @@
-/* ===============================
-   NAVBAR VISIBILITY CONTROL
-================================ */
-
-/* MOBILE ONLY */
-@media (max-width: 768px) {
-
-  .main-header,
-  .product-view,
-  .related-header,
-  .product-row-4 {
-    display: none !important;
-  }
-
-  .mobile-header,
-  .mobile-product-view,
-  .mobile-breadcrumb {
-    display: block;
-  }
-}
-/* DESKTOP DEFAULT */
-.main-header {
-  display: flex;
-}
-
-.mobile-header,
-.nav-main,
-.mobile-nav,
-.menu-toggle {
-  display: none;
-}
-
-/* MOBILE ONLY */
-@media (max-width: 768px) {
-
-  .main-header {
-    display: none !important;
-  }
-
-  .mobile-header,
-  .nav-main {
-    display: block;
-  }
-
-  .menu-toggle {
-    display: inline-block;
-  }
-
-  .mobile-nav {
-    display: none;
-  }
-
-  .mobile-nav.active {
-    display: flex;
-  }
-}
-
-
 /* General Setup */
 body { font-family: 'Montserrat', sans-serif; color: #252B42; margin: 0; }
 .container { max-width: 90%; margin: 0 auto; padding: 0 15px; }
@@ -296,18 +238,23 @@ nav a {
 }
 
 .footer-brand-row .logo {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 700;
     color: #252B42;
+    margin-bottom: 10px;
 }
+
+
 
 .social-icons {
     display: flex;
-    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
 }
 
 .social-icons a {
-    color: #23A6F0; /* Primary blue color for icons */
+    color: #23A6F0;
     font-size: 24px;
 }
 
@@ -393,16 +340,47 @@ nav a {
     text-align: left;
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 992px) {
-    .footer-grid { grid-template-columns: repeat(2, 1fr); }
-    .newsletter { grid-column: span 2; }
+
+
+@media (max-width:768px){
+
+.footer-grid{
+grid-template-columns: repeat(2,1fr);
+gap:20px;
+text-align:left;
 }
 
-@media (max-width: 600px) {
-    .footer-grid { grid-template-columns: 1fr; }
-    .newsletter { grid-column: span 1; }
-    .footer-brand-row { flex-direction: column; gap: 20px; text-align: center; }
+.newsletter{
+grid-column: span 2;
+}
+
+/* control footer top layout */
+.footer-brand-row{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:12px;
+text-align:center;
+}
+
+/* logo first */
+.footer-brand-row .logo{
+order:1;
+}
+
+/* icons below logo */
+.social-icons{
+order:2;
+display:flex;
+justify-content:center;
+gap:16px;
+}
+
+.footer-bottom p{
+text-align:center;
+}
+
 }
 /* ===== RESET ===== */
 *{margin:0;padding:0;box-sizing:border-box}
@@ -490,4 +468,7 @@ body{font-family:Montserrat,sans-serif;color:#252B42}
 .shop-product-card p{font-size:12px;color:#777}
 .price .new{color:#0aad6b;font-weight:700}
 }
+
+
+
 

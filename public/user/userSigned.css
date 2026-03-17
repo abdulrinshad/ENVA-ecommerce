@@ -534,7 +534,7 @@ body { font-family: var(--text-sans); background-color: #fff; overflow-x: hidden
 }
 
 .container {
-    max-width: 95%;
+    max-width: 100%;
     margin: 0 auto;
     padding: 0 15px;
     margin-top: 110px;

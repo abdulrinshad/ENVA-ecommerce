@@ -1,6 +1,13 @@
 /* ===============================
    ROOT & RESET
 ================================ */
+
+.container{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 20px;
+  width:100%;
+}
 * {
   box-sizing: border-box;
   margin: 0;
@@ -20,12 +27,6 @@ body {
   padding: 40px 0;
 }
 
-.checkout-layout {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 32px;
-  align-items: flex-start;
-}
 
 /* ===============================
    BREADCRUMB
@@ -418,7 +419,6 @@ body {
   border-radius: 10px;
   padding: 16px;
   background: #fff;
-  padding-bottom: 50px;
   margin-top: 25px;
 }
 
@@ -614,10 +614,36 @@ body {
 
 .checkout-layout {
   display: grid;
-  grid-template-columns: 1fr 420px;
+  grid-template-columns: minmax(0,1fr) 420px;
   gap: 30px;
+  align-items: start;
 }
 
+
+.billing-section{
+  min-width:0;
+}
+@media (max-width:768px){
+
+  .checkout-wrapper{
+    padding:20px 16px;
+  }
+
+}
+
+@media (max-width:768px){
+
+  .address-card{
+    padding:14px;
+  }
+
+  .address-radio{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+  }
+
+}
 /* ---------- MOBILE ---------- */
 @media (max-width: 768px) {
 
@@ -678,6 +704,10 @@ body {
     width: 100%;
     margin-top: 15px;
   }
+  .address-card{
+  width:100%;
+  box-sizing:border-box;
+}
 }
 
 .address-card {
@@ -789,4 +819,42 @@ body {
   background: #9ca3af;
   cursor: not-allowed;
   box-shadow: none;
+}
+
+/* ===============================
+   FINAL CHECKOUT WIDTH FIX
+   (ADD THIS AT THE VERY BOTTOM)
+================================ */
+
+.checkout-wrapper.container{
+  max-width:100%;
+  width:100%;
+  padding:40px 16px;
+}
+
+.checkout-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 420px;
+  gap:30px;
+  width:100%;
+}
+
+/* Prevent address card overflow */
+.billing-section{
+  width:100%;
+  min-width:0;
+}
+
+.address-card{
+  width:100%;
+  box-sizing:border-box;
+}
+
+/* Mobile layout */
+@media (max-width:768px){
+
+  .checkout-layout{
+    grid-template-columns:1fr;
+  }
+
 }

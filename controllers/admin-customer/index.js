@@ -1,9 +1,9 @@
 module.exports = {
 
-  getAllCustomers: require("./getAllCustomers"),
+  getAllCustomers: require("./getAllCustomers.controller"),
 
-    deleteCustomer: require("./deleteCustomer"),
+  deleteCustomer: require("./deleteCustomer.controller"),
 
-    toggleBlockCustomer: require("./toggleBlockCustomer")
+  toggleBlockCustomer: require("./toggleBlockCustomer.controller")
 
-}
+};

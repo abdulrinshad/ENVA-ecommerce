@@ -589,3 +589,11 @@ body { font-family: 'Montserrat', sans-serif; color: var(--navy); margin: 0; }
 .stock-msg.in {
   color: #2e7d32;
 }
+
+@media (max-width:768px){
+
+.order-summary{
+  margin-top:24px;
+}
+
+}

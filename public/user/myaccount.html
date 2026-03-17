@@ -6,9 +6,9 @@
     <title>Account - ENVA</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="myaccount.css">
+    <link rel="stylesheet" href="userSigned.css">
   
 
-    <link rel="stylesheet" href="userSigned.css">
 </head>
 <body>
 <header class="main-header">
@@ -143,12 +143,8 @@
             <li><a href="orders.html">Orders</a></li>
             <li><a href="returns.html">Returns</a></li>
             <li><a href="cancel.html">Cancellations</a></li>
+            <li><a href="wishlist.html">Wishlist</a></li>
         </ul>
-    </div>
-
-    <!-- WISHLIST -->
-    <div class="sidebar-section">
-        <a href="wishlist.html" class="standalone-link">My Wishlist</a>
     </div>
 
     <!-- LOGOUT -->
@@ -476,6 +472,46 @@ async function changePassword() {
     alert("Password change failed");
   }
 }
+
+/* ================= TAB AUTO ACTIVE + SCROLL ================= */
+
+const currentPage = window.location.pathname.split("/").pop();
+
+const links = document.querySelectorAll(".sidebar-menu a");
+
+links.forEach(link => {
+
+  // remove all active first
+  link.classList.remove("active");
+
+  // set correct active
+  if(link.getAttribute("href") === currentPage){
+    link.classList.add("active");
+
+    // smooth center scroll
+    setTimeout(() => {
+      link.scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest"
+      });
+    }, 100);
+  }
+
+});
+
+/* ================= TAB CLICK ANIMATION ================= */
+
+links.forEach(link => {
+  link.addEventListener("click", function(){
+
+    this.scrollIntoView({
+      behavior: "smooth",
+      inline: "center"
+    });
+
+  });
+});
 </script>
 
 </body>
