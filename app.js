@@ -12,7 +12,9 @@ connectDB();
 app.use(express.json());
 
 // Static files
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public", "user")));
+
+app.use(express.static(path.join(__dirname, "public", "admin")));
 
 // Pages
 app.get("/", (req, res) => {
