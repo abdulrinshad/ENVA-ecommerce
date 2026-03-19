@@ -425,11 +425,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     console.log("Submitting offer:", payload);
 
-    const res = await fetch("/api/offers", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
+  const res = await fetch("/api/offers", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  credentials: "include",   // 🔥 ADD THIS LINE
+  body: JSON.stringify(payload)
+});
 
     if (!res.ok) {
       alert("Failed to create offer");
