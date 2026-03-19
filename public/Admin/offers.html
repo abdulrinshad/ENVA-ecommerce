@@ -425,10 +425,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     console.log("Submitting offer:", payload);
 
-  const res = await fetch("/api/offers", {
+ const token = localStorage.getItem("adminToken");
+
+const res = await fetch("/api/offers", {
   method: "POST",
-  headers: { "Content-Type": "application/json" },
-  credentials: "include",   // 🔥 ADD THIS LINE
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${token}`   // 🔥 THIS IS KEY
+  },
   body: JSON.stringify(payload)
 });
 
@@ -444,47 +448,60 @@ document.addEventListener("DOMContentLoaded", () => {
     loadOffers();
   });
 
-  /* ===============================
-     LOAD OFFERS
-  ============================== */
   async function loadOffers() {
-    const res = await fetch("/api/offers");
-    const offers = await res.json();
+  const token = localStorage.getItem("adminToken"); // 🔥 correct key
 
-    offersTable.innerHTML = "";
+  const res = await fetch("/api/offers", {
+    headers: {
+      "Authorization": `Bearer ${token}`
+    }
+  });
 
-    offers.forEach(o => {
-      offersTable.innerHTML += `
-        <tr>
-          <td>
-            <div class="fw-600">${o.title}</div>
-            <small class="text-gray">${o.target}</small>
-          </td>
-          <td><b>${o.discount}</b></td>
-          <td>
-            <span class="${o.status === "Active" ? "badge-active" : "badge-expired"}">
-              ${o.status}
-            </span>
-          </td>
-          <td>
-            <button class="btn btn-sm text-danger"
-                    onclick="deleteOffer('${o._id}')">
-              <i class="bi bi-trash"></i>
-            </button>
-          </td>
-        </tr>
-      `;
-    });
-  }
+  const offers = await res.json();
+
+  offersTable.innerHTML = "";
+
+  offers.forEach(o => {
+    offersTable.innerHTML += `
+      <tr>
+        <td>
+          <div class="fw-600">${o.title}</div>
+          <small class="text-gray">${o.target}</small>
+        </td>
+        <td><b>${o.discount}</b></td>
+        <td>
+          <span class="${o.status === "Active" ? "badge-active" : "badge-expired"}">
+            ${o.status}
+          </span>
+        </td>
+        <td>
+          <button class="btn btn-sm text-danger"
+                  onclick="deleteOffer('${o._id}')">
+            <i class="bi bi-trash"></i>
+          </button>
+        </td>
+      </tr>
+    `;
+  });
+}
 
   /* ===============================
      DELETE OFFER
   ============================== */
-  window.deleteOffer = async function (id) {
-    if (!confirm("Delete this offer?")) return;
-    await fetch(`/api/offers/${id}`, { method: "DELETE" });
-    loadOffers();
-  };
+ window.deleteOffer = async function (id) {
+  if (!confirm("Delete this offer?")) return;
+
+  const token = localStorage.getItem("adminToken");
+
+  await fetch(`/api/offers/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Authorization": `Bearer ${token}`
+    }
+  });
+
+  loadOffers();
+};
 
   /* ===============================
      INIT
