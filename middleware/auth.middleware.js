@@ -49,12 +49,18 @@ exports.protect = async (req, res, next) => {
    ADMIN ONLY
 ===================================================== */
 exports.adminOnly = (req, res, next) => {
-  if (req.user.role === "admin") {
-    next();
-  } else {
-    return res.status(403).json({
-      success: false,
-      message: "Admins only",
-    });
+  console.log("ROLE:", req.user?.role); // 🔍 debug
+
+  if (
+    req.user &&
+    req.user.role &&
+    req.user.role.toLowerCase() === "admin"
+  ) {
+    return next();
   }
+
+  return res.status(403).json({
+    success: false,
+    message: "Admins only",
+  });
 };
