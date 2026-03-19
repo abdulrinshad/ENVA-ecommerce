@@ -23,12 +23,12 @@ exports.adminProtect = async (req, res, next) => {
 
     const user = await User.findById(decoded.id);
 
-    if (!user || user.role !== "admin") {
-      return res.status(403).json({
-        success: false,
-        message: "Admin access denied"
-      });
-    }
+    if (!user || user.role.toLowerCase() !== "admin") {
+  return res.status(403).json({
+    success: false,
+    message: "Admin access denied"
+  });
+}
 
     req.admin = user;
     next();
