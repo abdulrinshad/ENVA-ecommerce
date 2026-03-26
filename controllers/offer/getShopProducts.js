@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
 
     const productQuery = {};
     if (categoryFilter) {
-      productQuery.category = categoryFilter;
+      productQuery.category = { $in: [categoryFilter] };
     }
 
     const products = await Product.find(productQuery)

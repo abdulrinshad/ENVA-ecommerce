@@ -1890,3 +1890,57 @@ gap:16px;
 }
 
 }
+
+.search-dropdown {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 300px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  display: none;
+  z-index: 999;
+  padding: 10px;
+}
+
+.search-dropdown.show {
+  display: block;
+}
+
+.search-item {
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.search-item:hover {
+  background: #f5f5f5;
+}
+
+.search-title {
+  font-weight: 600;
+  font-size: 13px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: gray;
+}
+
+.search-dropdown {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 300px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  display: none;
+  padding: 10px;
+
+  z-index: 9999; /* 🔥 ADD THIS */
+}
+
+.search-dropdown {
+  pointer-events: auto;
+}
+

@@ -3,10 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ENVA Clothing – Buy Trendy Fashion Online in India</title>
-<meta name="description" content="Shop trendy fashion, streetwear, and premium clothing at ENVA. Affordable prices with fast delivery across India.">
-<meta name="keywords" content="ENVA clothing, online fashion India, streetwear India, buy clothes online">
-<link rel="canonical" href="https://envaclothing.online/">
+  <title>ENVA - Home</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -38,10 +35,13 @@
   <div class="header-actions">
 
     <!-- desktop search -->
-    <div class="search-bar">
-      <input type="text" placeholder="Search...">
-      <i class="fas fa-search"></i>
-    </div>
+   <div class="search-bar" style="position: relative;">
+  <input type="text" id="searchInput" placeholder="Search...">
+  <i class="fas fa-search"></i>
+
+  <!-- DROPDOWN -->
+  <div id="searchDropdown" class="search-dropdown"></div>
+</div>
 
     <!-- mobile search icon -->
     <span class="search-icon" id="searchToggle">
@@ -390,6 +390,14 @@ function getToken() {
   return localStorage.getItem("userToken"); // USE SAME KEY EVERYWHERE
 }
 
+
+function goToProduct(id) {
+  window.location.href = `/user/product_single.html?id=${id}`;
+}
+
+function goToCategory(id) {
+  window.location.href = `/user/shop.html?category=${id}`;
+}
 /* =====================================================
    DOM READY
 ===================================================== */
@@ -398,6 +406,65 @@ document.addEventListener("DOMContentLoaded", function () {
   loadTrendingProducts();
   linkOldMoneyBanner();
   initCartWishlistProtection();
+
+  /* =====================================================
+   LIVE SEARCH (CATEGORY + PRODUCT)
+===================================================== */
+
+const searchInput = document.getElementById("searchInput");
+const searchDropdown = document.getElementById("searchDropdown");
+
+searchInput.addEventListener("input", async function () {
+  const query = this.value.trim();
+
+  if (!query) {
+    searchDropdown.classList.remove("show");
+    return;
+  }
+
+  try {
+    // 🔥 CALL YOUR BACKEND
+    const res = await fetch(`/api/products/search?search=${query}`);
+    const data = await res.json();
+
+    const products = data.products || [];
+    const categories = data.categories || [];
+
+    searchDropdown.innerHTML = "";
+
+    /* -------- CATEGORY -------- */
+    if (categories.length > 0) {
+      searchDropdown.innerHTML += `<div class="search-title">Category</div>`;
+
+      categories.forEach(cat => {
+  searchDropdown.innerHTML += `
+    <div class="search-item" onclick="goToCategory('${cat._id}')">
+      ${cat.name}
+    </div>
+  `;
+});
+    }
+
+    /* -------- PRODUCTS -------- */
+    if (products.length > 0) {
+      searchDropdown.innerHTML += `<div class="search-title">Products</div>`;
+
+      products.forEach(prod => {
+        searchDropdown.innerHTML += `
+          <div class="search-item" onclick="goToProduct('${prod._id}')">
+            ${prod.name}<br>
+            <small>₹${prod.price}</small>
+          </div>
+        `;
+      });
+    }
+
+    searchDropdown.classList.add("show");
+
+  } catch (err) {
+    console.error("Search Error:", err);
+  }
+});
 
 });
 
@@ -528,6 +595,7 @@ function showLoginAlert(message) {
     }
   });
 }
+
 
 </script>
 
